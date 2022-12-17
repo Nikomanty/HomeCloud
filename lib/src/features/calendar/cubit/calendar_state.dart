@@ -1,11 +1,5 @@
 part of 'calendar_cubit.dart';
 
-@immutable
-abstract class CalendarState extends Equatable{
-  @override
-  List<Object> get props => [];
-}
-
 class CalendarInitial extends CalendarState {}
 
 class CalendarLoaded extends CalendarState {
@@ -16,4 +10,10 @@ class CalendarLoaded extends CalendarState {
 class CalendarError extends CalendarState {
   final String errorMessage;
   CalendarError({required this.errorMessage});
+}
+
+@immutable
+abstract class CalendarState extends Equatable{
+  @override
+  List<Object> get props => [];
 }

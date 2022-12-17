@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_cloud/firebase_options.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/data/calendar_repository_impl.dart';
+import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
+import 'package:home_cloud/src/features/todo/data/todo_repository_impl.dart';
 import 'package:home_cloud/src/home_cloud.dart';
 import 'package:home_cloud/src/home_cloud_bloc_observer.dart';
 
@@ -18,6 +20,9 @@ void main() async {
       providers: [
         BlocProvider(
           create: (context) => CalendarCubit(CalendarRepositoryImpl()),
+        ),
+        BlocProvider(
+          create: (context) => TodoCubit(TodoRepositoryImpl()),
         ),
       ],
       child: const HomeCloud(),
