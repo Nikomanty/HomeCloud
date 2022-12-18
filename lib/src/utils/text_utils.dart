@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TextUtils {
-  Size getTextSize(String text, TextStyle textStyle) {
+  static Size getTextSize(String text, TextStyle textStyle) {
     TextPainter painter = TextPainter(
       text: TextSpan(
         text: text,

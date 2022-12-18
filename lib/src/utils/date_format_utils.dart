@@ -17,6 +17,7 @@ class DateFormatUtils {
     return DateFormat('HH:mm').format(dateTime);
   }
 
+  static DateTime getFirstDateOfCalendar() => DateTime.utc(2010, 1, 1);
   static DateTime getLastDateOfCalendar() => DateTime.utc(2040, 31, 12);
 
 }

@@ -5,8 +5,10 @@ class CalendarService {
   final FirebaseFirestore _database = FirebaseFirestore.instance;
 
   Future<List<CalendarEventModel>> fetchData() async {
-    QuerySnapshot<Map<String, dynamic>> snapshot =
-        await _database.collection("calendar-events").get();
+    QuerySnapshot<Map<String, dynamic>> snapshot = await _database
+        .collection("calendar-events")
+        .orderBy('eventDate', descending: false)
+        .get();
     return snapshot.docs
         .map((documentSnapshot) =>
             CalendarEventModel.fromDocument(documentSnapshot))
