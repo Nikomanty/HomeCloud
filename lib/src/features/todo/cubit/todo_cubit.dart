@@ -8,7 +8,7 @@ import '../models/todo_item_model.dart';
 part 'todo_state.dart';
 
 class TodoCubit extends Cubit<TodoState> {
-  final TodoRepositoryImpl _todoRepository;
+  final TodoRepository _todoRepository;
 
   TodoCubit(this._todoRepository) : super(TodoInitial());
 

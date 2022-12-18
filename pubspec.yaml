@@ -41,6 +41,7 @@ dependencies:
   bloc: ^8.1.0
   intl: ^0.17.0
   table_calendar: ^3.0.6
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

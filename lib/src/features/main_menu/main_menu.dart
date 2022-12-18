@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/features/weather/view/weather_placeholder_widget.dart';
 
 import 'utils/main_menu_utils.dart';
 import 'main_menu_item.dart';
@@ -22,10 +23,10 @@ class HomeCloudMainMenu extends StatelessWidget {
                 ),
               ),
               //TODO: Add weather box
-              Expanded(
+              const Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(60.0),
-                  child: Container(),
+                  padding: EdgeInsets.all(60.0),
+                  child: WeatherPlaceholderView(),
                 ),
               ),
             ],
