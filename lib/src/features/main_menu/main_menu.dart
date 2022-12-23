@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/features/weather/view/weather_placeholder_widget.dart';
-
-import 'utils/main_menu_utils.dart';
-import 'main_menu_item.dart';
+import 'package:home_cloud/src/features/main_menu/main_menu_item.dart';
+import 'package:home_cloud/src/features/main_menu/utils/main_menu_utils.dart';
+import 'package:home_cloud/src/features/weather/view/weather_view.dart';
 
 
 class HomeCloudMainMenu extends StatelessWidget {
@@ -22,11 +21,10 @@ class HomeCloudMainMenu extends StatelessWidget {
                   child: _menuItems(),
                 ),
               ),
-              //TODO: Add weather box
               const Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(60.0),
-                  child: WeatherPlaceholderView(),
+                  child: WeatherView(),
                 ),
               ),
             ],
@@ -39,12 +37,10 @@ class HomeCloudMainMenu extends StatelessWidget {
   Widget _menuItems() => Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: MainMenuUtils.homeCloudViews.map((menuItem) {
-      return Expanded(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: MainMenuItem(
-            index: MainMenuUtils.homeCloudViews.indexOf(menuItem),
-          ),
+      return Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: MainMenuItem(
+          index: MainMenuUtils.homeCloudViews.indexOf(menuItem),
         ),
       );
     }).toList(),

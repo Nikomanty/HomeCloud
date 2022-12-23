@@ -21,13 +21,15 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => CalendarCubit(CalendarRepositoryImpl()),
+          create: (context) =>
+              CalendarCubit(CalendarRepositoryImpl())..getData(),
         ),
         BlocProvider(
-          create: (context) => TodoCubit(TodoRepositoryImpl()),
+          create: (context) => TodoCubit(TodoRepositoryImpl())..getData(),
         ),
         BlocProvider(
-          create: (context) => WeatherCubit(WeatherRepositoryImpl()),
+          create: (context) =>
+              WeatherCubit(WeatherRepositoryImpl())..getWeatherData(),
         ),
       ],
       child: const HomeCloud(),

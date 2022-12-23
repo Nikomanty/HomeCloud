@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 
 class WeatherRepositoryImpl implements WeatherRepository {
-  WeatherService _service = WeatherService();
+  final WeatherService _service = WeatherService();
 
   @override
   Future<WeatherModel> getCurrentWeatherData() {

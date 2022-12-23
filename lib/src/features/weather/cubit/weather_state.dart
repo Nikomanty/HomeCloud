@@ -1,21 +1,35 @@
 part of 'weather_cubit.dart';
 
-class WeatherInitial extends WeatherState {}
+enum WeatherStatus { initial, update, success, error }
 
-class WeatherLoaded extends WeatherState {
-  final List<dynamic> forecastData;
-  final WeatherModel currentWeatherData;
+class WeatherState extends Equatable {
+  final WeatherStatus status;
+  final WeatherModel? currentWeather;
+  final List<dynamic>? forecastWeather;
+  final Exception? exception;
 
-  WeatherLoaded({required this.currentWeatherData, required this.forecastData});
-}
+  const WeatherState({
+    this.status = WeatherStatus.initial,
+    this.currentWeather,
+    this.forecastWeather,
+    this.exception,
+  });
 
-class WeatherError extends WeatherState {
-  final String errorMessage;
-  WeatherError({required this.errorMessage});
-}
+  WeatherState copyWith({
+    WeatherStatus? status,
+    WeatherModel? currentWeather,
+    List<dynamic>? forecastWeather,
+    Exception? exception,
+  }) {
+    return WeatherState(
+      status: status ?? this.status,
+      currentWeather: currentWeather ?? this.currentWeather,
+      forecastWeather: forecastWeather ?? this.forecastWeather,
+      exception: exception ?? this.exception,
+    );
+  }
 
-@immutable
-abstract class WeatherState extends Equatable {
   @override
-  List<Object> get props => [];
+  List<Object?> get props =>
+      [status, currentWeather, forecastWeather, exception];
 }
