@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:home_cloud/secrets.dart';
+import 'package:home_cloud/src/features/weather/models/weather_model.dart';
 import 'package:http/http.dart' as http;
-
-import '../../../../secrets.dart';
-import '../models/weather_model.dart';
 
 class WeatherService {
   Future<WeatherModel> fetchCurrentWeather(http.Client client) async {
