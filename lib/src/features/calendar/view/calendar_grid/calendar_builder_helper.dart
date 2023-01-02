@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:home_cloud/src/extensions/strings_extension.dart';
+import 'package:home_cloud/src/features/calendar/view/calendar_grid/calendar_event.dart';
+import 'package:home_cloud/src/features/calendar/view/res/calendar_strings.dart';
 import 'package:home_cloud/src/utils/text_utils.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
-
-import '../res/calendar_strings.dart';
-import 'calendar_event.dart';
 
 class CalendarBuilderHelper {
   static CalendarBuilders getHomeCalendarBuilder() {

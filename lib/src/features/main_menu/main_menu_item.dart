@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../utils/styles.dart';
-import 'utils/main_menu_utils.dart';
-
+import 'package:home_cloud/src/features/main_menu/utils/main_menu_utils.dart';
+import 'package:home_cloud/src/utils/styles.dart';
 
 class MainMenuItem extends StatelessWidget {
   final int index;

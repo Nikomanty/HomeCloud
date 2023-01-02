@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/utils/date_format_utils.dart';
-
-import '../../../../utils/styles.dart';
-import '../../../../widgets/buttons/item_delete_button.dart';
-import '../../../../widgets/buttons/item_edit_button.dart';
-import '../../models/calendar_event_model.dart';
+import 'package:home_cloud/src/utils/styles.dart';
+import 'package:home_cloud/src/widgets/buttons/item_delete_button.dart';
+import 'package:home_cloud/src/widgets/buttons/item_edit_button.dart';
 
 class CalendarEventListItem extends StatelessWidget {
   final CalendarEventModel eventItemModel;

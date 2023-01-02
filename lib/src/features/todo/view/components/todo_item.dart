@@ -3,7 +3,6 @@ import 'package:home_cloud/src/features/todo/models/todo_item_model.dart';
 import 'package:home_cloud/src/widgets/buttons/item_delete_button.dart';
 import 'package:home_cloud/src/widgets/buttons/item_edit_button.dart';
 
-
 class TodoItem extends StatelessWidget {
   final TodoItemModel todoModel;
 
