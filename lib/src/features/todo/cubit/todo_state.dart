@@ -1,19 +1,30 @@
 part of 'todo_cubit.dart';
 
-class TodoInitial extends TodoState {}
+enum TodoStatus { initial, update, loaded, error }
 
-class TodoLoaded extends TodoState {
-  final List<TodoItemModel> todoData;
-  TodoLoaded({required this.todoData});
-}
+class TodoState extends Equatable {
+  final TodoStatus status;
+  final List<TodoItemModel>? todoData;
+  final Exception? exception;
 
-class TodoError extends TodoState {
-  final String errorMessage;
-  TodoError({required this.errorMessage});
-}
+  const TodoState({
+    this.status = TodoStatus.initial,
+    this.todoData,
+    this.exception,
+  });
 
-@immutable
-abstract class TodoState extends Equatable {
+  TodoState copyWith({
+    TodoStatus? status,
+    List<TodoItemModel>? todoData,
+    Exception? exception,
+  }) {
+    return TodoState(
+      status: status ?? this.status,
+      todoData: todoData ?? this.todoData,
+      exception: exception ?? this.exception,
+    );
+  }
+
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [status, todoData, exception];
 }

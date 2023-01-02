@@ -4,11 +4,10 @@ import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
 import 'package:home_cloud/src/features/todo/view/components/todo_box_grid.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_strings.dart';
 import 'package:home_cloud/src/widgets/buttons/app_bar_action_button.dart';
+import 'package:home_cloud/src/widgets/error/centered_error_text.dart';
 import 'package:home_cloud/src/widgets/loading/centered_loader.dart';
 
-
 class TodoView extends StatelessWidget {
-
   const TodoView({Key? key}) : super(key: key);
 
   @override
@@ -18,18 +17,23 @@ class TodoView extends StatelessWidget {
       appBar: AppBar(
         title: const Text(TodoStrings.todoViewTitle),
         actions: [
+          IconButton(
+              onPressed: () => context.read<TodoCubit>().updateData(),
+              icon: const Icon(Icons.update)),
           _createNewTodoButton(context),
         ],
       ),
       body: BlocBuilder<TodoCubit, TodoState>(
         builder: (context, state) {
-          if(state is TodoInitial){
+          if (state.status == TodoStatus.initial) {
             context.read<TodoCubit>().getData();
             return const CenteredLoader();
-          } else if (state is TodoLoaded) {
-            return TodoBoxGrid(allTodoItems: state.todoData);
+          } else if (state.status == TodoStatus.error) {
+            return CenteredErrorText(
+              errorMessage: state.exception.toString(),
+            );
           } else {
-            return const CenteredLoader();
+            return TodoBoxGrid(allTodoItems: state.todoData ?? []);
           }
         },
       ),
@@ -44,4 +48,3 @@ class TodoView extends StatelessWidget {
         },
       );
 }
-

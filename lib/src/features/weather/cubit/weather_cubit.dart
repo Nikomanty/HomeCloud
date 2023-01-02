@@ -21,7 +21,7 @@ class WeatherCubit extends Cubit<WeatherState> {
       await _weatherRepository.getCurrentWeatherData();
       List<dynamic> forecastData = await _weatherRepository.getForecastData();
       emit(state.copyWith(
-        status: WeatherStatus.success,
+        status: WeatherStatus.loaded,
         currentWeather: currentData,
         forecastWeather: forecastData,
       ));

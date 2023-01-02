@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-
-import '../../calendar/view/calendar_grid/calendar_view.dart';
-import '../../todo/view/todo_view.dart';
+import 'package:home_cloud/src/features/calendar/view/calendar_grid/calendar_view.dart';
+import 'package:home_cloud/src/features/todo/view/todo_view.dart';
 
 /// All static variables/getters used in Home Cloud application
 class MainMenuUtils {
   //TODO: Change to real views
   static List<Widget> homeCloudViews = [
     const CalendarView(),
-    TodoView(),
+    const TodoView(),
   ];
 
   //TODO: Change to real view names

@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
+import 'package:home_cloud/src/features/calendar/view/calendar_grid/calendar_builder_helper.dart';
+import 'package:home_cloud/src/features/calendar/view/event_lists/calendar_event_list.dart';
+import 'package:home_cloud/src/features/calendar/view/res/calendar_strings.dart';
 import 'package:home_cloud/src/utils/date_format_utils.dart';
+import 'package:home_cloud/src/utils/styles.dart';
+import 'package:home_cloud/src/widgets/buttons/app_bar_action_button.dart';
+import 'package:home_cloud/src/widgets/error/centered_error_text.dart';
 import 'package:home_cloud/src/widgets/loading/centered_loader.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../../../../utils/styles.dart';
-import '../../../../widgets/buttons/app_bar_action_button.dart';
-import '../events/calendar_event_list.dart';
-import '../res/calendar_strings.dart';
-import 'calendar_builder_helper.dart';
-
-//TODO: This widget should be removed when real calendar is implemented
 class CalendarView extends StatefulWidget {
   const CalendarView({Key? key}) : super(key: key);
 
@@ -33,6 +32,9 @@ class _CalendarViewState extends State<CalendarView> {
       appBar: AppBar(
         title: const Text(CalendarStrings.calendarViewName),
         actions: [
+          IconButton(
+              onPressed: () => context.read<CalendarCubit>().updateData(),
+              icon: const Icon(Icons.update)),
           _resetDateTodayButton(),
           _selectDateButton(),
         ],
@@ -40,14 +42,16 @@ class _CalendarViewState extends State<CalendarView> {
       body: Center(
         child: BlocBuilder<CalendarCubit, CalendarState>(
           builder: (context, state) {
-            if (state is CalendarInitial) {
+            if (state.status == CalendarStatus.initial) {
               context.read<CalendarCubit>().getData();
               return const CenteredLoader();
-            } else if (state is CalendarLoaded) {
-              allEvents = state.calendarData;
-              return _homeCalendarView();
+            } else if (state.status == CalendarStatus.error) {
+              return CenteredErrorText(
+                errorMessage: state.exception.toString(),
+              );
             } else {
-              return const CenteredLoader();
+              allEvents = state.calendarData ?? [];
+              return _homeCalendarView();
             }
           },
         ),

@@ -7,6 +7,7 @@ import 'package:home_cloud/src/features/weather/view/current_weather/current_wea
 import 'package:home_cloud/src/features/weather/view/forecast_weather/forecast_carousel.dart';
 import 'package:home_cloud/src/features/weather/view/utils/weather_utils.dart';
 import 'package:home_cloud/src/features/weather/view/current_weather/update_weather_widget.dart';
+import 'package:home_cloud/src/widgets/error/centered_error_text.dart';
 import 'package:home_cloud/src/widgets/loading/centered_loader.dart';
 
 class WeatherView extends StatefulWidget {
@@ -42,6 +43,10 @@ class _WeatherViewState extends State<WeatherView> {
           builder: (context, state) {
             if (state.status == WeatherStatus.initial) {
               return const CenteredLoader();
+            } else if (state.status == WeatherStatus.error) {
+              return CenteredErrorText(
+                errorMessage: state.exception.toString(),
+              );
             } else {
               WeatherModel? currentWeather = state.currentWeather;
               List<dynamic>? forecastWeather = state.forecastWeather;

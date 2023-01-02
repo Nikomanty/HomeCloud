@@ -1,19 +1,30 @@
 part of 'calendar_cubit.dart';
 
-class CalendarInitial extends CalendarState {}
+enum CalendarStatus { initial, update, loaded, error }
 
-class CalendarLoaded extends CalendarState {
-  final List<CalendarEventModel> calendarData;
-  CalendarLoaded({required this.calendarData});
-}
+class CalendarState extends Equatable {
+  final CalendarStatus status;
+  final List<CalendarEventModel>? calendarData;
+  final Exception? exception;
 
-class CalendarError extends CalendarState {
-  final String errorMessage;
-  CalendarError({required this.errorMessage});
-}
+  const CalendarState({
+    this.status = CalendarStatus.initial,
+    this.calendarData,
+    this.exception,
+  });
 
-@immutable
-abstract class CalendarState extends Equatable{
+  CalendarState copyWith({
+    CalendarStatus? status,
+    List<CalendarEventModel>? calendarData,
+    Exception? exception,
+  }) {
+    return CalendarState(
+      status: status ?? this.status,
+      calendarData: calendarData ?? this.calendarData,
+      exception: exception ?? exception,
+    );
+  }
+
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [status, calendarData, exception];
 }

@@ -2,8 +2,6 @@ import 'package:home_cloud/src/features/weather/data/weather_service.dart';
 import 'package:home_cloud/src/features/weather/models/weather_model.dart';
 import 'package:http/http.dart' as http;
 
-
-
 class WeatherRepositoryImpl implements WeatherRepository {
   final WeatherService _service = WeatherService();
 

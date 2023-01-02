@@ -4,7 +4,6 @@ import 'package:home_cloud/src/features/todo/view/components/todo_day_box.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_strings.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_utils.dart';
 
-
 class TodoBoxGrid extends StatelessWidget {
   final List<TodoItemModel> allTodoItems;
 
