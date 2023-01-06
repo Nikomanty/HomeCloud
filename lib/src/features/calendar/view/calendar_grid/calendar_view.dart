@@ -4,7 +4,8 @@ import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/features/calendar/view/calendar_grid/calendar_builder_helper.dart';
 import 'package:home_cloud/src/features/calendar/view/event_lists/calendar_event_list.dart';
-import 'package:home_cloud/src/features/calendar/view/res/calendar_strings.dart';
+import 'package:home_cloud/src/features/calendar/view/forms/create_event_dialog.dart';
+import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/utils/date_format_utils.dart';
 import 'package:home_cloud/src/utils/styles.dart';
 import 'package:home_cloud/src/widgets/buttons/app_bar_action_button.dart';
@@ -37,6 +38,7 @@ class _CalendarViewState extends State<CalendarView> {
               icon: const Icon(Icons.update)),
           _resetDateTodayButton(),
           _selectDateButton(),
+          _createNewEventButton(),
         ],
       ),
       body: Center(
@@ -154,6 +156,20 @@ class _CalendarViewState extends State<CalendarView> {
         title: CalendarStrings.resetTodayButton,
         action: () => _updateDates(DateTime.now(), DateTime.now()),
       );
+
+  AppBarActionButton _createNewEventButton() => AppBarActionButton(
+    title: CalendarStrings.createNewEventButtonTitle,
+    action: () => _openEventCreationDialog(_selectedDate),
+  );
+
+  _openEventCreationDialog(DateTime selectedDate) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CreateEventDialog(selectedDate: selectedDate);
+      },
+    );
+  }
 
   void _updateDates(DateTime selectedDate, DateTime focusedDate) {
     setState(() {

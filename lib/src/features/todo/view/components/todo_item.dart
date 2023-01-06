@@ -30,8 +30,11 @@ class TodoItem extends StatelessWidget {
             ),
           ),
         ),
-        const EditIconButton(),
-        const DeleteIconButton(),
+        //const EditIconButton(),
+        DeleteIconButton(
+          itemToDeleteName: todoModel.title,
+          deleteItem: () => debugPrint("delete"),
+        ),
       ],
     );
   }

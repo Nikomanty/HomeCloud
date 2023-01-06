@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/utils/home_cloud_strings.dart';
 
 class DeleteIconButton extends StatefulWidget {
+  final Function() deleteItem;
+  final String? itemToDeleteName;
   final double? iconSize;
 
   const DeleteIconButton({
     Key? key,
+    required this.deleteItem,
+    this.itemToDeleteName,
     this.iconSize,
   }) : super(key: key);
 
@@ -30,12 +35,21 @@ class _DeleteIconButtonState extends State<DeleteIconButton> {
 
   _dialog(BuildContext context) {
     return AlertDialog(
-      title: const Text("Not implemented yet, press cancel to close dialog"),
+      title: Text(
+        "${HomeCloudString.itemDeletionQuestion} ${widget.itemToDeleteName}",
+      ),
       actions: [
         TextButton(
+          onPressed: () {
+            widget.deleteItem();
+            Navigator.of(context).pop();
+          },
+          child: const Text(HomeCloudString.confirmItemDeletion),
+        ),
+        TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text("Cancel"),
-        )
+          child: const Text(HomeCloudString.cancelString),
+        ),
       ],
     );
   }

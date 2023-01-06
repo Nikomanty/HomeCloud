@@ -1,11 +1,7 @@
 /// All strings used in Home Cloud application
 class CalendarStrings {
-  static const String calendarDbCollection = "calendar-events";
-
   static const String calendarViewName = "Kalenteri ja tapahtumat";
-  static const String todoViewName = "ToDo";
 
-  static const String eventString = "tapahtuma";
   static const String allCalendarEvents = "Kaikki tapahtumat";
   static const String todayCalendarEvents = "Tapahtumat tänään";
   static const String selectedDayCalendarEvents = "Valitun päivän tapahtumat";
@@ -26,13 +22,6 @@ class CalendarStrings {
   static String eventEdited(String event) => "Tapahtumaa -$event- muokattu";
 
   static const String createNewEventDialogTitle = "Luo uusi tapahtuma";
-  static const String confirmCreate = "Luo";
-  static const String cancelString = "Peruuta";
-  static const String confirmPickString = "Valitse";
-
-  static const String itemDeletionQuestion = "Poistaanko:";
-  static const String confirmItemDeletion = "Poista";
-  static const String confirmItemEdition = "Vahvista muutokset";
 
   static const String resetTodayButton = "Tämä päivä";
   static const String selectDateButton = "Valitse päivä";
