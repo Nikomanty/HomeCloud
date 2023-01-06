@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
 import 'package:home_cloud/src/features/todo/view/components/todo_box_grid.dart';
+import 'package:home_cloud/src/features/todo/view/forms/create_todo_dialog.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_strings.dart';
 import 'package:home_cloud/src/widgets/buttons/app_bar_action_button.dart';
 import 'package:home_cloud/src/widgets/error/centered_error_text.dart';
@@ -43,8 +44,11 @@ class TodoView extends StatelessWidget {
   AppBarActionButton _createNewTodoButton(BuildContext context) =>
       AppBarActionButton(
         title: TodoStrings.createNewTodoButtonTitle,
-        action: () {
-          debugPrint("Create new form needs new implementation");
-        },
+        action: () => showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return const CreateTodoDialog();
+          },
+        ),
       );
 }

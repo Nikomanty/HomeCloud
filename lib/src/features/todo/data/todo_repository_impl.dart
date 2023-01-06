@@ -8,8 +8,28 @@ class TodoRepositoryImpl implements TodoRepository {
   Future<List<TodoItemModel>> fetchData() {
     return _service.fetchData();
   }
+
+  @override
+  Future<void> createData(
+    String? documentId,
+    Map<String, dynamic> newDocumentObject,
+  ) {
+    return _service.createData(documentId, newDocumentObject);
+  }
+
+  @override
+  Future<void> deleteData(String documentId) {
+    return _service.deleteData(documentId);
+  }
 }
 
 abstract class TodoRepository {
   Future<List<TodoItemModel>> fetchData();
+
+  Future<void> createData(
+    String? documentId,
+    Map<String, dynamic> newDocumentObject,
+  );
+
+  Future<void> deleteData(String documentId);
 }
