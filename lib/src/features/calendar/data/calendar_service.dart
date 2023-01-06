@@ -20,16 +20,10 @@ class CalendarService {
     String? documentID,
     Map<String, dynamic> newDocumentObject,
   ) async {
-    FirebaseFirestore.instance
-        .collection(collectionPath)
-        .doc(documentID)
-        .set(newDocumentObject);
+    _database.collection(collectionPath).doc(documentID).set(newDocumentObject);
   }
 
   Future<void> deleteData(String documentId) async {
-    FirebaseFirestore.instance
-        .collection(collectionPath)
-        .doc(documentId)
-        .delete();
+    _database.collection(collectionPath).doc(documentId).delete();
   }
 }

@@ -3,12 +3,24 @@ import 'package:home_cloud/src/features/todo/models/todo_item_model.dart';
 
 class TodoService {
   final FirebaseFirestore _database = FirebaseFirestore.instance;
+  static const String collectionPath = "todo-items";
 
   Future<List<TodoItemModel>> fetchData() async {
     QuerySnapshot<Map<String, dynamic>> todoData =
-        await _database.collection("todo-items").get();
+        await _database.collection(collectionPath).get();
     return todoData.docs
         .map((documentSnapshot) => TodoItemModel.fromJson(documentSnapshot))
         .toList();
+  }
+
+  Future<void> createData(
+    String? documentID,
+    Map<String, dynamic> newDocumentObject,
+  ) async {
+    _database.collection(collectionPath).doc(documentID).set(newDocumentObject);
+  }
+
+  Future<void> deleteData(String documentId) async {
+    _database.collection(collectionPath).doc(documentId).delete();
   }
 }

@@ -10,6 +10,27 @@ class TodoCubit extends Cubit<TodoState> {
 
   TodoCubit(this._todoRepository) : super(const TodoState());
 
+  Future<void> createData(
+    String? documentId,
+    Map<String, dynamic> newDocumentObject,
+  ) async {
+    try {
+      _todoRepository.createData(documentId, newDocumentObject);
+      updateData();
+    } on Exception {
+      return;
+    }
+  }
+
+  Future<void> deleteData(String documentId) async {
+    try {
+      _todoRepository.deleteData(documentId);
+      updateData();
+    } on Exception {
+      return;
+    }
+  }
+
   Future<void> updateData() async {
     emit(state.copyWith(status: TodoStatus.update));
     getData();
