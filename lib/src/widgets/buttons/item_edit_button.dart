@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class EditIconButton extends StatefulWidget {
+  final Widget editDialog;
   final double? iconSize;
 
   const EditIconButton({
     Key? key,
+    required this.editDialog,
     this.iconSize,
   }) : super(key: key);
 
@@ -21,15 +23,7 @@ class _EditIconButtonState extends State<EditIconButton> {
         showDialog(
           context: context,
           builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text("Not implemented yet, press cancel to close dialog"),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: const Text("Cancel"),
-                )
-              ],
-            );
+            return widget.editDialog;
           },
         );
       },

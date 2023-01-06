@@ -9,8 +9,26 @@ class CalendarRepositoryImpl extends CalendarRepository {
   Future<List<CalendarEventModel>> fetchData() {
     return _calendarService.fetchData();
   }
+
+  @override
+  Future<void> createData(
+    String? documentID,
+    Map<String, dynamic> newDocumentObject,
+  ) {
+    return _calendarService.createData(documentID, newDocumentObject);
+  }
+
+  @override
+  Future<void> deleteData(String documentId) {
+    return _calendarService.deleteData(documentId);
+  }
 }
 
 abstract class CalendarRepository {
   Future<List<CalendarEventModel>> fetchData();
+  Future<void> createData(
+    String? documentID,
+    Map<String, dynamic> newDocumentObject,
+  );
+  Future<void> deleteData(String documentId);
 }

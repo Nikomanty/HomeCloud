@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/features/calendar/view/event_lists/calendar_event_list_item.dart';
-import 'package:home_cloud/src/features/calendar/view/res/calendar_strings.dart';
+import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 
 class CalendarEventList extends StatefulWidget {
   final String title;

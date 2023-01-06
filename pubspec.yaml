@@ -44,6 +44,8 @@ dependencies:
   intl: ^0.17.0
   table_calendar: ^3.0.6
   http: ^0.13.5
+  datetime_picker_formfield: ^2.0.0
+  flutter_colorpicker: ^1.0.3
 
 dev_dependencies:
   flutter_test:

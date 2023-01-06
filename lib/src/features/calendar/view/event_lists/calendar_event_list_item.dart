@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
+import 'package:home_cloud/src/features/calendar/view/forms/create_event_dialog.dart';
+import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/utils/date_format_utils.dart';
 import 'package:home_cloud/src/utils/styles.dart';
 import 'package:home_cloud/src/widgets/buttons/item_delete_button.dart';
@@ -64,7 +68,7 @@ class CalendarEventListItem extends StatelessWidget {
 
   _timeLabelString() {
     String dateTime =
-    DateFormatUtils.formattedDateddMMyyyy(eventItemModel.eventDate);
+        DateFormatUtils.formattedDateddMMyyyy(eventItemModel.eventDate);
     return eventItemModel.eventTime != null
         ? "$dateTime / ${DateFormatUtils.formattedTimeHHmm(eventItemModel.eventTime!)}"
         : dateTime;
@@ -85,8 +89,13 @@ class CalendarEventListItem extends StatelessWidget {
               child: _eventTexts(context, eventItemModel.eventDescription),
             ),
           ),
-          const EditIconButton(),
-          const DeleteIconButton(),
+          EditIconButton(editDialog: CreateEventDialog(model: eventItemModel)),
+          DeleteIconButton(
+            itemToDeleteName: eventItemModel.eventTitle,
+            deleteItem: () => context.read<CalendarCubit>().deleteData(
+                  eventItemModel.documentId,
+                ),
+          ),
         ],
       ),
     );
