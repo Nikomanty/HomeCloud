@@ -14,24 +14,20 @@ class ForecastCarousel extends StatefulWidget {
 class _ForecastCarouselState extends State<ForecastCarousel> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          children: [
-            const ForecastIconColumnWidget(),
-            Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: widget.forecastData.length,
-                itemBuilder: (context, index) {
-                  return ForecastItem(weatherModel: widget.forecastData[index]);
-                },
-              ),
-            ),
-          ],
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        const ForecastIconColumnWidget(),
+        Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: widget.forecastData.length,
+            itemBuilder: (context, index) {
+              return ForecastItem(weatherModel: widget.forecastData[index]);
+            },
+          ),
         ),
-      ),
+      ],
     );
   }
 }

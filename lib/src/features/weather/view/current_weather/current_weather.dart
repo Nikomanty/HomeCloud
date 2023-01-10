@@ -11,19 +11,19 @@ class CurrentWeather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                WeatherUtils.getWeatherIconPath(model.weatherType),
-                scale: 1.4,
-              ),
-              const Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
-              Row(
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              WeatherUtils.getWeatherIconPath(model.weatherType),
+              scale: 1.5,
+            ),
+            const Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Row(
                 children: [
                   WeatherUtils.blackWeatherLabel(
                       "${model.temperature}", 100),
@@ -31,15 +31,15 @@ class CurrentWeather extends StatelessWidget {
                       WeatherStrings.celsiusMark, 70),
                 ],
               ),
-            ],
-          ),
-          CurrentWeatherInfoBox(
-            feelsLike: model.feelsLike,
-            humidity: model.humidity,
-            windSpeed: model.windSpeed,
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+        CurrentWeatherInfoBox(
+          feelsLike: model.feelsLike,
+          humidity: model.humidity,
+          windSpeed: model.windSpeed,
+        ),
+      ],
     );
   }
 }

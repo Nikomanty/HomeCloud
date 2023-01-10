@@ -24,7 +24,7 @@ class MainMenuItem extends StatelessWidget {
             child: FittedBox(
               child: Icon(
                 MainMenuUtils.getItemIcon(
-                  MainMenuUtils.homeCloudViews[index].toString(),
+                  MainMenuUtils.homeCloudViewNames[index],
                 ),
               ),
             ),

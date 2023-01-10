@@ -4,13 +4,16 @@ import 'package:home_cloud/src/features/todo/view/todo_view.dart';
 
 /// All static variables/getters used in Home Cloud application
 class MainMenuUtils {
-  //TODO: Change to real views
   static List<Widget> homeCloudViews = [
     const CalendarView(),
     const TodoView(),
   ];
 
-  //TODO: Change to real view names
+  static List<String> homeCloudViewNames = [
+    "CalendarView",
+    "TodoView",
+  ];
+
   static IconData getItemIcon(String viewName) {
     switch (viewName) {
       case "CalendarView":

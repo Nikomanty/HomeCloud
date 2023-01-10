@@ -59,16 +59,24 @@ class _WeatherViewState extends State<WeatherView> {
   }
 
   _weatherContent(WeatherModel currentWeather, List<dynamic> forecastWeather) {
-    return Column(
+    return Stack(
       children: [
-        Stack(
-          children: [
-            const UpdateWeatherWidget(),
-            CurrentWeather(model: currentWeather),
-          ],
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: Align(
+            alignment: Alignment.topRight,
+            child: UpdateWeatherWidget(),
+          ),
         ),
-        WeatherUtils.weatherContentDivider(),
-        ForecastCarousel(forecastData: forecastWeather),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              CurrentWeather(model: currentWeather),
+              Expanded(child: ForecastCarousel(forecastData: forecastWeather)),
+            ],
+          ),
+        ),
       ],
     );
   }

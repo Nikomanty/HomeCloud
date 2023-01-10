@@ -13,7 +13,7 @@ class ForecastItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 5.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

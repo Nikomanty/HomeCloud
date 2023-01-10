@@ -6,7 +6,7 @@ class ForecastIconColumnWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.end,
@@ -21,7 +21,7 @@ class ForecastIconColumnWidget extends StatelessWidget {
   }
 
   _forecastPrefixIcon(IconData iconData) => Padding(
-    padding: const EdgeInsets.all(3.5),
-    child: Icon(iconData, size: 20),
+    padding: const EdgeInsets.all(3),
+    child: Icon(iconData, size: 18),
   );
 }
