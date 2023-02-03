@@ -33,20 +33,20 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
 
   Color? eventColor;
   DateTime? eventTime;
-  DateTime? eventDate;
+  late DateTime eventDate;
 
   @override
   void initState() {
     super.initState();
-    eventDate = widget.selectedDate;
+    eventDate = widget.selectedDate ?? DateTime.now();
     if (widget.model != null) {
       eventOwnerTextController.text = widget.model?.eventOwner ?? "";
       eventTitleTextController.text = widget.model?.eventTitle ?? "";
       eventDescriptionTextController.text =
           widget.model?.eventDescription ?? "";
+      eventDate = widget.model?.eventDate ?? DateTime.now();
       eventColor = widget.model?.eventColor;
       eventTime = widget.model?.eventTime;
-      eventDate = widget.model?.eventDate;
     }
   }
 
@@ -153,7 +153,7 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
       fieldIcon: Icons.date_range_outlined,
       child: DateTimeField(
         format: DateFormat('dd.MM.yyyy'),
-        initialValue: eventDate ?? DateTime.now(),
+        initialValue: eventDate,
         decoration: const InputDecoration(
           hintText: CalendarStrings.eventCreatePickDateHint,
           border: InputBorder.none,
@@ -165,12 +165,15 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
           return null;
         },
         onShowPicker: (context, currentValue) async {
-          eventDate = await showDatePicker(
+          DateTime? selectedDate = await showDatePicker(
             context: context,
-            initialDate: eventDate ?? DateTime.now(),
+            initialDate: eventDate,
             firstDate: DateTime.now(),
             lastDate: DateFormatUtils.getLastDateOfCalendar(),
           );
+          if (selectedDate != null) {
+            eventDate = selectedDate;
+          }
           return eventDate;
         },
       ),
@@ -221,7 +224,7 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
         "eventColor": eventColor?.value,
         "eventDescription": eventDescriptionTextController.text,
         "eventTime": eventTime?.millisecondsSinceEpoch,
-        "eventDate": eventDate?.millisecondsSinceEpoch,
+        "eventDate": eventDate.millisecondsSinceEpoch,
       },
     );
   }
