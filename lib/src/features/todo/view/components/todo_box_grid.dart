@@ -5,9 +5,9 @@ import 'package:home_cloud/src/features/todo/view/utils/todo_strings.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_utils.dart';
 
 class TodoBoxGrid extends StatelessWidget {
-  final List<TodoItemModel> allTodoItems;
+  final List<TodoModel> allTodoItems;
 
-  const TodoBoxGrid({Key? key, required this.allTodoItems}) : super(key: key);
+  const TodoBoxGrid({super.key, required this.allTodoItems});
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +50,8 @@ class TodoBoxGrid extends StatelessWidget {
     );
   }
 
-  List<TodoItemModel> _getTodoItemsByWeekday(String weekDay) {
-    List<TodoItemModel> eventsForGivenDate = [];
+  List<TodoModel> _getTodoItemsByWeekday(String weekDay) {
+    List<TodoModel> eventsForGivenDate = [];
     for (var element in allTodoItems) {
       if (element.weekDay == weekDay) {
         eventsForGivenDate.add(element);

@@ -12,8 +12,8 @@ class CalendarCubit extends Cubit<CalendarState> {
 
   Future<void> deleteData(String documentID) async {
     try {
-      _calendarRepository.deleteData(documentID);
-      updateData();
+      await _calendarRepository.deleteData(documentID);
+      await updateData();
     } on Exception {
       return;
     }
@@ -24,8 +24,8 @@ class CalendarCubit extends Cubit<CalendarState> {
     Map<String, dynamic> newDocumentObject,
   ) async {
     try {
-      _calendarRepository.createData(documentID, newDocumentObject);
-      updateData();
+      await _calendarRepository.createData(documentID, newDocumentObject);
+      await updateData();
     } on Exception {
       return;
     }
@@ -33,7 +33,7 @@ class CalendarCubit extends Cubit<CalendarState> {
 
   Future<void> updateData() async {
     emit(state.copyWith(status: CalendarStatus.update));
-    getData();
+    await getData();
   }
 
   Future<void> getData() async {

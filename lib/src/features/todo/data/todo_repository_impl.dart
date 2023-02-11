@@ -5,7 +5,7 @@ class TodoRepositoryImpl implements TodoRepository {
   final TodoService _service = TodoService();
 
   @override
-  Future<List<TodoItemModel>> fetchData() {
+  Future<List<TodoModel>> fetchData() {
     return _service.fetchData();
   }
 
@@ -24,7 +24,7 @@ class TodoRepositoryImpl implements TodoRepository {
 }
 
 abstract class TodoRepository {
-  Future<List<TodoItemModel>> fetchData();
+  Future<List<TodoModel>> fetchData();
 
   Future<void> createData(
     String? documentId,

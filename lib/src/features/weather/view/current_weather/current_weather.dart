@@ -7,7 +7,7 @@ import 'package:home_cloud/src/features/weather/view/utils/weather_utils.dart';
 class CurrentWeather extends StatelessWidget {
   final WeatherModel model;
 
-  const CurrentWeather({Key? key, required this.model}) : super(key: key);
+  const CurrentWeather({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {

@@ -9,7 +9,7 @@ import 'package:home_cloud/src/widgets/error/centered_error_text.dart';
 import 'package:home_cloud/src/widgets/loading/centered_loader.dart';
 
 class TodoView extends StatelessWidget {
-  const TodoView({Key? key}) : super(key: key);
+  const TodoView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +44,9 @@ class TodoView extends StatelessWidget {
   AppBarActionButton _createNewTodoButton(BuildContext context) =>
       AppBarActionButton(
         title: TodoStrings.createNewTodoButtonTitle,
-        action: () => showDialog(
+        action: () => showDialog<Widget>(
           context: context,
-          builder: (BuildContext context) {
+          builder: (context) {
             return const CreateTodoDialog();
           },
         ),

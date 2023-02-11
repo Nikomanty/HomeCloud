@@ -4,7 +4,7 @@ enum TodoStatus { initial, update, loaded, error }
 
 class TodoState extends Equatable {
   final TodoStatus status;
-  final List<TodoItemModel>? todoData;
+  final List<TodoModel>? todoData;
   final Exception? exception;
 
   const TodoState({
@@ -15,7 +15,7 @@ class TodoState extends Equatable {
 
   TodoState copyWith({
     TodoStatus? status,
-    List<TodoItemModel>? todoData,
+    List<TodoModel>? todoData,
     Exception? exception,
   }) {
     return TodoState(

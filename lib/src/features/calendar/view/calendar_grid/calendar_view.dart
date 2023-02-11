@@ -15,7 +15,7 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarView extends StatefulWidget {
-  const CalendarView({Key? key}) : super(key: key);
+  const CalendarView({super.key});
 
   @override
   State<CalendarView> createState() => _CalendarViewState();
@@ -61,7 +61,7 @@ class _CalendarViewState extends State<CalendarView> {
     );
   }
 
-  _homeCalendarView() {
+  Widget _homeCalendarView() {
     return Row(
       children: [
         Expanded(
@@ -162,10 +162,10 @@ class _CalendarViewState extends State<CalendarView> {
     action: () => _openEventCreationDialog(_selectedDate),
   );
 
-  _openEventCreationDialog(DateTime selectedDate) {
+  Future<void> _openEventCreationDialog(DateTime selectedDate) {
     return showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return CreateEventDialog(selectedDate: selectedDate);
       },
     );

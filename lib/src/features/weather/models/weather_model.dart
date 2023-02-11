@@ -17,12 +17,12 @@ class WeatherModel {
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     return WeatherModel(
-      weatherType: json['weather'][0]['main'],
-      temperature: json['main']['temp'].round(),
-      feelsLike: json['main']['feels_like'].round(),
-      humidity: json['main']['humidity'],
-      windSpeed: json['wind']['speed'].round(),
-      dateTime: DateTime.fromMillisecondsSinceEpoch(json['dt'] * 1000),
+      weatherType: json['weather'][0]['main'] as String,
+      temperature: json['main']['temp'].round() as int,
+      feelsLike: json['main']['feels_like'].round() as int,
+      humidity: json['main']['humidity'] as int ,
+      windSpeed: json['wind']['speed'].round() as int,
+      dateTime: DateTime.fromMillisecondsSinceEpoch((json['dt'] * 1000) as int),
     );
   }
 }

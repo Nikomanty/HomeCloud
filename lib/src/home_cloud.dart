@@ -5,7 +5,7 @@ import 'package:home_cloud/src/features/main_menu/main_menu.dart';
 class HomeCloud extends StatelessWidget {
   static const String appTitle = "Home Cloud";
 
-  const HomeCloud({Key? key}) : super(key: key);
+  const HomeCloud({super.key});
 
   @override
   Widget build(BuildContext context) {

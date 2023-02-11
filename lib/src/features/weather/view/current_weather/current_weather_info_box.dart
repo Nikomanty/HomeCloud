@@ -8,11 +8,11 @@ class CurrentWeatherInfoBox extends StatelessWidget {
   final int windSpeed;
 
   const CurrentWeatherInfoBox({
-    Key? key,
+    super.key,
     required this.feelsLike,
     required this.humidity,
     required this.windSpeed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

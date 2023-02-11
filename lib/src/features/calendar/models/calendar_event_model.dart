@@ -22,15 +22,15 @@ class CalendarEventModel {
 
   factory CalendarEventModel.fromDocument(DocumentSnapshot document) {
     return CalendarEventModel(
-      eventOwner: document['eventOwner'],
-      eventTitle: document['eventTitle'],
-      eventDescription: document['eventDescription'],
+      eventOwner: document['eventOwner'] as String,
+      eventTitle: document['eventTitle'] as String,
+      eventDescription: document['eventDescription'] as String,
       eventTime: document['eventTime'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(document['eventTime'])
+          ? DateTime.fromMillisecondsSinceEpoch(document['eventTime'] as int)
           : null,
-      eventDate: DateTime.fromMillisecondsSinceEpoch(document['eventDate']),
+      eventDate: DateTime.fromMillisecondsSinceEpoch(document['eventDate'] as int),
       eventColor: document['eventColor'] != null
-          ? Color((document['eventColor']))
+          ? Color((document['eventColor'] as int))
           : null,
       documentId: document.id,
     );

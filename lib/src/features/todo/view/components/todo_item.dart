@@ -7,12 +7,12 @@ import 'package:home_cloud/src/widgets/buttons/item_delete_button.dart';
 import 'package:home_cloud/src/widgets/buttons/item_edit_button.dart';
 
 class TodoItem extends StatelessWidget {
-  final TodoItemModel todoModel;
+  final TodoModel todoModel;
 
   const TodoItem({
-    Key? key,
+    super.key,
     required this.todoModel,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

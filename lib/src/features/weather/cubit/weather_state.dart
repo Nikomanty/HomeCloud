@@ -5,7 +5,7 @@ enum WeatherStatus { initial, update, loaded, error}
 class WeatherState extends Equatable {
   final WeatherStatus status;
   final WeatherModel? currentWeather;
-  final List<dynamic>? forecastWeather;
+  final List<WeatherModel>? forecastWeather;
   final Exception? exception;
 
   const WeatherState({
@@ -18,7 +18,7 @@ class WeatherState extends Equatable {
   WeatherState copyWith({
     WeatherStatus? status,
     WeatherModel? currentWeather,
-    List<dynamic>? forecastWeather,
+    List<WeatherModel>? forecastWeather,
     Exception? exception,
   }) {
     return WeatherState(

@@ -15,8 +15,8 @@ class TodoCubit extends Cubit<TodoState> {
     Map<String, dynamic> newDocumentObject,
   ) async {
     try {
-      _todoRepository.createData(documentId, newDocumentObject);
-      updateData();
+      await _todoRepository.createData(documentId, newDocumentObject);
+      await updateData();
     } on Exception {
       return;
     }
@@ -24,8 +24,8 @@ class TodoCubit extends Cubit<TodoState> {
 
   Future<void> deleteData(String documentId) async {
     try {
-      _todoRepository.deleteData(documentId);
-      updateData();
+      await _todoRepository.deleteData(documentId);
+      await updateData();
     } on Exception {
       return;
     }
@@ -33,12 +33,12 @@ class TodoCubit extends Cubit<TodoState> {
 
   Future<void> updateData() async {
     emit(state.copyWith(status: TodoStatus.update));
-    getData();
+    await getData();
   }
 
   Future<void> getData() async {
     try {
-      List<TodoItemModel> data = await _todoRepository.fetchData();
+      List<TodoModel> data = await _todoRepository.fetchData();
       emit(state.copyWith(status: TodoStatus.loaded, todoData: data));
     } on Exception catch (exception) {
       emit(state.copyWith(status: TodoStatus.error, exception: exception));

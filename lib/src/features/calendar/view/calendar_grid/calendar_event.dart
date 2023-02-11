@@ -7,11 +7,11 @@ class CalendarEvent extends StatelessWidget {
   final Color? eventColor;
 
   const CalendarEvent({
-    Key? key,
+    super.key,
     required this.eventTitle,
     this.eventTime,
     this.eventColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

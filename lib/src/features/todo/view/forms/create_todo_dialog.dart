@@ -8,9 +8,9 @@ import 'package:home_cloud/src/widgets/forms/form_input_field_container.dart';
 import 'package:home_cloud/src/widgets/forms/form_text_input_widget.dart';
 
 class CreateTodoDialog extends StatefulWidget {
-  final TodoItemModel? model;
+  final TodoModel? model;
 
-  const CreateTodoDialog({Key? key, this.model}) : super(key: key);
+  const CreateTodoDialog({super.key, this.model});
 
   @override
   State<CreateTodoDialog> createState() => _CreateTodoDialogState();
@@ -79,7 +79,7 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
     );
   }
 
-  _buttonRow() {
+  Widget _buttonRow() {
     TextStyle? actionsButtonTextStyle = Theme.of(context)
         .textTheme
         .labelMedium
@@ -113,7 +113,7 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
     );
   }
 
-  _publishEventToDatabase() {
+  void _publishEventToDatabase() {
     context.read<TodoCubit>().createData(
       documentId,
       {
@@ -124,7 +124,7 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
     );
   }
 
-  _showNotificationSnack() => ScaffoldMessenger.of(context).showSnackBar(
+  void _showNotificationSnack() => ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
             widget.model != null
