@@ -8,10 +8,10 @@ class CalendarEventList extends StatefulWidget {
   final List<CalendarEventModel> eventsList;
 
   const CalendarEventList({
-    Key? key,
+    super.key,
     required this.title,
     required this.eventsList,
-  }) : super(key: key);
+  });
 
   @override
   State<CalendarEventList> createState() => _CalendarEventListState();
@@ -48,11 +48,11 @@ class _CalendarEventListState extends State<CalendarEventList> {
     );
   }
 
-  _eventsList() {
+  Widget _eventsList() {
     if (widget.eventsList.isNotEmpty) {
       return ListView(
         children:
-        widget.eventsList.map((CalendarEventModel eventItemModel) {
+        widget.eventsList.map((eventItemModel) {
           return Padding(
             padding: const EdgeInsets.all(4.0),
             child: CalendarEventListItem(

@@ -11,12 +11,12 @@ class WeatherRepositoryImpl implements WeatherRepository {
   }
 
   @override
-  Future<List<dynamic>> getForecastData() {
+  Future<List<WeatherModel>> getForecastData() {
     return _service.fetchForecastWeather(http.Client());
   }
 }
 
 abstract class WeatherRepository {
   Future<WeatherModel> getCurrentWeatherData();
-  Future<List<dynamic>> getForecastData();
+  Future<List<WeatherModel>> getForecastData();
 }

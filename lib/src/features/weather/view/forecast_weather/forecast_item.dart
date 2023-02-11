@@ -7,8 +7,7 @@ import 'package:home_cloud/src/utils/date_format_utils.dart';
 class ForecastItem extends StatelessWidget {
   final WeatherModel weatherModel;
 
-  const ForecastItem({Key? key, required this.weatherModel})
-      : super(key: key);
+  const ForecastItem({super.key, required this.weatherModel});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +55,7 @@ class ForecastItem extends StatelessWidget {
     );
   }
 
-  _textWidget(String text) => Padding(
+  Widget _textWidget(String text) => Padding(
         padding: const EdgeInsets.all(4.0),
         child: Text(
           text,

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/features/calendar/view/forms/create_event_dialog.dart';
-import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/utils/date_format_utils.dart';
 import 'package:home_cloud/src/utils/styles.dart';
 import 'package:home_cloud/src/widgets/buttons/item_delete_button.dart';
@@ -13,9 +12,9 @@ class CalendarEventListItem extends StatelessWidget {
   final CalendarEventModel eventItemModel;
 
   const CalendarEventListItem({
-    Key? key,
+    super.key,
     required this.eventItemModel,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class CalendarEventListItem extends StatelessWidget {
     );
   }
 
-  _itemTitlePart(BuildContext context) {
+  Widget _itemTitlePart(BuildContext context) {
     return Container(
       height: 30,
       decoration: BoxDecoration(
@@ -66,7 +65,7 @@ class CalendarEventListItem extends StatelessWidget {
     );
   }
 
-  _timeLabelString() {
+  String _timeLabelString() {
     String dateTime =
         DateFormatUtils.formattedDateddMMyyyy(eventItemModel.eventDate);
     return eventItemModel.eventTime != null
@@ -74,7 +73,7 @@ class CalendarEventListItem extends StatelessWidget {
         : dateTime;
   }
 
-  _itemInfoPart(BuildContext context) {
+  Widget _itemInfoPart(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.vertical(bottom: Radius.circular(5)),
@@ -101,13 +100,13 @@ class CalendarEventListItem extends StatelessWidget {
     );
   }
 
-  _eventTexts(BuildContext context, String? description) {
+  Widget _eventTexts(BuildContext context, String? description) {
     return description != null
         ? _getTitledDescriptionTexts(context)
         : _getTitleOnlyText(context);
   }
 
-  _getTitledDescriptionTexts(BuildContext context) {
+  Widget _getTitledDescriptionTexts(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -128,7 +127,7 @@ class CalendarEventListItem extends StatelessWidget {
     );
   }
 
-  _getTitleOnlyText(BuildContext context) {
+  Widget _getTitleOnlyText(BuildContext context) {
     return Text(
       eventItemModel.eventTitle,
       maxLines: 1,

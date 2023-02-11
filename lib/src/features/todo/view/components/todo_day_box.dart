@@ -4,13 +4,13 @@ import 'package:home_cloud/src/features/todo/view/components/todo_item.dart';
 
 class TodoDayBox extends StatefulWidget {
   final String weekDay;
-  final List<TodoItemModel> todoItems;
+  final List<TodoModel> todoItems;
 
   const TodoDayBox({
-    Key? key,
+    super.key,
     required this.weekDay,
     required this.todoItems,
-  }) : super(key: key);
+  });
 
   @override
   State<TodoDayBox> createState() => _TodoDayBoxState();
@@ -44,12 +44,14 @@ class _TodoDayBoxState extends State<TodoDayBox> {
     );
   }
 
-  _todoList() => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0),
-        child: ListView(
-          children: widget.todoItems
-              .map((item) => TodoItem(todoModel: item))
-              .toList(),
-        ),
-      );
+  Widget _todoList() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: ListView(
+        children: widget.todoItems
+            .map((item) => TodoItem(todoModel: item))
+            .toList(),
+      ),
+    );
+  }
 }

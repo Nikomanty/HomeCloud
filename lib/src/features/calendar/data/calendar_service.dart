@@ -20,10 +20,13 @@ class CalendarService {
     String? documentID,
     Map<String, dynamic> newDocumentObject,
   ) async {
-    _database.collection(collectionPath).doc(documentID).set(newDocumentObject);
+    await _database
+        .collection(collectionPath)
+        .doc(documentID)
+        .set(newDocumentObject);
   }
 
   Future<void> deleteData(String documentId) async {
-    _database.collection(collectionPath).doc(documentId).delete();
+    await _database.collection(collectionPath).doc(documentId).delete();
   }
 }

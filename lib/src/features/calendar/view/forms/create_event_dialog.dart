@@ -16,8 +16,7 @@ class CreateEventDialog extends StatefulWidget {
   final DateTime? selectedDate;
   final CalendarEventModel? model;
 
-  const CreateEventDialog({Key? key, this.model, this.selectedDate})
-      : super(key: key);
+  const CreateEventDialog({super.key, this.model, this.selectedDate});
 
   @override
   State<CreateEventDialog> createState() => _CreateEventDialogState();
@@ -40,13 +39,13 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
     super.initState();
     eventDate = widget.selectedDate ?? DateTime.now();
     if (widget.model != null) {
-      eventOwnerTextController.text = widget.model?.eventOwner ?? "";
-      eventTitleTextController.text = widget.model?.eventTitle ?? "";
+      eventOwnerTextController.text = widget.model!.eventOwner ?? "";
+      eventTitleTextController.text = widget.model!.eventTitle;
       eventDescriptionTextController.text =
-          widget.model?.eventDescription ?? "";
-      eventDate = widget.model?.eventDate ?? DateTime.now();
-      eventColor = widget.model?.eventColor;
-      eventTime = widget.model?.eventTime;
+          widget.model!.eventDescription ?? "";
+      eventDate = widget.model!.eventDate;
+      eventColor = widget.model!.eventColor;
+      eventTime = widget.model!.eventTime;
     }
   }
 
@@ -99,7 +98,7 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
     );
   }
 
-  _eventColorPicker() {
+  Widget _eventColorPicker() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -107,7 +106,7 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
           key: const ValueKey('color'),
           pickerColor: eventColor ?? Colors.transparent,
           availableColors: CalendarUtils.availableItemColors(),
-          layoutBuilder: (context, List<Color> colors, PickerItem child) {
+          layoutBuilder: (context, colors, child) {
             return Row(
               children: CalendarUtils.availableItemColors().map((color) {
                 return child(color);
@@ -124,7 +123,7 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
     );
   }
 
-  _eventTimePicker() {
+  FormInputFieldContainer _eventTimePicker() {
     return FormInputFieldContainer(
       fieldIcon: Icons.timer_outlined,
       child: DateTimeField(
@@ -148,7 +147,7 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
     );
   }
 
-  _eventDatePicker() {
+  FormInputFieldContainer _eventDatePicker() {
     return FormInputFieldContainer(
       fieldIcon: Icons.date_range_outlined,
       child: DateTimeField(
@@ -180,7 +179,7 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
     );
   }
 
-  _buttonRow() {
+  Widget _buttonRow() {
     TextStyle? actionsButtonTextStyle =
         Theme.of(context).textTheme.labelMedium?.merge(
               const TextStyle(color: Colors.blue),
@@ -215,7 +214,7 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
     );
   }
 
-  _publishEventToDatabase() {
+  void _publishEventToDatabase() {
     context.read<CalendarCubit>().createData(
       widget.model?.documentId,
       {
@@ -229,7 +228,7 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
     );
   }
 
-  _showNotificationSnack() => ScaffoldMessenger.of(context).showSnackBar(
+  void _showNotificationSnack() => ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(widget.model != null
               ? CalendarStrings.eventEdited(eventTitleTextController.text)

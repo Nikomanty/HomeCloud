@@ -51,9 +51,9 @@ class CalendarBuilderHelper {
     List<Widget> widgets = [];
     for (int i = 0; i < list.length; i++) {
       widgets.add(CalendarEvent(
-        eventTitle: list[i].eventTitle,
-        eventTime: list[i].eventTime,
-        eventColor: list[i].eventColor,
+        eventTitle: list[i].eventTitle as String,
+        eventTime: list[i].eventTime as DateTime?,
+        eventColor: list[i].eventColor as Color,
       ));
       if (i >= 1) {
         break;

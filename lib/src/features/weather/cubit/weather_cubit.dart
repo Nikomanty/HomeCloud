@@ -12,14 +12,14 @@ class WeatherCubit extends Cubit<WeatherState> {
 
   Future<void> updateData() async {
     emit(state.copyWith(status: WeatherStatus.update));
-    getWeatherData();
+    await getWeatherData();
   }
 
   Future<void> getWeatherData() async {
     try {
       WeatherModel currentData =
       await _weatherRepository.getCurrentWeatherData();
-      List<dynamic> forecastData = await _weatherRepository.getForecastData();
+      List<WeatherModel> forecastData = await _weatherRepository.getForecastData();
       emit(state.copyWith(
         status: WeatherStatus.loaded,
         currentWeather: currentData,

@@ -5,7 +5,7 @@ import 'package:home_cloud/src/features/weather/view/utils/weather_strings.dart'
 import 'package:home_cloud/src/utils/date_format_utils.dart';
 
 class UpdateWeatherWidget extends StatelessWidget {
-  const UpdateWeatherWidget({Key? key}) : super(key: key);
+  const UpdateWeatherWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

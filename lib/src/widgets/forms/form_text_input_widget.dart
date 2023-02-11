@@ -8,13 +8,13 @@ class FormTextInputWidget extends StatefulWidget {
   final String? validatorString;
 
   const FormTextInputWidget({
-    Key? key,
+    super.key,
     required this.hintText,
     required this.valueKey,
     this.initialValue,
     required this.stringToUpdateTextController,
     this.validatorString,
-  }) : super(key: key);
+  });
 
   @override
   State<FormTextInputWidget> createState() => _FormTextInputWidgetState();

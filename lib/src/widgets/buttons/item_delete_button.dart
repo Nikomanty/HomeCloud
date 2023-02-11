@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:home_cloud/src/utils/home_cloud_strings.dart';
 
 class DeleteIconButton extends StatefulWidget {
-  final Function() deleteItem;
+  final VoidCallback deleteItem;
   final String? itemToDeleteName;
   final double? iconSize;
 
   const DeleteIconButton({
-    Key? key,
+    super.key,
     required this.deleteItem,
     this.itemToDeleteName,
     this.iconSize,
-  }) : super(key: key);
+  });
 
   @override
   State<DeleteIconButton> createState() => _DeleteIconButtonState();
@@ -23,9 +23,9 @@ class _DeleteIconButtonState extends State<DeleteIconButton> {
     return IconButton(
       icon: Icon(Icons.delete_outline, size: widget.iconSize ?? 25),
       onPressed: () {
-        showDialog(
+        showDialog<AlertDialog>(
           context: context,
-          builder: (BuildContext context) {
+          builder: (context) {
             return _dialog(context);
           },
         );
@@ -33,7 +33,7 @@ class _DeleteIconButtonState extends State<DeleteIconButton> {
     );
   }
 
-  _dialog(BuildContext context) {
+  AlertDialog _dialog(BuildContext context) {
     return AlertDialog(
       title: Text(
         "${HomeCloudString.itemDeletionQuestion} ${widget.itemToDeleteName}",

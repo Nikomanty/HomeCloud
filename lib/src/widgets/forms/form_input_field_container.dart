@@ -4,7 +4,7 @@ class FormInputFieldContainer extends StatefulWidget {
   final IconData fieldIcon;
   final Widget child;
 
-  const FormInputFieldContainer({Key? key, required this.fieldIcon, required this.child}) : super(key: key);
+  const FormInputFieldContainer({super.key, required this.fieldIcon, required this.child});
 
   @override
   State<FormInputFieldContainer> createState() => _FormInputFieldContainerState();

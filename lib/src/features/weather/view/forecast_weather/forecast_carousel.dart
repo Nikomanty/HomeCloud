@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/features/weather/models/weather_model.dart';
 import 'package:home_cloud/src/features/weather/view/forecast_weather/forecast_icon_column_widget.dart';
 import 'package:home_cloud/src/features/weather/view/forecast_weather/forecast_item.dart';
 
 class ForecastCarousel extends StatefulWidget {
-  final List<dynamic> forecastData;
+  final List<WeatherModel> forecastData;
 
-  const ForecastCarousel({Key? key, required this.forecastData}) : super(key: key);
+  const ForecastCarousel({super.key, required this.forecastData});
 
   @override
   State<ForecastCarousel> createState() => _ForecastCarouselState();

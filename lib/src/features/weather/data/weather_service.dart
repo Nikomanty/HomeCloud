@@ -13,17 +13,22 @@ class WeatherService {
 
   static WeatherModel parseCurrentWeather(String responseBody) {
     final parsed = jsonDecode(responseBody);
-    return WeatherModel.fromJson(parsed);
+    return WeatherModel.fromJson(parsed as Map<String, dynamic>);
   }
 
-  Future<List<dynamic>> fetchForecastWeather(http.Client client) async {
+  Future<List<WeatherModel>> fetchForecastWeather(http.Client client) async {
     final response = await client.get(Uri.parse(_getWeatherUrl("forecast")));
     return compute(parseForecastWeather, response.body);
   }
 
-  static List<dynamic> parseForecastWeather(String responseBody) {
-    final parsed = jsonDecode(responseBody);
-    return parsed['list'].map((e) => WeatherModel.fromJson(e)).toList();
+  static List<WeatherModel> parseForecastWeather(String responseBody) {
+    List<dynamic> parsedList =
+        jsonDecode(responseBody)['list'] as List<dynamic>;
+    List<WeatherModel> weatherList = List<WeatherModel>.from(parsedList
+        .map(
+            (weather) => WeatherModel.fromJson(weather as Map<String, dynamic>))
+        .toList());
+    return weatherList;
   }
 
   static String _getWeatherUrl(String type) {

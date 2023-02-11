@@ -1,17 +1,18 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_cloud/src/features/weather/cubit/weather_cubit.dart';
 import 'package:home_cloud/src/features/weather/models/weather_model.dart';
 import 'package:home_cloud/src/features/weather/view/current_weather/current_weather.dart';
+import 'package:home_cloud/src/features/weather/view/current_weather/update_weather_widget.dart';
 import 'package:home_cloud/src/features/weather/view/forecast_weather/forecast_carousel.dart';
 import 'package:home_cloud/src/features/weather/view/utils/weather_utils.dart';
-import 'package:home_cloud/src/features/weather/view/current_weather/update_weather_widget.dart';
 import 'package:home_cloud/src/widgets/error/centered_error_text.dart';
 import 'package:home_cloud/src/widgets/loading/centered_loader.dart';
 
 class WeatherView extends StatefulWidget {
-  const WeatherView({Key? key}) : super(key: key);
+  const WeatherView({super.key});
 
   @override
   State<WeatherView> createState() => _WeatherViewState();
@@ -49,7 +50,7 @@ class _WeatherViewState extends State<WeatherView> {
               );
             } else {
               WeatherModel? currentWeather = state.currentWeather;
-              List<dynamic>? forecastWeather = state.forecastWeather;
+              List<WeatherModel>? forecastWeather = state.forecastWeather;
               return _weatherContent(currentWeather!, forecastWeather!);
             }
           },
@@ -58,7 +59,10 @@ class _WeatherViewState extends State<WeatherView> {
     );
   }
 
-  _weatherContent(WeatherModel currentWeather, List<dynamic> forecastWeather) {
+  Widget _weatherContent(
+    WeatherModel currentWeather,
+    List<WeatherModel> forecastWeather,
+  ) {
     return Column(
       children: [
         Stack(

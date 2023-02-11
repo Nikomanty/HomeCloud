@@ -5,7 +5,7 @@ import 'package:home_cloud/src/utils/styles.dart';
 class MainMenuItem extends StatelessWidget {
   final int index;
 
-  const MainMenuItem({Key? key, required this.index}) : super(key: key);
+  const MainMenuItem({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +34,10 @@ class MainMenuItem extends StatelessWidget {
     );
   }
 
-  _openMenuItem(BuildContext context) {
+  void _openMenuItem(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(
+      MaterialPageRoute<Widget>(
         builder: (context) => MainMenuUtils.homeCloudViews[index],
       ),
     );

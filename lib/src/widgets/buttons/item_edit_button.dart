@@ -5,10 +5,10 @@ class EditIconButton extends StatefulWidget {
   final double? iconSize;
 
   const EditIconButton({
-    Key? key,
+    super.key,
     required this.editDialog,
     this.iconSize,
-  }) : super(key: key);
+  });
 
   @override
   State<EditIconButton> createState() => _EditIconButtonState();
@@ -20,9 +20,9 @@ class _EditIconButtonState extends State<EditIconButton> {
     return InkWell(
       child: Icon(Icons.edit_outlined, size: widget.iconSize ?? 25),
       onTap: () {
-        showDialog(
+        showDialog<Widget>(
           context: context,
-          builder: (BuildContext context) {
+          builder: (context) {
             return widget.editDialog;
           },
         );
