@@ -1,5 +1,5 @@
 import 'package:home_cloud/src/features/todo/data/todo_service.dart';
-import 'package:home_cloud/src/features/todo/models/todo_item_model.dart';
+import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 
 class TodoRepositoryImpl implements TodoRepository {
   final TodoService _service = TodoService();

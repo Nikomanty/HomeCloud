@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:home_cloud/src/features/todo/data/todo_repository_impl.dart';
-import 'package:home_cloud/src/features/todo/models/todo_item_model.dart';
+import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 
 part 'todo_state.dart';
 

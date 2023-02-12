@@ -88,8 +88,8 @@ class CalendarEventListItem extends StatelessWidget {
               child: _eventTexts(context, eventItemModel.eventDescription),
             ),
           ),
-          EditIconButton(editDialog: CreateEventDialog(model: eventItemModel)),
-          DeleteIconButton(
+          ItemEditButton(dialogContent: CreateEventDialog(model: eventItemModel)),
+          ItemDeleteButton(
             itemToDeleteName: eventItemModel.eventTitle,
             deleteItem: () => context.read<CalendarCubit>().deleteData(
                   eventItemModel.documentId,

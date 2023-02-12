@@ -9,7 +9,7 @@ import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart'
 import 'package:home_cloud/src/utils/date_format_utils.dart';
 import 'package:home_cloud/src/utils/home_cloud_strings.dart';
 import 'package:home_cloud/src/widgets/forms/form_input_field_container.dart';
-import 'package:home_cloud/src/widgets/forms/form_text_input_widget.dart';
+import 'package:home_cloud/src/widgets/forms/form_text_input_fieldt.dart';
 import 'package:intl/intl.dart';
 
 class CreateEventDialog extends StatefulWidget {
@@ -41,8 +41,7 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
     if (widget.model != null) {
       eventOwnerTextController.text = widget.model!.eventOwner ?? "";
       eventTitleTextController.text = widget.model!.eventTitle;
-      eventDescriptionTextController.text =
-          widget.model!.eventDescription ?? "";
+      eventDescriptionTextController.text = widget.model!.eventDescription ?? "";
       eventDate = widget.model!.eventDate;
       eventColor = widget.model!.eventColor;
       eventTime = widget.model!.eventTime;
@@ -51,13 +50,6 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      scrollable: true,
-      content: _eventForm(),
-    );
-  }
-
-  Form _eventForm() {
     return Form(
       key: _formKey,
       child: Column(
@@ -66,26 +58,23 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
           _eventColorPicker(),
           FormInputFieldContainer(
             fieldIcon: Icons.person_outline,
-            child: FormTextInputWidget(
+            child: FormTextInputField(
               hintText: CalendarStrings.ownerHintText,
-              valueKey: "owner",
               stringToUpdateTextController: eventOwnerTextController,
             ),
           ),
           FormInputFieldContainer(
             fieldIcon: Icons.title_outlined,
-            child: FormTextInputWidget(
+            child: FormTextInputField(
               hintText: CalendarStrings.titleHintText,
-              valueKey: "title",
               stringToUpdateTextController: eventTitleTextController,
               validatorString: CalendarStrings.eventCreateMustHaveTitle,
             ),
           ),
           FormInputFieldContainer(
             fieldIcon: Icons.text_fields_outlined,
-            child: FormTextInputWidget(
+            child: FormTextInputField(
               hintText: CalendarStrings.descriptionHintText,
-              valueKey: "description",
               stringToUpdateTextController: eventDescriptionTextController,
             ),
           ),
@@ -103,7 +92,6 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         BlockPicker(
-          key: const ValueKey('color'),
           pickerColor: eventColor ?? Colors.transparent,
           availableColors: CalendarUtils.availableItemColors(),
           layoutBuilder: (context, colors, child) {

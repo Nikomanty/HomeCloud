@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
-import 'package:home_cloud/src/features/todo/models/todo_item_model.dart';
+import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_strings.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_utils.dart';
 import 'package:home_cloud/src/widgets/forms/form_input_field_container.dart';
-import 'package:home_cloud/src/widgets/forms/form_text_input_widget.dart';
+import 'package:home_cloud/src/widgets/forms/form_text_input_fieldt.dart';
 
 class CreateTodoDialog extends StatefulWidget {
   final TodoModel? model;
@@ -35,13 +35,6 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      scrollable: true,
-      content: _eventForm(),
-    );
-  }
-
-  Form _eventForm() {
     return Form(
       key: _formKey,
       child: Column(
@@ -49,10 +42,8 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
         children: [
           FormInputFieldContainer(
             fieldIcon: Icons.title_outlined,
-            child: FormTextInputWidget(
-              initialValue: todoTitleTextController.text,
+            child: FormTextInputField(
               hintText: TodoStrings.todoTextHintText,
-              valueKey: "title",
               stringToUpdateTextController: todoTitleTextController,
               validatorString: TodoStrings.todoMustHaveText,
             ),
