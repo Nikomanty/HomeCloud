@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:home_cloud/src/features/todo/models/todo_item_model.dart';
+import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 
 class TodoService {
   final FirebaseFirestore _database = FirebaseFirestore.instance;

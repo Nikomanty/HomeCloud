@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/features/todo/models/todo_item_model.dart';
+import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 import 'package:home_cloud/src/features/todo/view/components/todo_item.dart';
 
 class TodoDayBox extends StatefulWidget {

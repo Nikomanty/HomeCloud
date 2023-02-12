@@ -1,30 +1,25 @@
 import 'package:flutter/material.dart';
 
-class FormTextInputWidget extends StatefulWidget {
+class FormTextInputField extends StatefulWidget {
   final String hintText;
-  final String valueKey;
   final TextEditingController stringToUpdateTextController;
-  final String? initialValue;
   final String? validatorString;
 
-  const FormTextInputWidget({
+  const FormTextInputField({
     super.key,
     required this.hintText,
-    required this.valueKey,
-    this.initialValue,
     required this.stringToUpdateTextController,
     this.validatorString,
   });
 
   @override
-  State<FormTextInputWidget> createState() => _FormTextInputWidgetState();
+  State<FormTextInputField> createState() => _FormTextInputFieldState();
 }
 
-class _FormTextInputWidgetState extends State<FormTextInputWidget> {
+class _FormTextInputFieldState extends State<FormTextInputField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      key: ValueKey(widget.valueKey),
       decoration: InputDecoration(
         hintText: widget.hintText,
         border: InputBorder.none,

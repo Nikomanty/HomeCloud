@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class EditIconButton extends StatefulWidget {
-  final Widget editDialog;
+class ItemEditButton extends StatefulWidget {
+  final Widget dialogContent;
   final double? iconSize;
 
-  const EditIconButton({
+  const ItemEditButton({
     super.key,
-    required this.editDialog,
+    required this.dialogContent,
     this.iconSize,
   });
 
   @override
-  State<EditIconButton> createState() => _EditIconButtonState();
+  State<ItemEditButton> createState() => _ItemEditButtonState();
 }
 
-class _EditIconButtonState extends State<EditIconButton> {
+class _ItemEditButtonState extends State<ItemEditButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -23,7 +23,9 @@ class _EditIconButtonState extends State<EditIconButton> {
         showDialog<Widget>(
           context: context,
           builder: (context) {
-            return widget.editDialog;
+            return AlertDialog(
+              content: widget.dialogContent,
+            );
           },
         );
       },
