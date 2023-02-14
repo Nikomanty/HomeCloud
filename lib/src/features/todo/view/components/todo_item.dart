@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
 import 'package:home_cloud/src/features/todo/models/todo_model.dart';
-import 'package:home_cloud/src/features/todo/view/forms/create_todo_dialog.dart';
-import 'package:home_cloud/src/widgets/buttons/item_delete_button.dart';
-import 'package:home_cloud/src/widgets/buttons/item_edit_button.dart';
+import 'package:home_cloud/src/features/todo/view/forms/todo_create_edit_form.dart';
+import 'package:home_cloud/src/widgets/dialog/open_dialog_icon_button.dart';
+import 'package:home_cloud/src/widgets/dialog/delete_item_dialog_content.dart';
 
 class TodoItem extends StatelessWidget {
   final TodoModel todoModel;
@@ -40,14 +40,18 @@ class TodoItem extends StatelessWidget {
                 ),
           ),
         ),
-        ItemEditButton(
-          dialogContent: CreateTodoDialog(model: todoModel),
+        OpenDialogIconButton(
+          icon: Icons.edit_outlined,
+          dialogContent: TodoCreateEditForm(model: todoModel),
         ),
-        ItemDeleteButton(
-          itemToDeleteName: todoModel.title,
-          deleteItem: () => context.read<TodoCubit>().deleteData(
-                todoModel.documentId,
-              ),
+        OpenDialogIconButton(
+          icon: Icons.delete,
+          dialogContent: DeleteItemDialogContent(
+            itemToDeleteName: todoModel.title,
+            deleteItem: () => context.read<TodoCubit>().deleteData(
+                  todoModel.documentId,
+                ),
+          ),
         ),
       ],
     );

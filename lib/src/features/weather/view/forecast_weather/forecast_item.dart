@@ -25,7 +25,7 @@ class ForecastItem extends StatelessWidget {
                   DateFormatUtils.formattedTimeHHmm(weatherModel.dateTime)),
             ],
           ),
-          Container(
+          DecoratedBox(
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.4),
               borderRadius: const BorderRadius.all(Radius.circular(8)),

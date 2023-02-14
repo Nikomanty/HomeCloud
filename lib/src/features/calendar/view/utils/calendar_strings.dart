@@ -1,4 +1,4 @@
-/// All strings used in Home Cloud application
+/// All strings used in Home Cloud Calendar
 class CalendarStrings {
   static const String calendarViewName = "Kalenteri ja tapahtumat";
 
@@ -9,19 +9,14 @@ class CalendarStrings {
 
   static const String eventCreateMustHaveTitle = "Otsikko puuttuu.";
   static const String eventCreateMustHaveDate = "Päivämäärä puuttuu.";
-  static const String eventCreatePickTimeHint = "Valitse aika";
-  static const String eventCreatePickDateHint = "Valitse päivä";
   static const String ownerHintText = "Omistaja";
   static const String titleHintText = "Otsikko";
-  static const String colorHintText = "Väri";
   static const String descriptionHintText = "Lisätieto";
-  static const String dateHintText = "Päivämäärä";
   static const String timeHintText = "Aika";
+  static const String dateHintText = "Päivämäärä";
   static const String newEventCreated = "Uusi tapahtuma luotu!";
 
   static String eventEdited(String event) => "Tapahtumaa -$event- muokattu";
-
-  static const String createNewEventDialogTitle = "Luo uusi tapahtuma";
 
   static const String resetTodayButton = "Tämä päivä";
   static const String selectDateButton = "Valitse päivä";

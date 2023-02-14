@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
-import 'package:home_cloud/src/features/calendar/view/forms/create_event_dialog.dart';
+import 'package:home_cloud/src/features/calendar/view/forms/event_create_edit_form.dart';
 import 'package:home_cloud/src/utils/date_format_utils.dart';
 import 'package:home_cloud/src/utils/styles.dart';
-import 'package:home_cloud/src/widgets/buttons/item_delete_button.dart';
-import 'package:home_cloud/src/widgets/buttons/item_edit_button.dart';
+import 'package:home_cloud/src/widgets/dialog/open_dialog_icon_button.dart';
+import 'package:home_cloud/src/widgets/dialog/delete_item_dialog_content.dart';
 
 class CalendarEventListItem extends StatelessWidget {
   final CalendarEventModel eventItemModel;
@@ -18,7 +18,7 @@ class CalendarEventListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -74,7 +74,7 @@ class CalendarEventListItem extends StatelessWidget {
   }
 
   Widget _itemInfoPart(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.vertical(bottom: Radius.circular(5)),
         border: Border.all(color: Colors.black),
@@ -88,12 +88,18 @@ class CalendarEventListItem extends StatelessWidget {
               child: _eventTexts(context, eventItemModel.eventDescription),
             ),
           ),
-          ItemEditButton(dialogContent: CreateEventDialog(model: eventItemModel)),
-          ItemDeleteButton(
-            itemToDeleteName: eventItemModel.eventTitle,
-            deleteItem: () => context.read<CalendarCubit>().deleteData(
-                  eventItemModel.documentId,
-                ),
+          OpenDialogIconButton(
+            icon: Icons.edit_outlined,
+            dialogContent: EventCreateEditForm(model: eventItemModel),
+          ),
+          OpenDialogIconButton(
+            icon: Icons.delete,
+            dialogContent: DeleteItemDialogContent(
+              itemToDeleteName: eventItemModel.eventTitle,
+              deleteItem: () => context.read<CalendarCubit>().deleteData(
+                    eventItemModel.documentId,
+                  ),
+            ),
           ),
         ],
       ),

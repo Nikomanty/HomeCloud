@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/features/calendar/view/calendar_grid/calendar_view.dart';
+import 'package:home_cloud/src/features/calendar/view/calendar_view.dart';
 import 'package:home_cloud/src/features/todo/view/todo_view.dart';
 
 /// All static variables/getters used in Home Cloud application

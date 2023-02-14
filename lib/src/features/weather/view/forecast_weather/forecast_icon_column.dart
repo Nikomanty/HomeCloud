@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ForecastIconColumnWidget extends StatelessWidget {
-  const ForecastIconColumnWidget({super.key});
+class ForecastIconColumn extends StatelessWidget {
+  const ForecastIconColumn({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +22,6 @@ class ForecastIconColumnWidget extends StatelessWidget {
 
   Widget _forecastPrefixIcon(IconData iconData) => Padding(
     padding: const EdgeInsets.all(3.5),
-    child: Icon(iconData, size: 20),
+    child: Icon(iconData, size: 17),
   );
 }

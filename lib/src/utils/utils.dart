@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 
-class TextUtils {
+class Utils {
+  static void showNotificationSnack({
+    required BuildContext context,
+    required String notificationString,
+  }) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(notificationString),
+        backgroundColor: Colors.blue,
+      ),
+    );
+  }
+
   static Size getTextSize(String text, TextStyle textStyle) {
     TextPainter painter = TextPainter(
       text: TextSpan(

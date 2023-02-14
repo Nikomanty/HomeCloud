@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 import 'package:home_cloud/src/features/todo/view/components/todo_item.dart';
+import 'package:home_cloud/src/widgets/containers/titled_outline_box.dart';
 
-class TodoDayBox extends StatefulWidget {
+class TodoDayBox extends StatelessWidget {
   final String weekDay;
   final List<TodoModel> todoItems;
 
@@ -13,44 +14,16 @@ class TodoDayBox extends StatefulWidget {
   });
 
   @override
-  State<TodoDayBox> createState() => _TodoDayBoxState();
-}
-
-class _TodoDayBoxState extends State<TodoDayBox> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Stack(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(top: 8),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: _todoList(),
-          ),
-          Positioned(
-            left: 20,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              color: Colors.white,
-              child: Text(widget.weekDay),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _todoList() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: ListView(
-        children: widget.todoItems
-            .map((item) => TodoItem(todoModel: item))
-            .toList(),
+      padding: const EdgeInsets.all(5.0),
+      child: TitledOutlineBox(
+        title: weekDay,
+        content: ListView(
+          children: todoItems
+              .map((item) => TodoItem(todoModel: item))
+              .toList(),
+        ),
       ),
     );
   }

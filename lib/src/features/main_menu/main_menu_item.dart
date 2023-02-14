@@ -13,7 +13,7 @@ class MainMenuItem extends StatelessWidget {
       aspectRatio: 2,
       child: InkWell(
         onTap: () => _openMenuItem(context),
-        child: Container(
+        child: DecoratedBox(
           decoration: BoxDecoration(
             color: Colors.blue.shade200,
             borderRadius: BorderRadius.circular(5),

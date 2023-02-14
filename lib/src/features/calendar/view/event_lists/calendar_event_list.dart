@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/features/calendar/view/event_lists/calendar_event_list_item.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
+import 'package:home_cloud/src/widgets/containers/titled_outline_box.dart';
 
-class CalendarEventList extends StatefulWidget {
+class CalendarEventList extends StatelessWidget {
   final String title;
   final List<CalendarEventModel> eventsList;
 
@@ -14,45 +15,21 @@ class CalendarEventList extends StatefulWidget {
   });
 
   @override
-  State<CalendarEventList> createState() => _CalendarEventListState();
-}
-
-class _CalendarEventListState extends State<CalendarEventList> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
-      child: Stack(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(top: 8),
-            decoration: BoxDecoration(
-              border: Border.all(width: 0.8),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8.0, left: 2.0, right: 2.0),
-              child: _eventsList(),
-            ),
-          ),
-          Positioned(
-            left: 15,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              color: Colors.white,
-              child: Text(widget.title),
-            ),
-          ),
-        ],
-      ),
+      child: TitledOutlineBox(
+        title: title,
+        content: _eventsList(context),
+      )
     );
   }
 
-  Widget _eventsList() {
-    if (widget.eventsList.isNotEmpty) {
+  Widget _eventsList(BuildContext context) {
+    if (eventsList.isNotEmpty) {
       return ListView(
         children:
-        widget.eventsList.map((eventItemModel) {
+        eventsList.map((eventItemModel) {
           return Padding(
             padding: const EdgeInsets.all(4.0),
             child: CalendarEventListItem(
