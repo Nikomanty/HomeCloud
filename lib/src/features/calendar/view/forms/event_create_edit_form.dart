@@ -7,22 +7,24 @@ import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dar
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart';
 import 'package:home_cloud/src/utils/date_format_utils.dart';
-import 'package:home_cloud/src/utils/home_cloud_strings.dart';
+import 'package:home_cloud/src/utils/shared_strings.dart';
+import 'package:home_cloud/src/utils/utils.dart';
+import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
 import 'package:home_cloud/src/widgets/forms/form_input_field_container.dart';
-import 'package:home_cloud/src/widgets/forms/form_text_input_fieldt.dart';
+import 'package:home_cloud/src/widgets/forms/form_text_input_field.dart';
 import 'package:intl/intl.dart';
 
-class CreateEventDialog extends StatefulWidget {
+class EventCreateEditForm extends StatefulWidget {
   final DateTime? selectedDate;
   final CalendarEventModel? model;
 
-  const CreateEventDialog({super.key, this.model, this.selectedDate});
+  const EventCreateEditForm({super.key, this.model, this.selectedDate});
 
   @override
-  State<CreateEventDialog> createState() => _CreateEventDialogState();
+  State<EventCreateEditForm> createState() => _EventCreateEditFormState();
 }
 
-class _CreateEventDialogState extends State<CreateEventDialog> {
+class _EventCreateEditFormState extends State<EventCreateEditForm> {
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController eventOwnerTextController = TextEditingController();
@@ -81,7 +83,22 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
           _eventTimePicker(),
           _eventDatePicker(),
           const Padding(padding: EdgeInsets.all(5)),
-          _buttonRow(),
+          DialogActionButtonRow(
+            confirmButtonTitle: widget.model != null
+                ? SharedStrings.confirmItemEdition
+                : SharedStrings.confirmCreate,
+            confirmAction: () {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState?.save();
+                _publishEventToDatabase();
+                Utils.showNotificationSnack(
+                  context: context,
+                  notificationString: getSnackNotificationText(),
+                );
+                Navigator.of(context).pop();
+              }
+            },
+          ),
         ],
       ),
     );
@@ -142,7 +159,7 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
         format: DateFormat('dd.MM.yyyy'),
         initialValue: eventDate,
         decoration: const InputDecoration(
-          hintText: CalendarStrings.eventCreatePickDateHint,
+          hintText: CalendarStrings.dateHintText,
           border: InputBorder.none,
         ),
         validator: (value) {
@@ -167,41 +184,6 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
     );
   }
 
-  Widget _buttonRow() {
-    TextStyle? actionsButtonTextStyle =
-        Theme.of(context).textTheme.labelMedium?.merge(
-              const TextStyle(color: Colors.blue),
-            );
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        TextButton(
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              _formKey.currentState?.save();
-              _publishEventToDatabase();
-              _showNotificationSnack();
-              Navigator.of(context).pop();
-            }
-          },
-          child: Text(
-            widget.model != null
-                ? HomeCloudString.confirmItemEdition
-                : HomeCloudString.confirmCreate,
-            style: actionsButtonTextStyle,
-          ),
-        ),
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: Text(
-            HomeCloudString.cancelString,
-            style: actionsButtonTextStyle,
-          ),
-        ),
-      ],
-    );
-  }
-
   void _publishEventToDatabase() {
     context.read<CalendarCubit>().createData(
       widget.model?.documentId,
@@ -216,12 +198,9 @@ class _CreateEventDialogState extends State<CreateEventDialog> {
     );
   }
 
-  void _showNotificationSnack() => ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(widget.model != null
-              ? CalendarStrings.eventEdited(eventTitleTextController.text)
-              : CalendarStrings.newEventCreated),
-          backgroundColor: Colors.purple.shade300,
-        ),
-      );
+  String getSnackNotificationText() {
+    return widget.model != null
+        ? CalendarStrings.eventEdited(eventTitleTextController.text)
+        : CalendarStrings.newEventCreated;
+  }
 }

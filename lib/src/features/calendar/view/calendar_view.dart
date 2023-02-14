@@ -4,8 +4,9 @@ import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/features/calendar/view/calendar_grid/calendar_builder_helper.dart';
 import 'package:home_cloud/src/features/calendar/view/event_lists/calendar_event_list.dart';
-import 'package:home_cloud/src/features/calendar/view/forms/create_event_dialog.dart';
+import 'package:home_cloud/src/features/calendar/view/forms/event_create_edit_form.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
+import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart';
 import 'package:home_cloud/src/utils/date_format_utils.dart';
 import 'package:home_cloud/src/utils/styles.dart';
 import 'package:home_cloud/src/widgets/buttons/app_bar_action_button.dart';
@@ -41,22 +42,20 @@ class _CalendarViewState extends State<CalendarView> {
           _createNewEventButton(),
         ],
       ),
-      body: Center(
-        child: BlocBuilder<CalendarCubit, CalendarState>(
-          builder: (context, state) {
-            if (state.status == CalendarStatus.initial) {
-              context.read<CalendarCubit>().getData();
-              return const CenteredLoader();
-            } else if (state.status == CalendarStatus.error) {
-              return CenteredErrorText(
-                errorMessage: state.exception.toString(),
-              );
-            } else {
-              allEvents = state.calendarData ?? [];
-              return _homeCalendarView();
-            }
-          },
-        ),
+      body: BlocBuilder<CalendarCubit, CalendarState>(
+        builder: (context, state) {
+          if (state.status == CalendarStatus.initial) {
+            context.read<CalendarCubit>().getData();
+            return const CenteredLoader();
+          } else if (state.status == CalendarStatus.error) {
+            return CenteredErrorText(
+              errorMessage: state.exception.toString(),
+            );
+          } else {
+            allEvents = state.calendarData ?? [];
+            return _homeCalendarView();
+          }
+        },
       ),
     );
   }
@@ -71,7 +70,7 @@ class _CalendarViewState extends State<CalendarView> {
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 4.0, bottom: 4.0),
+                  padding: const EdgeInsets.all(4.0),
                   child: _tableCalendar(),
                 ),
               ),
@@ -97,9 +96,6 @@ class _CalendarViewState extends State<CalendarView> {
         lastDay: DateFormatUtils.getLastDateOfCalendar(),
         focusedDay: _focusedDate,
         weekendDays: const [DateTime.sunday, 6],
-        onPageChanged: (focusedDate) {
-          _focusedDate = focusedDate;
-        },
         startingDayOfWeek: StartingDayOfWeek.monday,
         selectedDayPredicate: (date) {
           return isSameDay(_selectedDate, date);
@@ -108,10 +104,9 @@ class _CalendarViewState extends State<CalendarView> {
           _updateDates(selectedDate, selectedDate);
         },
         onDayLongPressed: (selectedDate, focusedDate) {
-          //TODO: Implemented with forms
-          debugPrint("Currently disabled");
+          _openEventCreationDialog(selectedDate);
         },
-        headerStyle: Styles.getCalendarHeaderStyle(),
+        headerStyle: CalendarUtils.getCalendarHeaderStyle(),
         calendarStyle: CalendarStyle(
           tableBorder: TableBorder.all(color: Colors.grey, width: 1),
         ),
@@ -158,15 +153,17 @@ class _CalendarViewState extends State<CalendarView> {
       );
 
   AppBarActionButton _createNewEventButton() => AppBarActionButton(
-    title: CalendarStrings.createNewEventButtonTitle,
-    action: () => _openEventCreationDialog(_selectedDate),
-  );
+        title: CalendarStrings.createNewEventButtonTitle,
+        action: () => _openEventCreationDialog(_selectedDate),
+      );
 
   Future<void> _openEventCreationDialog(DateTime selectedDate) {
     return showDialog(
       context: context,
       builder: (context) {
-        return CreateEventDialog(selectedDate: selectedDate);
+        return AlertDialog(
+            scrollable: true,
+            content: EventCreateEditForm(selectedDate: selectedDate));
       },
     );
   }

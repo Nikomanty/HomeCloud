@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:home_cloud/src/extensions/strings_extension.dart';
 import 'package:home_cloud/src/features/calendar/view/calendar_grid/calendar_event.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
-import 'package:home_cloud/src/utils/text_utils.dart';
+import 'package:home_cloud/src/utils/utils.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarBuilderHelper {
   static CalendarBuilders getHomeCalendarBuilder() {
     return CalendarBuilders(
-      defaultBuilder: (context, day, focusedDay) =>
-          _defaultCalendarBuilder(day),
+      defaultBuilder: (context, day, focusedDay) => _dateDayText("${day.day}"),
       selectedBuilder: (context, day, selectedDay) =>
           _currentAndSelectedDayBuilder(selectedDay, Colors.purple.shade400),
       todayBuilder: (context, currentDay, selectedDay) =>
@@ -49,15 +48,15 @@ class CalendarBuilderHelper {
 
   static List<Widget> _eventWidgetList(List<dynamic> list) {
     List<Widget> widgets = [];
-    for (int i = 0; i < list.length; i++) {
+    for (var item in list) {
+      int index = list.indexOf(item);
       widgets.add(CalendarEvent(
-        eventTitle: list[i].eventTitle as String,
-        eventTime: list[i].eventTime as DateTime?,
-        eventColor: list[i].eventColor as Color,
+        eventTitle: list[index].eventTitle as String,
+        eventTime: list[index].eventTime as DateTime?,
+        eventColor: list[index].eventColor as Color?,
       ));
-      if (i >= 1) {
-        break;
-      }
+      //Break loop if more than 2 items to not overflow calendar date
+      if (index >= 1) break;
     }
     if (list.length > 2) {
       widgets.add(CalendarEvent(
@@ -67,23 +66,13 @@ class CalendarBuilderHelper {
     return widgets;
   }
 
-  static Widget _defaultCalendarBuilder(DateTime day) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 5.0),
-        child: Text("${day.day}"),
-      ),
-    );
-  }
-
   static Widget _currentAndSelectedDayBuilder(
       DateTime day, Color highLightColor) {
     return Stack(children: [
       Padding(
         padding: const EdgeInsets.all(2.0),
         child: Container(
-          height: TextUtils.getTextSize(
+          height: Utils.getTextSize(
             day.day.toString(),
             const TextStyle(fontSize: 16),
           ).height,
@@ -93,28 +82,23 @@ class CalendarBuilderHelper {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(top: 5.0),
-        child: Align(
-          alignment: Alignment.topCenter,
-          child: Text(
-            "${day.day}",
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
+      _dateDayText("${day.day}"),
     ]);
   }
 
   static Widget _offMonthDays(DateTime day) {
-    return Container(
+    return ColoredBox(
       color: Colors.grey.shade300,
+      child: _dateDayText("${day.day}"),
+    );
+  }
+
+  static Widget _dateDayText(String dayText) {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
       child: Align(
         alignment: Alignment.topCenter,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(day.day.toString()),
-        ),
+        child: Text(dayText),
       ),
     );
   }

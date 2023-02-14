@@ -18,7 +18,7 @@ class CurrentWeatherInfoBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.5),
           borderRadius: const BorderRadius.all(Radius.circular(8)),

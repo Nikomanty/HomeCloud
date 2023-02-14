@@ -37,24 +37,22 @@ class _WeatherViewState extends State<WeatherView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: WeatherUtils.getWeatherBoxDecoration(),
-      child: Center(
-        child: BlocBuilder<WeatherCubit, WeatherState>(
-          builder: (context, state) {
-            if (state.status == WeatherStatus.initial) {
-              return const CenteredLoader();
-            } else if (state.status == WeatherStatus.error) {
-              return CenteredErrorText(
-                errorMessage: state.exception.toString(),
-              );
-            } else {
-              WeatherModel? currentWeather = state.currentWeather;
-              List<WeatherModel>? forecastWeather = state.forecastWeather;
-              return _weatherContent(currentWeather!, forecastWeather!);
-            }
-          },
-        ),
+      child: BlocBuilder<WeatherCubit, WeatherState>(
+        builder: (context, state) {
+          if (state.status == WeatherStatus.initial) {
+            return const CenteredLoader();
+          } else if (state.status == WeatherStatus.error) {
+            return CenteredErrorText(
+              errorMessage: state.exception.toString(),
+            );
+          } else {
+            WeatherModel? currentWeather = state.currentWeather;
+            List<WeatherModel>? forecastWeather = state.forecastWeather;
+            return _weatherContent(currentWeather!, forecastWeather!);
+          }
+        },
       ),
     );
   }
@@ -63,17 +61,19 @@ class _WeatherViewState extends State<WeatherView> {
     WeatherModel currentWeather,
     List<WeatherModel> forecastWeather,
   ) {
-    return Column(
-      children: [
-        Stack(
-          children: [
-            const UpdateWeatherWidget(),
-            CurrentWeather(model: currentWeather),
-          ],
-        ),
-        WeatherUtils.weatherContentDivider(),
-        ForecastCarousel(forecastData: forecastWeather),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              const UpdateWeatherWidget(),
+              CurrentWeather(model: currentWeather),
+            ],
+          ),
+          ForecastCarousel(forecastData: forecastWeather),
+        ],
+      ),
     );
   }
 }

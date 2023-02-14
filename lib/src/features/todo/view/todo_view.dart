@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
 import 'package:home_cloud/src/features/todo/view/components/todo_box_grid.dart';
-import 'package:home_cloud/src/features/todo/view/forms/create_todo_dialog.dart';
+import 'package:home_cloud/src/features/todo/view/forms/todo_create_edit_form.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_strings.dart';
 import 'package:home_cloud/src/widgets/buttons/app_bar_action_button.dart';
 import 'package:home_cloud/src/widgets/error/centered_error_text.dart';
@@ -47,7 +47,10 @@ class TodoView extends StatelessWidget {
         action: () => showDialog<Widget>(
           context: context,
           builder: (context) {
-            return const CreateTodoDialog();
+            return const AlertDialog(
+              scrollable: true,
+              content: TodoCreateEditForm(),
+            );
           },
         ),
       );

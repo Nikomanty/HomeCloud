@@ -4,19 +4,22 @@ import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
 import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_strings.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_utils.dart';
+import 'package:home_cloud/src/utils/shared_strings.dart';
+import 'package:home_cloud/src/utils/utils.dart';
+import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
 import 'package:home_cloud/src/widgets/forms/form_input_field_container.dart';
-import 'package:home_cloud/src/widgets/forms/form_text_input_fieldt.dart';
+import 'package:home_cloud/src/widgets/forms/form_text_input_field.dart';
 
-class CreateTodoDialog extends StatefulWidget {
+class TodoCreateEditForm extends StatefulWidget {
   final TodoModel? model;
 
-  const CreateTodoDialog({super.key, this.model});
+  const TodoCreateEditForm({super.key, this.model});
 
   @override
-  State<CreateTodoDialog> createState() => _CreateTodoDialogState();
+  State<TodoCreateEditForm> createState() => _TodoCreateEditFormState();
 }
 
-class _CreateTodoDialogState extends State<CreateTodoDialog> {
+class _TodoCreateEditFormState extends State<TodoCreateEditForm> {
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController todoTitleTextController = TextEditingController();
@@ -64,43 +67,24 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
                   todoWeekDay = value.toString();
                 },
               )),
-          _buttonRow(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buttonRow() {
-    TextStyle? actionsButtonTextStyle = Theme.of(context)
-        .textTheme
-        .labelMedium
-        ?.merge(const TextStyle(color: Colors.blue));
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        TextButton(
-            onPressed: () {
+          DialogActionButtonRow(
+            confirmButtonTitle: widget.model != null
+                ? SharedStrings.confirmItemEdition
+                : SharedStrings.confirmCreate,
+            confirmAction: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState?.save();
                 _publishEventToDatabase();
-                _showNotificationSnack();
+                Utils.showNotificationSnack(
+                  context: context,
+                  notificationString: getSnackNotificationText(),
+                );
                 Navigator.of(context).pop();
               }
             },
-            child: Text(
-              widget.model != null
-                  ? TodoStrings.confirmItemEdition
-                  : TodoStrings.confirmCreate,
-              style: actionsButtonTextStyle,
-            )),
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: Text(
-            TodoStrings.cancelString,
-            style: actionsButtonTextStyle,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -111,18 +95,13 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
         "title": todoTitleTextController.text,
         "checked": todoIsChecked,
         "weekDay": todoWeekDay,
-      },
+      }
     );
   }
 
-  void _showNotificationSnack() => ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            widget.model != null
-                ? TodoStrings.todoEdited(todoTitleTextController.text)
-                : TodoStrings.newTodoCreated,
-          ),
-          backgroundColor: Colors.green,
-        ),
-      );
+  String getSnackNotificationText() {
+    return widget.model != null
+        ? TodoStrings.todoEdited(todoTitleTextController.text)
+        : TodoStrings.newTodoCreated;
+  }
 }

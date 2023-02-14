@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
-class FormInputFieldContainer extends StatefulWidget {
+class FormInputFieldContainer extends StatelessWidget {
   final IconData fieldIcon;
   final Widget child;
 
-  const FormInputFieldContainer({super.key, required this.fieldIcon, required this.child});
+  const FormInputFieldContainer({
+    super.key,
+    required this.fieldIcon,
+    required this.child,
+  });
 
-  @override
-  State<FormInputFieldContainer> createState() => _FormInputFieldContainerState();
-}
-
-class _FormInputFieldContainerState extends State<FormInputFieldContainer> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(5)),
           border: Border.all(color: Colors.grey),
@@ -26,10 +25,10 @@ class _FormInputFieldContainerState extends State<FormInputFieldContainer> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
-                child: Icon(widget.fieldIcon),
+                child: Icon(fieldIcon),
               ),
               Expanded(
-                child: widget.child,
+                child: child,
               ),
             ],
           ),

@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
 
-class ItemEditButton extends StatefulWidget {
+class OpenDialogIconButton extends StatelessWidget {
   final Widget dialogContent;
+  final IconData icon;
   final double? iconSize;
 
-  const ItemEditButton({
+  const OpenDialogIconButton({
     super.key,
     required this.dialogContent,
+    required this.icon,
     this.iconSize,
   });
 
   @override
-  State<ItemEditButton> createState() => _ItemEditButtonState();
-}
-
-class _ItemEditButtonState extends State<ItemEditButton> {
-  @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Icon(Icons.edit_outlined, size: widget.iconSize ?? 25),
-      onTap: () {
+    return IconButton(
+      icon: Icon(icon, size: iconSize ?? 25),
+      onPressed: () {
         showDialog<Widget>(
           context: context,
           builder: (context) {
             return AlertDialog(
-              content: widget.dialogContent,
+              scrollable: true,
+              content: dialogContent,
             );
           },
         );

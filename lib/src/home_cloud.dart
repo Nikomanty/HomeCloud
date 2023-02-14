@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:home_cloud/src/features/main_menu/main_menu.dart';
+import 'package:home_cloud/src/utils/shared_strings.dart';
 
 class HomeCloud extends StatelessWidget {
-  static const String appTitle = "Home Cloud";
-
   const HomeCloud({super.key});
 
   @override
@@ -17,7 +16,7 @@ class HomeCloud extends StatelessWidget {
       supportedLocales: const [
         Locale('fi', 'FI'),
       ],
-      title: appTitle,
+      title: SharedStrings.appName,
       home: const HomeCloudMainMenu(),
     );
   }
