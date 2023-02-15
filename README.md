@@ -1,8 +1,11 @@
 # Home Cloud
 Application used by our family for calendar, todo and weather tracking.
 
-New features are developed when I have time,
+Calendar events and todos are stored in firebase cloud storage and service handles communication with it. Weather box uses Openweathermap APIs to get weather data. As a state management, Cubit pattern comes into play.
 
+Current implementation doesnt support multiple users so if you want to build application for yourself, you have to configure own firebase and Openweathermap API key.
+
+New features are developed when I have time,
 Some ideas listed here:
  - Layout changes when different screensize
  - Shopping lists
