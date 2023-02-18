@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/home_cloud.dart';
 import 'package:home_cloud/src/utils/shared_strings.dart';
 import 'package:home_cloud/src/utils/utils.dart';
 import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
@@ -31,7 +30,8 @@ class DeleteItemDialogContent extends StatelessWidget {
             deleteItem();
             Utils.showNotificationSnack(
               context: context,
-              notificationString: "$itemToDeleteName ${SharedStrings.deletedString}.",
+              notificationString:
+                  "$itemToDeleteName ${SharedStrings.deletedString}.",
             );
             Navigator.of(context).pop();
           },

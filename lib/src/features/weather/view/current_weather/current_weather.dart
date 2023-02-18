@@ -21,12 +21,20 @@ class CurrentWeather extends StatelessWidget {
               scale: 1.4,
             ),
             const Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
-            Row(
-              children: [
-                WeatherUtils.blackWeatherLabel("${model.temperature}", 100),
-                WeatherUtils.blackWeatherLabel(
-                    WeatherStrings.celsiusMark, 70),
-              ],
+            RichText(
+              text: TextSpan(
+                style: const TextStyle(
+                  color: Colors.black,
+                ),
+                children: <TextSpan>[
+                  TextSpan(
+                      text: "${model.temperature}",
+                      style: const TextStyle(fontSize: 100)),
+                  const TextSpan(
+                      text: WeatherStrings.celsiusMark,
+                      style: TextStyle(fontSize: 70)),
+                ],
+              ),
             ),
           ],
         ),
