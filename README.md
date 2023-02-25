@@ -21,7 +21,7 @@ In use on our wall and main menu:
 
 Calendar View And Calendar event creation:
 
-<img src="https://user-images.githubusercontent.com/16851195/218835231-e895b2b2-f7b0-485e-b122-216facbd9688.png" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/218835245-13dad67c-8405-44d2-b17c-57658f3496a2.png" width="whatever" height="300">
+<img src="https://user-images.githubusercontent.com/16851195/221368552-9dde5367-a399-4d16-acb6-c1e929427c2d.png" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/218835245-13dad67c-8405-44d2-b17c-57658f3496a2.png" width="whatever" height="300">
 
 Todo View:
 

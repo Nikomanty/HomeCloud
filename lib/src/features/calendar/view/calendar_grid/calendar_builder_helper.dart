@@ -56,11 +56,11 @@ class CalendarBuilderHelper {
         eventColor: list[index].eventColor as Color?,
       ));
       //Break loop if more than 2 items to not overflow calendar date
-      if (index >= 1) break;
+      if (index >= 3) break;
     }
-    if (list.length > 2) {
+    if (list.length > 4) {
       widgets.add(CalendarEvent(
-        eventTitle: CalendarStrings.getMoreEventString(list.length - 2),
+        eventTitle: CalendarStrings.getMoreEventString(list.length - 4),
       ));
     }
     return widgets;
