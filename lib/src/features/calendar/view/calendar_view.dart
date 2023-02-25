@@ -65,26 +65,13 @@ class _CalendarViewState extends State<CalendarView> {
       children: [
         Expanded(
           flex: 2,
-          child: Column(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: _tableCalendar(),
-                ),
-              ),
-              Expanded(
-                child: _todaySelectedEventsLists(),
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: _tableCalendar(),
           ),
         ),
         Expanded(
-          child: CalendarEventList(
-            title: CalendarStrings.allCalendarEvents,
-            eventsList: allEvents,
-          ),
+          child: _todaySelectedEventsLists(),
         ),
       ],
     );
@@ -115,7 +102,7 @@ class _CalendarViewState extends State<CalendarView> {
         eventLoader: (date) => _getAllEventsByDate(allEvents, date),
       );
 
-  Widget _todaySelectedEventsLists() => Row(
+  Widget _todaySelectedEventsLists() => Column(
         children: [
           Expanded(
             child: CalendarEventList(
