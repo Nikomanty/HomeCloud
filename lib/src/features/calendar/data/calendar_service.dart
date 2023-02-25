@@ -6,10 +6,8 @@ class CalendarService {
   static const String collectionPath = "calendar-events";
 
   Future<List<CalendarEventModel>> fetchData() async {
-    QuerySnapshot<Map<String, dynamic>> snapshot = await _database
-        .collection(collectionPath)
-        .orderBy('eventDate', descending: false)
-        .get();
+    QuerySnapshot<Map<String, dynamic>> snapshot =
+        await _database.collection(collectionPath).get();
     return snapshot.docs
         .map((documentSnapshot) =>
             CalendarEventModel.fromDocument(documentSnapshot))
