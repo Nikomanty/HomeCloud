@@ -13,7 +13,7 @@ Some ideas listed here:
 - Inside weather
 - Curtain/"Home widget" controlling (Very far in future, need actual devices for these last 2)
 
-# Images from application (Texts are in finnish, sorry):
+# Images from application (Texts are in Finnish, sorry):
 In use on our wall and main menu:
 
 <img src="https://user-images.githubusercontent.com/16851195/222543981-c5ffcf91-ffe6-41bc-b703-371ec5483a4c.jpg" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/222543286-a362b688-e6f7-4aaf-95be-1818d4cbef82.jpg" width="whatever" height="300">
