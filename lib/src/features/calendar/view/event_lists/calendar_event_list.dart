@@ -42,7 +42,7 @@ class CalendarEventList extends StatelessWidget {
     return Center(
       child: Text(
         CalendarStrings.noEventsString,
-        style: Theme.of(context).textTheme.labelLarge,
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
     );
   }

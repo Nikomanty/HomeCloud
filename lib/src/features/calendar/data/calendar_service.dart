@@ -3,7 +3,7 @@ import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dar
 
 class CalendarService {
   final FirebaseFirestore _database = FirebaseFirestore.instance;
-  static const String collectionPath = "calendar-events";
+  static const String collectionPath = "calendar-events-test";
 
   Future<List<CalendarEventModel>> fetchData() async {
     QuerySnapshot<Map<String, dynamic>> snapshot =

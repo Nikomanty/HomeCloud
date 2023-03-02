@@ -2,8 +2,10 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:home_cloud/src/constants/app_colors.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
+import 'package:home_cloud/src/features/calendar/view/forms/components/event_color_picker_item.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart';
 import 'package:home_cloud/src/utils/date_format_utils.dart';
@@ -43,7 +45,8 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
     if (widget.model != null) {
       eventOwnerTextController.text = widget.model!.eventOwner ?? "";
       eventTitleTextController.text = widget.model!.eventTitle;
-      eventDescriptionTextController.text = widget.model!.eventDescription ?? "";
+      eventDescriptionTextController.text =
+          widget.model!.eventDescription ?? "";
       eventDate = widget.model!.eventDate;
       eventColor = widget.model!.eventColor;
       eventTime = widget.model!.eventTime;
@@ -109,8 +112,14 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         BlockPicker(
-          pickerColor: eventColor ?? Colors.transparent,
-          availableColors: CalendarUtils.availableItemColors(),
+          pickerColor: eventColor ?? CalendarUtils.availableItemColors()[0],
+          itemBuilder: (color, isCurrentColor, changeColor) {
+            return EventColorPickerItem(
+              color: color,
+              isCurrentColor: isCurrentColor,
+              changeColor: changeColor,
+            );
+          },
           layoutBuilder: (context, colors, child) {
             return Row(
               children: CalendarUtils.availableItemColors().map((color) {
@@ -119,9 +128,7 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
             );
           },
           onColorChanged: (color) {
-            if (color != Colors.transparent) {
-              eventColor = color;
-            }
+            eventColor = color;
           },
         ),
       ],
@@ -134,8 +141,13 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
       child: DateTimeField(
         format: DateFormat('HH:mm'),
         initialValue: eventTime,
-        decoration: const InputDecoration(
+        style: Theme.of(context).textTheme.bodyMedium,
+        decoration: InputDecoration(
           hintText: CalendarStrings.timeHintText,
+          hintStyle: Theme.of(context)
+              .textTheme
+              .bodyMedium
+              ?.copyWith(color: AppColors.onPrimaryVariant),
           border: InputBorder.none,
         ),
         onShowPicker: (context, currentValue) async {
@@ -144,6 +156,7 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
             initialTime: eventTime != null
                 ? TimeOfDay.fromDateTime(eventTime!)
                 : const TimeOfDay(hour: 10, minute: 00),
+
           );
           eventTime = DateTimeField.convert(time);
           return eventTime;
@@ -158,8 +171,14 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
       child: DateTimeField(
         format: DateFormat('dd.MM.yyyy'),
         initialValue: eventDate,
-        decoration: const InputDecoration(
+        style: Theme.of(context).textTheme.bodyMedium,
+        resetIcon: const Icon(Icons.close, color: AppColors.onPrimary),
+        decoration: InputDecoration(
           hintText: CalendarStrings.dateHintText,
+          hintStyle: Theme.of(context)
+              .textTheme
+              .bodyMedium
+              ?.copyWith(color: AppColors.onPrimaryVariant),
           border: InputBorder.none,
         ),
         validator: (value) {

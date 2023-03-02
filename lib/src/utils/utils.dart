@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/constants/app_colors.dart';
 
 class Utils {
   static void showNotificationSnack({
@@ -7,8 +8,11 @@ class Utils {
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(notificationString),
-        backgroundColor: Colors.blue,
+        content: Text(
+          notificationString,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        backgroundColor: AppColors.primary,
       ),
     );
   }

@@ -22,6 +22,7 @@ class DeleteItemDialogContent extends StatelessWidget {
           child: Text(
             "${SharedStrings.itemDeletionQuestion} \n$itemToDeleteName",
             textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
         DialogActionButtonRow(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/constants/app_colors.dart';
 import 'package:home_cloud/src/extensions/strings_extension.dart';
 import 'package:home_cloud/src/features/calendar/view/calendar_grid/calendar_event.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
@@ -9,26 +10,29 @@ import 'package:table_calendar/table_calendar.dart';
 class CalendarBuilderHelper {
   static CalendarBuilders getHomeCalendarBuilder() {
     return CalendarBuilders(
-      defaultBuilder: (context, day, focusedDay) => _dateDayText("${day.day}"),
+      defaultBuilder: (context, day, focusedDay) =>
+          _dateDayText(context, "${day.day}", AppColors.onPrimary),
       selectedBuilder: (context, day, selectedDay) =>
-          _currentAndSelectedDayBuilder(selectedDay, Colors.purple.shade400),
+          _currentAndSelectedDayBuilder(
+              context, selectedDay, AppColors.secondary),
       todayBuilder: (context, currentDay, selectedDay) =>
-          _currentAndSelectedDayBuilder(currentDay, Colors.purple.shade200),
+          _currentAndSelectedDayBuilder(
+              context, currentDay, AppColors.secondary.withOpacity(0.8)),
       outsideBuilder: (context, currentDay, selectedDay) =>
-          _offMonthDays(currentDay),
+          _offMonthDays(context, currentDay),
       markerBuilder: (context, date, eventList) =>
           _markerBuilder(context, eventList),
-      headerTitleBuilder: (context, time) => _headerTitle(time),
+      headerTitleBuilder: (context, time) => _headerTitle(context, time),
     );
   }
 
-  static Widget _headerTitle(DateTime time) {
+  static Widget _headerTitle(BuildContext context, DateTime time) {
     return Align(
       alignment: Alignment.center,
       child: Text(
         "${DateFormat('MMMM', 'fi').format(time)} / ${time.year}"
             .capitalizeString(),
-        style: const TextStyle(fontSize: 18),
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
     );
   }
@@ -56,25 +60,26 @@ class CalendarBuilderHelper {
         eventColor: list[index].eventColor as Color?,
       ));
       //Break loop if more than 2 items to not overflow calendar date
-      if (index >= 3) break;
+      if (index >= 1) break;
     }
-    if (list.length > 4) {
+    if (list.length > 2) {
       widgets.add(CalendarEvent(
-        eventTitle: CalendarStrings.getMoreEventString(list.length - 4),
+        eventTitle: CalendarStrings.getMoreEventString(list.length - 2),
+        eventColor: Colors.white,
       ));
     }
     return widgets;
   }
 
   static Widget _currentAndSelectedDayBuilder(
-      DateTime day, Color highLightColor) {
+      BuildContext context, DateTime day, Color highLightColor) {
     return Stack(children: [
       Padding(
-        padding: const EdgeInsets.all(2.0),
+        padding: const EdgeInsets.all(3.0),
         child: Container(
           height: Utils.getTextSize(
             day.day.toString(),
-            const TextStyle(fontSize: 16),
+            const TextStyle(fontSize: 18),
           ).height,
           decoration: BoxDecoration(
             color: highLightColor,
@@ -82,23 +87,30 @@ class CalendarBuilderHelper {
           ),
         ),
       ),
-      _dateDayText("${day.day}"),
+      _dateDayText(context, "${day.day}", AppColors.onSecondary),
     ]);
   }
 
-  static Widget _offMonthDays(DateTime day) {
+  static Widget _offMonthDays(BuildContext context, DateTime day) {
     return ColoredBox(
-      color: Colors.grey.shade300,
-      child: _dateDayText("${day.day}"),
+      color: AppColors.primary,
+      child: _dateDayText(context, "${day.day}", AppColors.onPrimary),
     );
   }
 
-  static Widget _dateDayText(String dayText) {
+  static Widget _dateDayText(
+      BuildContext context, String dayText, Color dayTextColor) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Align(
         alignment: Alignment.topCenter,
-        child: Text(dayText),
+        child: Text(
+          dayText,
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium
+              ?.copyWith(color: dayTextColor),
+        ),
       ),
     );
   }

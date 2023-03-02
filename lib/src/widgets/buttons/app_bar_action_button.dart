@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/constants/app_colors.dart';
 
 class AppBarActionButton extends StatelessWidget {
   final VoidCallback action;
@@ -17,11 +18,15 @@ class AppBarActionButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: action,
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+          backgroundColor:
+              MaterialStateProperty.all<Color>(AppColors.secondary),
         ),
         child: Text(
           title,
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium
+              ?.copyWith(color: AppColors.onSecondary),
         ),
       ),
     );

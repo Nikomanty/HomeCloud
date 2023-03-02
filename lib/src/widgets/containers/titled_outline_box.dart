@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/constants/app_colors.dart';
 
 class TitledOutlineBox extends StatelessWidget {
   final String title;
@@ -17,7 +18,7 @@ class TitledOutlineBox extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(top: 8),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.black),
+            border: Border.all(color: AppColors.onPrimaryVariant),
             borderRadius: BorderRadius.circular(5),
           ),
           child: Padding(

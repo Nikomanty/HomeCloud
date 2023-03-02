@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/constants/app_colors.dart';
 import 'package:home_cloud/src/features/weather/view/utils/weather_strings.dart';
 import 'package:home_cloud/src/features/weather/view/utils/weather_utils.dart';
 
@@ -17,24 +18,27 @@ class CurrentWeatherInfoBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 15.0),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.5),
+          color: AppColors.onPrimary.withOpacity(0.1),
           borderRadius: const BorderRadius.all(Radius.circular(8)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             _weatherInfoTile(
+              context,
               WeatherStrings.feelsLike,
               "$feelsLike ${WeatherStrings.celsiusMark}",
             ),
             _weatherInfoTile(
+              context,
               WeatherStrings.humidity,
               "$humidity ${WeatherStrings.percentMark}",
             ),
             _weatherInfoTile(
+              context,
               WeatherStrings.windSpeed,
               "$windSpeed ${WeatherStrings.speedMark}",
             ),
@@ -44,27 +48,24 @@ class CurrentWeatherInfoBox extends StatelessWidget {
     );
   }
 
-  Widget _weatherInfoTile(String title, String value) {
+  Widget _weatherInfoTile(BuildContext context, String title, String value) {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(6.0),
       child: Column(
         children: [
-          _weatherSmallGrayLabel(title),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 2)),
-          WeatherUtils.blackWeatherLabel(value, 17),
+          Padding(
+            padding: const EdgeInsets.all(4),
+            child: Text(
+              title,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: AppColors.onPrimaryVariant),
+            ),
+          ),
+          Text(value, style: Theme.of(context).textTheme.bodyLarge)
         ],
       ),
     );
   }
-
-  Widget _weatherSmallGrayLabel(String title) => Padding(
-        padding: const EdgeInsets.all(4),
-        child: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 15,
-            color: Colors.black45,
-          ),
-        ),
-      );
 }

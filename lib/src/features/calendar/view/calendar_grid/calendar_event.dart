@@ -31,13 +31,19 @@ class CalendarEvent extends StatelessWidget {
                 eventTitle,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
-                style: const TextStyle(fontSize: 10),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall
+                    ?.copyWith(color: Colors.black),
               ),
             ),
             if (eventTime != null)
               Text(
                 DateFormatUtils.formattedTimeHHmm(eventTime!),
-                style: const TextStyle(fontSize: 10),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall
+                    ?.copyWith(color: Colors.black),
               ),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/constants/app_colors.dart';
 
 class OpenDialogIconButton extends StatelessWidget {
   final Widget dialogContent;
@@ -15,7 +16,7 @@ class OpenDialogIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(icon, size: iconSize ?? 25),
+      icon: Icon(icon, size: iconSize ?? 25, color: AppColors.onPrimary,),
       onPressed: () {
         showDialog<Widget>(
           context: context,

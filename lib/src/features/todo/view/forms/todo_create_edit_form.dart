@@ -55,6 +55,7 @@ class _TodoCreateEditFormState extends State<TodoCreateEditForm> {
               fieldIcon: Icons.today_outlined,
               child: DropdownButtonFormField(
                 value: todoWeekDay,
+                style: Theme.of(context).textTheme.bodyMedium,
                 icon: const Icon(Icons.keyboard_arrow_down),
                 decoration: const InputDecoration(border: InputBorder.none),
                 items: TodoUtils.allTodoBoxes
