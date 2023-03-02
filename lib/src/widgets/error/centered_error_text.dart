@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/constants/app_colors.dart';
 
 class CenteredErrorText extends StatelessWidget {
   final String? errorMessage;
@@ -11,13 +12,11 @@ class CenteredErrorText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        errorMessage ?? "No error message found.",
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      child: Text(errorMessage ?? "No error message found.",
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium
+              ?.copyWith(color: AppColors.errorColor)),
     );
   }
 }

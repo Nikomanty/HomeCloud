@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_cloud/src/constants/app_colors.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/features/calendar/view/forms/event_create_edit_form.dart';
@@ -19,26 +20,26 @@ class CalendarEventListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(5)),
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: const BorderRadius.all(Radius.circular(5)),
+        border: Border.all(color: AppColors.onPrimaryVariant),
       ),
       child: Column(
         children: [
-          _itemTitlePart(context),
-          _itemInfoPart(context),
+          _cardHeader(context),
+          _cardContent(context),
         ],
       ),
     );
   }
 
-  Widget _itemTitlePart(BuildContext context) {
+  Widget _cardHeader(BuildContext context) {
     return Container(
       height: 30,
       decoration: BoxDecoration(
         color: eventItemModel.eventColor,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(5)),
-        border: Border.all(color: Colors.black),
       ),
       child: Padding(
         padding: const EdgeInsets.all(4.0),
@@ -47,17 +48,17 @@ class CalendarEventListItem extends StatelessWidget {
           children: [
             Text(
               eventItemModel.eventOwner ?? "",
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium
-                  ?.merge(const TextStyle(fontWeight: FontWeight.w600)),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
             ),
             Text(
               _timeLabelString(),
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium
-                  ?.merge(const TextStyle(fontWeight: FontWeight.w600)),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
             ),
           ],
         ),
@@ -73,11 +74,10 @@ class CalendarEventListItem extends StatelessWidget {
         : dateTime;
   }
 
-  Widget _itemInfoPart(BuildContext context) {
+  Widget _cardContent(BuildContext context) {
     return DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(5)),
-        border: Border.all(color: Colors.black),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(5)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,14 +120,14 @@ class CalendarEventListItem extends StatelessWidget {
           eventItemModel.eventTitle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: Theme.of(context).textTheme.labelMedium,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         Styles.smallDivider(false),
         Text(
           eventItemModel.eventDescription ?? "",
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: Theme.of(context).textTheme.labelMedium,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
       ],
     );
@@ -138,7 +138,7 @@ class CalendarEventListItem extends StatelessWidget {
       eventItemModel.eventTitle,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
-      style: Theme.of(context).textTheme.labelMedium,
+      style: Theme.of(context).textTheme.bodyMedium,
     );
   }
 }

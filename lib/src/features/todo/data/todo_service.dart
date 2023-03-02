@@ -3,7 +3,7 @@ import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 
 class TodoService {
   final FirebaseFirestore _database = FirebaseFirestore.instance;
-  static const String collectionPath = "todo-items";
+  static const String collectionPath = "todo-items-test";
 
   Future<List<TodoModel>> fetchData() async {
     QuerySnapshot<Map<String, dynamic>> todoData =

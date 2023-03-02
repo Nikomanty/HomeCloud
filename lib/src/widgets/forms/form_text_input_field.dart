@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/constants/app_colors.dart';
 
 class FormTextInputField extends StatefulWidget {
   final String hintText;
@@ -22,9 +23,14 @@ class _FormTextInputFieldState extends State<FormTextInputField> {
     return TextFormField(
       decoration: InputDecoration(
         hintText: widget.hintText,
+        hintStyle: Theme.of(context)
+            .textTheme
+            .bodyMedium
+            ?.copyWith(color: AppColors.onPrimaryVariant),
         border: InputBorder.none,
       ),
       initialValue: widget.stringToUpdateTextController.text,
+      style: Theme.of(context).textTheme.bodyMedium,
       textCapitalization: TextCapitalization.sentences,
       onChanged: (value) {
         widget.stringToUpdateTextController.text = value;

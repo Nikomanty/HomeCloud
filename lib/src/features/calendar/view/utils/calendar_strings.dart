@@ -9,7 +9,7 @@ class CalendarStrings {
 
   static const String eventCreateMustHaveTitle = "Otsikko puuttuu.";
   static const String eventCreateMustHaveDate = "Päivämäärä puuttuu.";
-  static const String ownerHintText = "Omistaja";
+  static const String ownerHintText = "Kenen tapahtuma?";
   static const String titleHintText = "Otsikko";
   static const String descriptionHintText = "Lisätieto";
   static const String timeHintText = "Aika";

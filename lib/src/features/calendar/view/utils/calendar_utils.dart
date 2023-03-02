@@ -4,11 +4,9 @@ import 'package:table_calendar/table_calendar.dart';
 class CalendarUtils {
   static List<Color> availableItemColors() {
     return [
-      Colors.transparent,
-      Colors.red.shade300,
+      Colors.white,
       Colors.green,
-      Colors.blue.shade300,
-      Colors.yellow,
+      Colors.red.shade300,
       Colors.orange.shade300,
     ];
   }

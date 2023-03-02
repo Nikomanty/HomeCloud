@@ -46,6 +46,7 @@ dependencies:
   http: ^0.13.5
   datetime_picker_formfield: ^2.0.0
   flutter_colorpicker: ^1.0.3
+  google_fonts: ^4.0.3
 
 dev_dependencies:
   flutter_test:
@@ -71,16 +72,16 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  #   - assets/a_dot_burr.jpeg
+  #   - assets/a_dot_ham.jpeg
   assets:
-    - images/clear.png
-    - images/clouds.png
-    - images/fog.png
-    - images/mist.png
-    - images/rain.png
-    - images/snow.png
-    - images/thunderstorm.png
+    - assets/clear.png
+    - assets/clouds.png
+    - assets/fog.png
+    - assets/mist.png
+    - assets/rain.png
+    - assets/snow.png
+    - assets/thunderstorm.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

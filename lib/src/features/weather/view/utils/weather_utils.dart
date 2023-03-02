@@ -1,41 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/constants/app_colors.dart';
 import 'package:home_cloud/src/utils/styles.dart';
 
 class WeatherUtils {
   static String getWeatherIconPath(String weatherType) {
     switch (weatherType) {
       case "Clear":
-        return "images/clear.png";
+        return "assets/clear.png";
       case "Rain":
-        return "images/rain.png";
+        return "assets/rain.png";
       case "Mist":
-        return "images/mist.png";
+        return "assets/mist.png";
       case "For":
-        return "images/fog.png";
+        return "assets/fog.png";
       case "Snow":
-        return "images/snow.png";
+        return "assets/snow.png";
       case "Thunderstorm":
-        return "images/thunderstorm.png";
+        return "assets/thunderstorm.png";
       case "Clouds":
       default:
-        return "images/clouds.png";
+        return "assets/clouds.png";
     }
   }
 
   static BoxDecoration getWeatherBoxDecoration() {
     return BoxDecoration(
-      color: Colors.grey.shade50,
+      color: AppColors.primary,
       borderRadius: const BorderRadius.all(Radius.circular(15)),
       border: Border.all(color: Colors.black38),
       boxShadow: Styles.itemShadow(),
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          Colors.blue.shade200,
-          Colors.blue.shade100,
-        ],
-      ),
+
     );
   }
 
@@ -45,17 +39,6 @@ class WeatherUtils {
       child: Divider(
         thickness: 1,
         color: Colors.grey,
-      ),
-    );
-  }
-
-  static Text blackWeatherLabel(String text, double fontSize) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontSize: fontSize,
-        color: Colors.black87,
-        fontWeight: FontWeight.w500,
       ),
     );
   }

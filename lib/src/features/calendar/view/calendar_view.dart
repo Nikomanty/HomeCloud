@@ -32,6 +32,7 @@ class _CalendarViewState extends State<CalendarView> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        elevation: 2.0,
         title: const Text(CalendarStrings.calendarViewName),
         actions: [
           IconButton(

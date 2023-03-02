@@ -12,9 +12,9 @@ class MainMenuUtils {
   static IconData getItemIcon(String viewName) {
     switch (viewName) {
       case "CalendarView":
-        return Icons.calendar_today_outlined;
+        return Icons.calendar_today;
       case "TodoView":
-        return Icons.list_alt_outlined;
+        return Icons.list_alt;
       default:
         return Icons.not_interested_sharp;
     }
