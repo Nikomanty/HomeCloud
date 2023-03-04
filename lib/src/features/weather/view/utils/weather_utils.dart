@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/constants/app_colors.dart';
-import 'package:home_cloud/src/utils/styles.dart';
+import 'package:home_cloud/src/core/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/styles.dart';
 
 class WeatherUtils {
   static String getWeatherIconPath(String weatherType) {
@@ -26,10 +26,9 @@ class WeatherUtils {
   static BoxDecoration getWeatherBoxDecoration() {
     return BoxDecoration(
       color: AppColors.primary,
-      borderRadius: const BorderRadius.all(Radius.circular(15)),
+      borderRadius: Styles.mediumRoundedCorner,
       border: Border.all(color: Colors.black38),
-      boxShadow: Styles.itemShadow(),
-
+      boxShadow: Styles.itemShadow,
     );
   }
 

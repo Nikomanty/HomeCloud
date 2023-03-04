@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/constants/shared_strings.dart';
-import 'package:home_cloud/src/utils/utils.dart';
+import 'package:home_cloud/src/core/constants/shared_strings.dart';
+import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
 
 class DeleteItemDialogContent extends StatelessWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/utils/date_format_utils.dart';
+import 'package:home_cloud/src/core/constants/styles.dart';
+import 'package:home_cloud/src/core/utils/date_formatters.dart';
 
 class CalendarEvent extends StatelessWidget {
   final String eventTitle;
@@ -18,7 +19,7 @@ class CalendarEvent extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: eventColor,
-        borderRadius: BorderRadius.circular(3),
+        borderRadius: Styles.smallRoundedCorner,
         border: Border.all(color: Colors.black54),
       ),
       child: Padding(
@@ -39,7 +40,7 @@ class CalendarEvent extends StatelessWidget {
             ),
             if (eventTime != null)
               Text(
-                DateFormatUtils.formattedTimeHHmm(eventTime!),
+                DateFormatters.formattedTimeHHmm(eventTime!),
                 style: Theme.of(context)
                     .textTheme
                     .bodySmall

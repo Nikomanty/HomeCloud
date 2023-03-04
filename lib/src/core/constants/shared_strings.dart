@@ -1,6 +1,5 @@
-class SharedStrings {
+abstract class SharedStrings {
   static const String appName = "Home Cloud";
-
   static const String itemDeletionQuestion = "Poistaanko:";
   static const String confirmItemDeletion = "Poista";
   static const String deletedString = "poistettu";

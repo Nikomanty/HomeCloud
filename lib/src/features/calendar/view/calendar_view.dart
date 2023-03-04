@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_cloud/src/core/utils/date_formatters.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/features/calendar/view/calendar_grid/calendar_builder_helper.dart';
@@ -7,7 +8,6 @@ import 'package:home_cloud/src/features/calendar/view/event_lists/calendar_event
 import 'package:home_cloud/src/features/calendar/view/forms/event_create_edit_form.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart';
-import 'package:home_cloud/src/utils/date_format_utils.dart';
 import 'package:home_cloud/src/widgets/buttons/app_bar_action_button.dart';
 import 'package:home_cloud/src/widgets/error/centered_error_text.dart';
 import 'package:home_cloud/src/widgets/loading/centered_loader.dart';
@@ -79,8 +79,8 @@ class _CalendarViewState extends State<CalendarView> {
 
   TableCalendar _tableCalendar() => TableCalendar(
         locale: Localizations.localeOf(context).languageCode,
-        firstDay: DateFormatUtils.getFirstDateOfCalendar(),
-        lastDay: DateFormatUtils.getLastDateOfCalendar(),
+        firstDay: DateFormatters.getFirstDateOfCalendar(),
+        lastDay: DateFormatters.getLastDateOfCalendar(),
         focusedDay: _focusedDate,
         weekendDays: const [DateTime.sunday, 6],
         startingDayOfWeek: StartingDayOfWeek.monday,
@@ -93,7 +93,7 @@ class _CalendarViewState extends State<CalendarView> {
         onDayLongPressed: (selectedDate, focusedDate) {
           _openEventCreationDialog(selectedDate);
         },
-        headerStyle: CalendarUtils.getCalendarHeaderStyle(),
+        headerStyle: CalendarUtils.getCalendarHeaderStyle(context),
         calendarStyle: CalendarStyle(
           tableBorder: TableBorder.all(color: Colors.grey, width: 1),
         ),
@@ -125,8 +125,8 @@ class _CalendarViewState extends State<CalendarView> {
           DateTime? newDate = await showDatePicker(
             context: context,
             initialDate: DateTime.now(),
-            firstDate: DateFormatUtils.getFirstDateOfCalendar(),
-            lastDate: DateFormatUtils.getLastDateOfCalendar(),
+            firstDate: DateFormatters.getFirstDateOfCalendar(),
+            lastDate: DateFormatters.getLastDateOfCalendar(),
           );
           if (newDate != null) {
             _updateDates(newDate, newDate);

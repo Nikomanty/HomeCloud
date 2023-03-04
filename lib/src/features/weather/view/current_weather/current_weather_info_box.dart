@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/styles.dart';
 import 'package:home_cloud/src/features/weather/view/utils/weather_strings.dart';
 
 class CurrentWeatherInfoBox extends StatelessWidget {
@@ -21,7 +22,7 @@ class CurrentWeatherInfoBox extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: AppColors.onPrimary.withOpacity(0.1),
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          borderRadius: Styles.smallRoundedCorner,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

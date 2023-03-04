@@ -21,7 +21,7 @@ class ForecastIconColumn extends StatelessWidget {
   }
 
   Widget _forecastPrefixIcon(IconData iconData) => Padding(
-    padding: const EdgeInsets.all(4.5),
-    child: Icon(iconData, size: 19),
-  );
+        padding: const EdgeInsets.all(3.5),
+        child: Icon(iconData, size: 17),
+      );
 }

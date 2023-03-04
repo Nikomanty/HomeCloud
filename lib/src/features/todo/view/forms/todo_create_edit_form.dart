@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_cloud/src/core/constants/shared_strings.dart';
+import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
 import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_strings.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_utils.dart';
-import 'package:home_cloud/src/constants/shared_strings.dart';
-import 'package:home_cloud/src/utils/utils.dart';
 import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
 import 'package:home_cloud/src/widgets/forms/form_input_field_container.dart';
 import 'package:home_cloud/src/widgets/forms/form_text_input_field.dart';
@@ -61,7 +61,10 @@ class _TodoCreateEditFormState extends State<TodoCreateEditForm> {
                 items: TodoUtils.allTodoBoxes
                     .map((item) => DropdownMenuItem(
                           value: item,
-                          child: Text(item),
+                          child: Text(
+                            item,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ))
                     .toList(),
                 onChanged: (value) {
@@ -90,14 +93,11 @@ class _TodoCreateEditFormState extends State<TodoCreateEditForm> {
   }
 
   void _publishEventToDatabase() {
-    context.read<TodoCubit>().createData(
-      documentId,
-      {
-        "title": todoTitleTextController.text,
-        "checked": todoIsChecked,
-        "weekDay": todoWeekDay,
-      }
-    );
+    context.read<TodoCubit>().createData(documentId, {
+      "title": todoTitleTextController.text,
+      "checked": todoIsChecked,
+      "weekDay": todoWeekDay,
+    });
   }
 
   String getSnackNotificationText() {
