@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:home_cloud/src/constants/app_colors.dart';
+import 'package:home_cloud/src/constants/shared_strings.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/features/calendar/view/forms/components/event_color_picker_item.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart';
 import 'package:home_cloud/src/utils/date_format_utils.dart';
-import 'package:home_cloud/src/utils/shared_strings.dart';
 import 'package:home_cloud/src/utils/utils.dart';
 import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
 import 'package:home_cloud/src/widgets/forms/form_input_field_container.dart';
@@ -156,7 +156,6 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
             initialTime: eventTime != null
                 ? TimeOfDay.fromDateTime(eventTime!)
                 : const TimeOfDay(hour: 10, minute: 00),
-
           );
           eventTime = DateTimeField.convert(time);
           return eventTime;

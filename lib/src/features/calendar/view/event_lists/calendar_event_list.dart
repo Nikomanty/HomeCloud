@@ -17,19 +17,17 @@ class CalendarEventList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: TitledOutlineBox(
-        title: title,
-        content: _eventsList(context),
-      )
-    );
+        padding: const EdgeInsets.all(4.0),
+        child: TitledOutlineBox(
+          title: title,
+          content: _eventsList(context),
+        ));
   }
 
   Widget _eventsList(BuildContext context) {
     if (eventsList.isNotEmpty) {
       return ListView(
-        children:
-        eventsList.map((eventItemModel) {
+        children: eventsList.map((eventItemModel) {
           return Padding(
             padding: const EdgeInsets.all(4.0),
             child: CalendarEventListItem(

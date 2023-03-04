@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/utils/shared_strings.dart';
+import 'package:home_cloud/src/constants/shared_strings.dart';
 import 'package:home_cloud/src/utils/styles.dart';
 
 class DialogActionButtonRow extends StatelessWidget {

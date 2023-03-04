@@ -4,7 +4,7 @@ import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
 import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_strings.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_utils.dart';
-import 'package:home_cloud/src/utils/shared_strings.dart';
+import 'package:home_cloud/src/constants/shared_strings.dart';
 import 'package:home_cloud/src/utils/utils.dart';
 import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
 import 'package:home_cloud/src/widgets/forms/form_input_field_container.dart';
