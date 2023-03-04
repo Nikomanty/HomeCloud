@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:home_cloud/src/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/styles.dart';
+import 'package:home_cloud/src/core/utils/date_formatters.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/features/calendar/view/forms/event_create_edit_form.dart';
-import 'package:home_cloud/src/utils/date_format_utils.dart';
-import 'package:home_cloud/src/utils/styles.dart';
 import 'package:home_cloud/src/widgets/dialog/delete_item_dialog_content.dart';
 import 'package:home_cloud/src/widgets/dialog/open_dialog_icon_button.dart';
 
@@ -22,7 +22,7 @@ class CalendarEventListItem extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.primary,
-        borderRadius: const BorderRadius.all(Radius.circular(5)),
+        borderRadius: Styles.smallRoundedCorner,
         border: Border.all(color: AppColors.onPrimaryVariant),
       ),
       child: Column(
@@ -35,8 +35,7 @@ class CalendarEventListItem extends StatelessWidget {
   }
 
   Widget _cardHeader(BuildContext context) {
-    return Container(
-      height: 30,
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: eventItemModel.eventColor,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(5)),
@@ -68,41 +67,36 @@ class CalendarEventListItem extends StatelessWidget {
 
   String _timeLabelString() {
     String dateTime =
-        DateFormatUtils.formattedDateddMMyyyy(eventItemModel.eventDate);
+        DateFormatters.formattedDateddMMyyyy(eventItemModel.eventDate);
     return eventItemModel.eventTime != null
-        ? "$dateTime / ${DateFormatUtils.formattedTimeHHmm(eventItemModel.eventTime!)}"
+        ? "$dateTime / ${DateFormatters.formattedTimeHHmm(eventItemModel.eventTime!)}"
         : dateTime;
   }
 
   Widget _cardContent(BuildContext context) {
-    return DecoratedBox(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(5)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: _eventTexts(context, eventItemModel.eventDescription),
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: _eventTexts(context, eventItemModel.eventDescription),
           ),
-          OpenDialogIconButton(
-            icon: Icons.edit_outlined,
-            dialogContent: EventCreateEditForm(model: eventItemModel),
+        ),
+        OpenDialogIconButton(
+          icon: Icons.edit_outlined,
+          dialogContent: EventCreateEditForm(model: eventItemModel),
+        ),
+        OpenDialogIconButton(
+          icon: Icons.delete,
+          dialogContent: DeleteItemDialogContent(
+            itemToDeleteName: eventItemModel.eventTitle,
+            deleteItem: () => context.read<CalendarCubit>().deleteData(
+                  eventItemModel.documentId,
+                ),
           ),
-          OpenDialogIconButton(
-            icon: Icons.delete,
-            dialogContent: DeleteItemDialogContent(
-              itemToDeleteName: eventItemModel.eventTitle,
-              deleteItem: () => context.read<CalendarCubit>().deleteData(
-                    eventItemModel.documentId,
-                  ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

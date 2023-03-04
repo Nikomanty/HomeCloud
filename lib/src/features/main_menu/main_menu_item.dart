@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/styles.dart';
 import 'package:home_cloud/src/features/main_menu/utils/main_menu_utils.dart';
-import 'package:home_cloud/src/utils/styles.dart';
 
 class MainMenuItem extends StatelessWidget {
   final int index;
@@ -15,10 +15,10 @@ class MainMenuItem extends StatelessWidget {
       child: InkWell(
         onTap: () => _openMenuItem(context),
         child: DecoratedBox(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: AppColors.primary,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: Styles.itemShadow(),
+            borderRadius: Styles.largeRoundedCorner,
+            boxShadow: Styles.itemShadow,
           ),
           child: Padding(
             padding: const EdgeInsets.all(10.0),

@@ -2,15 +2,15 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:home_cloud/src/constants/app_colors.dart';
-import 'package:home_cloud/src/constants/shared_strings.dart';
+import 'package:home_cloud/src/core/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/shared_strings.dart';
+import 'package:home_cloud/src/core/utils/date_formatters.dart';
+import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/features/calendar/view/forms/components/event_color_picker_item.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart';
-import 'package:home_cloud/src/utils/date_format_utils.dart';
-import 'package:home_cloud/src/utils/utils.dart';
 import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
 import 'package:home_cloud/src/widgets/forms/form_input_field_container.dart';
 import 'package:home_cloud/src/widgets/forms/form_text_input_field.dart';
@@ -191,7 +191,7 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
             context: context,
             initialDate: eventDate,
             firstDate: DateTime.now(),
-            lastDate: DateFormatUtils.getLastDateOfCalendar(),
+            lastDate: DateFormatters.getLastDateOfCalendar(),
           );
           if (selectedDate != null) {
             eventDate = selectedDate;

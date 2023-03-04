@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/app_colors.dart';
 
 class CenteredErrorText extends StatelessWidget {
   final String? errorMessage;

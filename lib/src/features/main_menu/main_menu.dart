@@ -34,14 +34,14 @@ class HomeCloudMainMenu extends StatelessWidget {
   }
 
   Widget _menuItems() => Column(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: MainMenuUtils.homeCloudViews.map((menuItem) {
-      return Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: MainMenuItem(
-          index: MainMenuUtils.homeCloudViews.indexOf(menuItem),
-        ),
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: MainMenuUtils.homeCloudViews.map((menuItem) {
+          return Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: MainMenuItem(
+              index: MainMenuUtils.homeCloudViews.indexOf(menuItem),
+            ),
+          );
+        }).toList(),
       );
-    }).toList(),
-  );
 }

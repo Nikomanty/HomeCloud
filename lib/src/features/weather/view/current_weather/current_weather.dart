@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/constants/app_colors.dart';
 import 'package:home_cloud/src/features/weather/models/weather_model.dart';
 import 'package:home_cloud/src/features/weather/view/current_weather/current_weather_info_box.dart';
 import 'package:home_cloud/src/features/weather/view/utils/weather_strings.dart';
@@ -26,9 +25,7 @@ class CurrentWeather extends StatelessWidget {
               const Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
               RichText(
                 text: TextSpan(
-                  style: const TextStyle(
-                    color: AppColors.onPrimary,
-                  ),
+                  style: Theme.of(context).textTheme.bodyLarge,
                   children: <TextSpan>[
                     TextSpan(
                         text: "${model.temperature}",

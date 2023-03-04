@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/styles.dart';
+import 'package:home_cloud/src/core/utils/date_formatters.dart';
 import 'package:home_cloud/src/features/weather/models/weather_model.dart';
 import 'package:home_cloud/src/features/weather/view/utils/weather_strings.dart';
 import 'package:home_cloud/src/features/weather/view/utils/weather_utils.dart';
-import 'package:home_cloud/src/utils/date_format_utils.dart';
 
 class ForecastItem extends StatelessWidget {
   final WeatherModel weatherModel;
@@ -21,15 +22,15 @@ class ForecastItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _textWidget(context, false,
-                  DateFormatUtils.formattedDateddMM(weatherModel.dateTime)),
+                  DateFormatters.formattedDateddMM(weatherModel.dateTime)),
               _textWidget(context, false,
-                  DateFormatUtils.formattedTimeHHmm(weatherModel.dateTime)),
+                  DateFormatters.formattedTimeHHmm(weatherModel.dateTime)),
             ],
           ),
           DecoratedBox(
             decoration: BoxDecoration(
               color: AppColors.onPrimary.withOpacity(0.1),
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              borderRadius: Styles.smallRoundedCorner,
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),

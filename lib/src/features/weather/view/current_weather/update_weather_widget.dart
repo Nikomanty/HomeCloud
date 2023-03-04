@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:home_cloud/src/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/app_colors.dart';
+import 'package:home_cloud/src/core/utils/date_formatters.dart';
 import 'package:home_cloud/src/features/weather/cubit/weather_cubit.dart';
 import 'package:home_cloud/src/features/weather/view/utils/weather_strings.dart';
-import 'package:home_cloud/src/utils/date_format_utils.dart';
 
 class UpdateWeatherWidget extends StatelessWidget {
   const UpdateWeatherWidget({super.key});
@@ -17,8 +17,10 @@ class UpdateWeatherWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           IconButton(
-              onPressed: () => context.read<WeatherCubit>().updateData(),
-              icon: const Icon(Icons.update)),
+            onPressed: () => context.read<WeatherCubit>().updateData(),
+            icon: const Icon(Icons.update),
+            constraints: const BoxConstraints(),
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,7 +31,7 @@ class UpdateWeatherWidget extends StatelessWidget {
                     .bodyMedium
                     ?.copyWith(color: AppColors.onPrimaryVariant),
               ),
-              Text(DateFormatUtils.formattedDateHHmmddMMyyyy(DateTime.now()),
+              Text(DateFormatters.formattedDateHHmmddMMyyyy(DateTime.now()),
                   style: Theme.of(context).textTheme.bodyMedium),
             ],
           ),

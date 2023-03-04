@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/constants/app_colors.dart';
-import 'package:home_cloud/src/extensions/strings_extension.dart';
+import 'package:home_cloud/src/core/constants/app_colors.dart';
+import 'package:home_cloud/src/core/extensions/strings_extension.dart';
+import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/features/calendar/view/calendar_grid/calendar_event.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
-import 'package:home_cloud/src/utils/utils.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 

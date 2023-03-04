@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:home_cloud/src/constants/app_colors.dart';
+import 'package:home_cloud/src/core/constants/app_colors.dart';
 
-class AppThemeData {
+abstract class AppThemeData {
   static ThemeData getThemeData() => ThemeData(
         brightness: Brightness.dark,
-        appBarTheme: const AppBarTheme(color: AppColors.primary),
         scaffoldBackgroundColor: AppColors.primaryVariant,
+        appBarTheme: AppBarTheme(
+          color: AppColors.primary,
+          titleTextStyle: GoogleFonts.robotoCondensed(
+              textStyle: const TextStyle(
+            fontSize: 20,
+            color: AppColors.onPrimary,
+          )),
+        ),
         iconTheme: const IconThemeData(color: AppColors.onPrimary),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all<Color>(AppColors.secondary),
+        )),
         dialogTheme: const DialogTheme(
           backgroundColor: AppColors.primaryVariant,
         ),
-        textTheme: GoogleFonts.poppinsTextTheme(const TextTheme(
+        textTheme: GoogleFonts.robotoCondensedTextTheme(const TextTheme(
           headlineLarge: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 50,

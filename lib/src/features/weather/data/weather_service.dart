@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:home_cloud/secrets.dart';
+import 'package:home_cloud/src/core/configs/api_keys.dart';
 import 'package:home_cloud/src/features/weather/models/weather_model.dart';
 import 'package:http/http.dart' as http;
 

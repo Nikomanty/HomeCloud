@@ -11,11 +11,13 @@ class CalendarUtils {
     ];
   }
 
-  static HeaderStyle getCalendarHeaderStyle() {
-    return const HeaderStyle(
+  static HeaderStyle getCalendarHeaderStyle(BuildContext context) {
+    return HeaderStyle(
+      titleTextStyle:
+          Theme.of(context).textTheme.headlineSmall ?? const TextStyle(),
       titleCentered: true,
-      leftChevronIcon: Icon(Icons.arrow_circle_left_outlined),
-      rightChevronIcon: Icon(Icons.arrow_circle_right_outlined),
+      leftChevronIcon: const Icon(Icons.arrow_circle_left_outlined),
+      rightChevronIcon: const Icon(Icons.arrow_circle_right_outlined),
       formatButtonVisible: false,
     );
   }

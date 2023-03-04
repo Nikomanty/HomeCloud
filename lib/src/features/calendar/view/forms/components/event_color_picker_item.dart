@@ -30,7 +30,7 @@ class _EventColorPickerItemState extends State<EventColorPickerItem> {
           color: Colors.transparent,
           child: InkWell(
             onTap: widget.changeColor,
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: const BorderRadius.all(Radius.circular(50)),
             child: AnimatedOpacity(
               duration: const Duration(milliseconds: 210),
               opacity: widget.isCurrentColor ? 1 : 0,

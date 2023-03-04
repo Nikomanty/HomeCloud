@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/constants/shared_strings.dart';
-import 'package:home_cloud/src/utils/styles.dart';
+import 'package:home_cloud/src/core/constants/shared_strings.dart';
 
 class DialogActionButtonRow extends StatelessWidget {
   final VoidCallback confirmAction;
@@ -21,14 +20,20 @@ class DialogActionButtonRow extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
           child: Text(
             SharedStrings.cancelString,
-            style: Styles.actionsButtonTextStyle(),
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(color: Colors.blue),
           ),
         ),
         TextButton(
             onPressed: () => confirmAction(),
             child: Text(
               confirmButtonTitle,
-              style: Styles.actionsButtonTextStyle(),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: Colors.blue),
               textAlign: TextAlign.center,
             )),
       ],
