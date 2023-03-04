@@ -7,5 +7,5 @@ class AppColors {
   static const Color onSecondary = Color(0xff111111);
   static const Color onPrimary = Color(0xfff0f1f3);
   static const Color onPrimaryVariant = Color(0xff9a9a9a);
-  static const Color errorColor = Color(0xffff4b3d);
+  static const Color errorColor = Color(0xE7FE928A);
 }

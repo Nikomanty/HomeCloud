@@ -4,8 +4,8 @@ import 'package:home_cloud/src/constants/app_colors.dart';
 import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
 import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 import 'package:home_cloud/src/features/todo/view/forms/todo_create_edit_form.dart';
-import 'package:home_cloud/src/widgets/dialog/open_dialog_icon_button.dart';
 import 'package:home_cloud/src/widgets/dialog/delete_item_dialog_content.dart';
+import 'package:home_cloud/src/widgets/dialog/open_dialog_icon_button.dart';
 
 class TodoItem extends StatelessWidget {
   final TodoModel todoModel;

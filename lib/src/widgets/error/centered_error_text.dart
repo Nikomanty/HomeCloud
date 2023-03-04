@@ -15,7 +15,7 @@ class CenteredErrorText extends StatelessWidget {
       child: Text(errorMessage ?? "No error message found.",
           style: Theme.of(context)
               .textTheme
-              .headlineMedium
+              .headlineSmall
               ?.copyWith(color: AppColors.errorColor)),
     );
   }

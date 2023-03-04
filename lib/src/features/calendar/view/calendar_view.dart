@@ -8,7 +8,6 @@ import 'package:home_cloud/src/features/calendar/view/forms/event_create_edit_fo
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart';
 import 'package:home_cloud/src/utils/date_format_utils.dart';
-import 'package:home_cloud/src/utils/styles.dart';
 import 'package:home_cloud/src/widgets/buttons/app_bar_action_button.dart';
 import 'package:home_cloud/src/widgets/error/centered_error_text.dart';
 import 'package:home_cloud/src/widgets/loading/centered_loader.dart';

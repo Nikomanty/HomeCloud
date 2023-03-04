@@ -18,7 +18,7 @@ class ForecastItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _textWidget(context, false,
                   DateFormatUtils.formattedDateddMM(weatherModel.dateTime)),

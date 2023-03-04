@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:home_cloud/src/constants/app_theme_data.dart';
+import 'package:home_cloud/src/constants/shared_strings.dart';
 import 'package:home_cloud/src/features/main_menu/main_menu.dart';
-import 'package:home_cloud/src/utils/shared_strings.dart';
 
 class HomeCloud extends StatelessWidget {
   const HomeCloud({super.key});
@@ -24,4 +24,3 @@ class HomeCloud extends StatelessWidget {
     );
   }
 }
-

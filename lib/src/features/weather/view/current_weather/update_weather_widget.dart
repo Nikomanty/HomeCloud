@@ -11,9 +11,10 @@ class UpdateWeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           IconButton(
               onPressed: () => context.read<WeatherCubit>().updateData(),
@@ -28,7 +29,7 @@ class UpdateWeatherWidget extends StatelessWidget {
                     .bodyMedium
                     ?.copyWith(color: AppColors.onPrimaryVariant),
               ),
-              Text(DateFormatUtils.formattedDateddMMyyyyHHmm(DateTime.now()),
+              Text(DateFormatUtils.formattedDateHHmmddMMyyyy(DateTime.now()),
                   style: Theme.of(context).textTheme.bodyMedium),
             ],
           ),

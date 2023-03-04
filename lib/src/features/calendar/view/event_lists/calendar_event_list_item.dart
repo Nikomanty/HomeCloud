@@ -6,8 +6,8 @@ import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dar
 import 'package:home_cloud/src/features/calendar/view/forms/event_create_edit_form.dart';
 import 'package:home_cloud/src/utils/date_format_utils.dart';
 import 'package:home_cloud/src/utils/styles.dart';
-import 'package:home_cloud/src/widgets/dialog/open_dialog_icon_button.dart';
 import 'package:home_cloud/src/widgets/dialog/delete_item_dialog_content.dart';
+import 'package:home_cloud/src/widgets/dialog/open_dialog_icon_button.dart';
 
 class CalendarEventListItem extends StatelessWidget {
   final CalendarEventModel eventItemModel;

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_cloud/src/constants/app_colors.dart';
 import 'package:home_cloud/src/features/weather/view/utils/weather_strings.dart';
-import 'package:home_cloud/src/features/weather/view/utils/weather_utils.dart';
 
 class CurrentWeatherInfoBox extends StatelessWidget {
   final int feelsLike;

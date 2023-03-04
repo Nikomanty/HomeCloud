@@ -37,23 +37,29 @@ class _WeatherViewState extends State<WeatherView> {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: WeatherUtils.getWeatherBoxDecoration(),
-      child: BlocBuilder<WeatherCubit, WeatherState>(
-        builder: (context, state) {
-          if (state.status == WeatherStatus.initial) {
-            return const CenteredLoader();
-          } else if (state.status == WeatherStatus.error) {
-            return CenteredErrorText(
-              errorMessage: state.exception.toString(),
-            );
-          } else {
-            WeatherModel? currentWeather = state.currentWeather;
-            List<WeatherModel>? forecastWeather = state.forecastWeather;
-            return _weatherContent(currentWeather!, forecastWeather!);
-          }
-        },
-      ),
+    return Stack(
+      children: [
+        DecoratedBox(
+          decoration: WeatherUtils.getWeatherBoxDecoration(),
+          child: BlocBuilder<WeatherCubit, WeatherState>(
+            builder: (context, state) {
+              if (state.status == WeatherStatus.initial ||
+                  state.status == WeatherStatus.update) {
+                return const CenteredLoader();
+              } else if (state.status == WeatherStatus.error) {
+                return CenteredErrorText(
+                  errorMessage: state.exception.toString(),
+                );
+              } else {
+                WeatherModel? currentWeather = state.currentWeather;
+                List<WeatherModel>? forecastWeather = state.forecastWeather;
+                return _weatherContent(currentWeather!, forecastWeather!);
+              }
+            },
+          ),
+        ),
+        const UpdateWeatherWidget(),
+      ],
     );
   }
 
@@ -65,12 +71,7 @@ class _WeatherViewState extends State<WeatherView> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Stack(
-            children: [
-              const UpdateWeatherWidget(),
-              CurrentWeather(model: currentWeather),
-            ],
-          ),
+          CurrentWeather(model: currentWeather),
           ForecastCarousel(forecastData: forecastWeather),
         ],
       ),
