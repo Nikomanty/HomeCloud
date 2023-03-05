@@ -13,15 +13,17 @@ Some ideas listed here:
 - Inside weather
 - Curtain/"Home widget" controlling (Very far in future, need actual devices for these last 2)
 
-# Images from application (Texts are in Finnish, sorry):
+# Images from application:
+Majority of texts are in Finnish, because there is only Finnish users currently. I'm sorry. Events and todos seen in these images are not actual events used by our family, they are just for testing purposes.
+
 In use on our wall and main menu:
 
-<img src="https://user-images.githubusercontent.com/16851195/222543981-c5ffcf91-ffe6-41bc-b703-371ec5483a4c.jpg" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/222543286-a362b688-e6f7-4aaf-95be-1818d4cbef82.jpg" width="whatever" height="300">
+<img src="https://user-images.githubusercontent.com/16851195/222973262-3b57cc6f-ead2-4df3-bc72-8c86acc3cf8a.jpg" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/222973238-eb9363a9-9d75-4c77-89bc-98dcedd67795.jpg" width="whatever" height="300">
 
 Calendar View And Calendar event creation:
 
-<img src="https://user-images.githubusercontent.com/16851195/222543045-976167e0-0e8a-4def-b6b7-021a559502fc.jpg" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/222543141-f8038226-b499-4f47-8a27-1b5a4100d75f.jpg" width="whatever" height="300">
+<img src="https://user-images.githubusercontent.com/16851195/222973199-66533ac9-dbf5-4dc1-9e91-44b1ed9dacf9.jpg" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/222973173-6463956e-a2c3-4ccb-8494-9ecca6e63509.jpg" width="whatever" height="300">
 
 Todo View:
 
-<img src="https://user-images.githubusercontent.com/16851195/222543395-19631457-81a7-4a37-92f8-3042bb8ae970.jpg" width="whatever" height="300">
+<img src="https://user-images.githubusercontent.com/16851195/222973219-e173a1a6-fbe8-4b38-8a54-1f6ddda19c18.jpg" width="whatever" height="300">
