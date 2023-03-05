@@ -22,7 +22,7 @@ In use on our wall and main menu:
 
 Calendar View And Calendar event creation:
 
-<img src="https://user-images.githubusercontent.com/16851195/222973199-66533ac9-dbf5-4dc1-9e91-44b1ed9dacf9.jpg" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/222973173-6463956e-a2c3-4ccb-8494-9ecca6e63509.jpg" width="whatever" height="300">
+<img src="https://user-images.githubusercontent.com/16851195/222973199-66533ac9-dbf5-4dc1-9e91-44b1ed9dacf9.jpg" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/222978665-8e33829f-139f-468a-b449-78d9ea8866e4.png" width="whatever" height="300">
 
 Todo View:
 
