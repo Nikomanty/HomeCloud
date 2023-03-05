@@ -9,6 +9,7 @@ import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/features/calendar/view/forms/components/event_color_picker_item.dart';
+import 'package:home_cloud/src/features/calendar/view/forms/components/rounded_event_color.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart';
 import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
@@ -114,7 +115,7 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
         BlockPicker(
           pickerColor: eventColor ?? CalendarUtils.availableItemColors()[0],
           itemBuilder: (color, isCurrentColor, changeColor) {
-            return EventColorPickerItem(
+            return RoundedEventColorPickerItem(
               color: color,
               isCurrentColor: isCurrentColor,
               changeColor: changeColor,
