@@ -8,7 +8,6 @@ import 'package:home_cloud/src/core/utils/date_formatters.dart';
 import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
-import 'package:home_cloud/src/features/calendar/view/forms/components/event_color_picker_item.dart';
 import 'package:home_cloud/src/features/calendar/view/forms/components/rounded_event_color.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart';
