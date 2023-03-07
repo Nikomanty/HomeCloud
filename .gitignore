@@ -111,10 +111,11 @@ coverage/
 app.*.symbols
 
 # Secrets
-lib/secrets.dart
-lib/firebase_options.dart
+lib/src/core/configs/api_keys.dart
+lib/src/core/configs/firebase_options.dart
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
+ios/firebase_app_id_file.json
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
