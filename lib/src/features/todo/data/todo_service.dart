@@ -8,9 +8,10 @@ class TodoService {
   Future<List<TodoModel>> fetchData() async {
     QuerySnapshot<Map<String, dynamic>> todoData =
         await _database.collection(collectionPath).get();
-    return todoData.docs
-        .map((documentSnapshot) => TodoModel.fromJson(documentSnapshot))
-        .toList();
+    return todoData.docs.map((documentSnapshot) {
+      print(documentSnapshot.data());
+      return TodoModel.fromMap(documentSnapshot.id, documentSnapshot.data());
+    }).toList();
   }
 
   Future<void> createData(
@@ -23,7 +24,7 @@ class TodoService {
         .set(newDocumentObject);
   }
 
-  Future<void> deleteData(String documentId) async {
+  Future<void> deleteData(String? documentId) async {
     await _database.collection(collectionPath).doc(documentId).delete();
   }
 }

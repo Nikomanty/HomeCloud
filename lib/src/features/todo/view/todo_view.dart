@@ -19,14 +19,14 @@ class TodoView extends StatelessWidget {
         title: const Text(TodoStrings.todoViewTitle),
         actions: [
           IconButton(
-              onPressed: () => context.read<TodoCubit>().updateData(),
+              onPressed: () => context.read<TodoCubit>().getData(),
               icon: const Icon(Icons.update)),
           _createNewTodoButton(context),
         ],
       ),
       body: BlocBuilder<TodoCubit, TodoState>(
         builder: (context, state) {
-          if (state.status == TodoStatus.initial) {
+          if (state.status == TodoStatus.loading) {
             context.read<TodoCubit>().getData();
             return const CenteredLoader();
           } else if (state.status == TodoStatus.error) {

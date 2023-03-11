@@ -16,27 +16,23 @@ class TodoCubit extends Cubit<TodoState> {
   ) async {
     try {
       await _todoRepository.createData(documentId, newDocumentObject);
-      await updateData();
+      await getData();
     } on Exception {
       return;
     }
   }
 
-  Future<void> deleteData(String documentId) async {
+  Future<void> deleteData(String? documentId) async {
     try {
       await _todoRepository.deleteData(documentId);
-      await updateData();
+      await getData();
     } on Exception {
       return;
     }
-  }
-
-  Future<void> updateData() async {
-    emit(state.copyWith(status: TodoStatus.update));
-    await getData();
   }
 
   Future<void> getData() async {
+    emit(state.copyWith(status: TodoStatus.loading));
     try {
       List<TodoModel> data = await _todoRepository.fetchData();
       emit(state.copyWith(status: TodoStatus.loaded, todoData: data));
