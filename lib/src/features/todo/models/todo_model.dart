@@ -1,24 +1,27 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class TodoModel {
+  final String? documentId;
   final String title;
-  final String? weekDay;
+  final String weekDay;
   final bool checked;
-  final String documentId;
 
   TodoModel({
     required this.title,
-    this.weekDay,
+    required this.weekDay,
     required this.checked,
-    required this.documentId,
+    this.documentId,
   });
 
-  factory TodoModel.fromJson(DocumentSnapshot document) {
-    return TodoModel(
-      title: document['title'] as String,
-      weekDay: document['weekDay'] as String,
-      checked: document['checked'] as bool,
-      documentId: document.id,
-    );
+  TodoModel.fromMap(String? docId, Map<String, dynamic> document)
+      : documentId = docId,
+        title = document['title'] as String,
+        weekDay = document['weekDay'] as String,
+        checked = document['checked'] as bool;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'title': title,
+      'weekDay': weekDay,
+      'checked': checked,
+    };
   }
 }

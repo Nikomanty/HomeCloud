@@ -2,7 +2,9 @@ import 'package:home_cloud/src/features/todo/data/todo_service.dart';
 import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 
 class TodoRepositoryImpl implements TodoRepository {
-  final TodoService _service = TodoService();
+  final TodoService _service;
+
+  TodoRepositoryImpl(this._service);
 
   @override
   Future<List<TodoModel>> fetchData() {
@@ -18,7 +20,7 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Future<void> deleteData(String documentId) {
+  Future<void> deleteData(String? documentId) {
     return _service.deleteData(documentId);
   }
 }
@@ -31,5 +33,5 @@ abstract class TodoRepository {
     Map<String, dynamic> newDocumentObject,
   );
 
-  Future<void> deleteData(String documentId);
+  Future<void> deleteData(String? documentId);
 }

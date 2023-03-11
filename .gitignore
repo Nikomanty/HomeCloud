@@ -111,8 +111,8 @@ coverage/
 app.*.symbols
 
 # Secrets
-lib/src/core/configs/api_keys.dart
-lib/src/core/configs/firebase_options.dart
+**/api_keys.dart
+**/firebase_options.dart
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
 ios/firebase_app_id_file.json

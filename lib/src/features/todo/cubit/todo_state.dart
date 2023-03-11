@@ -1,6 +1,6 @@
 part of 'todo_cubit.dart';
 
-enum TodoStatus { initial, update, loaded, error }
+enum TodoStatus { initial, loading, loaded, error }
 
 class TodoState extends Equatable {
   final TodoStatus status;
