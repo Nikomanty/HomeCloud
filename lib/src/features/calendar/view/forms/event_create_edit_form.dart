@@ -12,7 +12,7 @@ import 'package:home_cloud/src/features/calendar/view/forms/components/rounded_e
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart';
 import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
-import 'package:home_cloud/src/widgets/forms/form_input_field_container.dart';
+import 'package:home_cloud/src/widgets/forms/form_field_container.dart';
 import 'package:home_cloud/src/widgets/forms/form_text_input_field.dart';
 import 'package:intl/intl.dart';
 
@@ -61,14 +61,14 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _eventColorPicker(),
-          FormInputFieldContainer(
+          FormFieldContainer(
             fieldIcon: Icons.person_outline,
             child: FormTextInputField(
               hintText: CalendarStrings.ownerHintText,
               stringToUpdateTextController: eventOwnerTextController,
             ),
           ),
-          FormInputFieldContainer(
+          FormFieldContainer(
             fieldIcon: Icons.title_outlined,
             child: FormTextInputField(
               hintText: CalendarStrings.titleHintText,
@@ -76,7 +76,7 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
               validatorString: CalendarStrings.eventCreateMustHaveTitle,
             ),
           ),
-          FormInputFieldContainer(
+          FormFieldContainer(
             fieldIcon: Icons.text_fields_outlined,
             child: FormTextInputField(
               hintText: CalendarStrings.descriptionHintText,
@@ -135,8 +135,8 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
     );
   }
 
-  FormInputFieldContainer _eventTimePicker() {
-    return FormInputFieldContainer(
+  FormFieldContainer _eventTimePicker() {
+    return FormFieldContainer(
       fieldIcon: Icons.timer_outlined,
       child: DateTimeField(
         format: DateFormat('HH:mm'),
@@ -164,8 +164,8 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
     );
   }
 
-  FormInputFieldContainer _eventDatePicker() {
-    return FormInputFieldContainer(
+  FormFieldContainer _eventDatePicker() {
+    return FormFieldContainer(
       fieldIcon: Icons.date_range_outlined,
       child: DateTimeField(
         format: DateFormat('dd.MM.yyyy'),

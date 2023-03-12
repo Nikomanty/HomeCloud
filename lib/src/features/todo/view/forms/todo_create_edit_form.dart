@@ -7,7 +7,7 @@ import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_strings.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_utils.dart';
 import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
-import 'package:home_cloud/src/widgets/forms/form_input_field_container.dart';
+import 'package:home_cloud/src/widgets/forms/form_field_container.dart';
 import 'package:home_cloud/src/widgets/forms/form_text_input_field.dart';
 
 class TodoCreateEditForm extends StatefulWidget {
@@ -43,7 +43,7 @@ class _TodoCreateEditFormState extends State<TodoCreateEditForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FormInputFieldContainer(
+          FormFieldContainer(
             fieldIcon: Icons.title_outlined,
             child: FormTextInputField(
               hintText: TodoStrings.todoTextHintText,
@@ -51,7 +51,7 @@ class _TodoCreateEditFormState extends State<TodoCreateEditForm> {
               validatorString: TodoStrings.todoMustHaveText,
             ),
           ),
-          FormInputFieldContainer(
+          FormFieldContainer(
               fieldIcon: Icons.today_outlined,
               child: DropdownButtonFormField(
                 value: todoWeekDay,

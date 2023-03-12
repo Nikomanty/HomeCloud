@@ -17,6 +17,7 @@ class DialogActionButtonRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         TextButton(
+          key: const Key("cancel_button"),
           onPressed: () => Navigator.of(context).pop(),
           child: Text(
             SharedStrings.cancelString,
@@ -27,15 +28,17 @@ class DialogActionButtonRow extends StatelessWidget {
           ),
         ),
         TextButton(
-            onPressed: () => confirmAction(),
-            child: Text(
-              confirmButtonTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: Colors.blue),
-              textAlign: TextAlign.center,
-            )),
+          key: const Key("confirm_button"),
+          onPressed: () => confirmAction(),
+          child: Text(
+            confirmButtonTitle,
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(color: Colors.blue),
+            textAlign: TextAlign.center,
+          ),
+        ),
       ],
     );
   }
