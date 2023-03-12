@@ -9,7 +9,6 @@ class TodoService {
     QuerySnapshot<Map<String, dynamic>> todoData =
         await _database.collection(collectionPath).get();
     return todoData.docs.map((documentSnapshot) {
-      print(documentSnapshot.data());
       return TodoModel.fromMap(documentSnapshot.id, documentSnapshot.data());
     }).toList();
   }
