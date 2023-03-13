@@ -16,10 +16,14 @@ class UpdateWeatherWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          IconButton(
-            onPressed: () => context.read<WeatherCubit>().updateData(),
-            icon: const Icon(Icons.update),
-            constraints: const BoxConstraints(),
+          Material(
+            color: AppColors.primary,
+            child: IconButton(
+              onPressed: () => context.read<WeatherCubit>().updateData(),
+              icon: const Icon(Icons.update),
+              constraints: const BoxConstraints(),
+              splashRadius: 20,
+            ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

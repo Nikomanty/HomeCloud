@@ -18,7 +18,6 @@ class WeatherCubit extends Cubit<WeatherState> {
 
   Future<void> getWeatherData() async {
     try {
-      debugPrint("Try get data");
       WeatherModel currentData =
           await _weatherRepository.getCurrentWeatherData();
       List<WeatherModel> forecastData =

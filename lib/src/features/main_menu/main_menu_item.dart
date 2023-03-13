@@ -13,6 +13,8 @@ class MainMenuItem extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 2,
       child: InkWell(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         onTap: () => _openMenuItem(context),
         child: DecoratedBox(
           decoration: const BoxDecoration(

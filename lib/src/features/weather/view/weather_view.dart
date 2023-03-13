@@ -58,7 +58,7 @@ class _WeatherViewState extends State<WeatherView> {
             },
           ),
         ),
-        const UpdateWeatherWidget(),
+        UpdateWeatherWidget(),
       ],
     );
   }
