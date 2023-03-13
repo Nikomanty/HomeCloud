@@ -19,6 +19,7 @@ class TodoView extends StatelessWidget {
         title: const Text(TodoStrings.todoViewTitle),
         actions: [
           IconButton(
+              splashRadius: 25,
               onPressed: () => context.read<TodoCubit>().getData(),
               icon: const Icon(Icons.update)),
           _createNewTodoButton(context),

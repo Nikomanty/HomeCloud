@@ -35,6 +35,7 @@ class _CalendarViewState extends State<CalendarView> {
         title: const Text(CalendarStrings.calendarViewName),
         actions: [
           IconButton(
+              splashRadius: 25,
               onPressed: () => context.read<CalendarCubit>().updateData(),
               icon: const Icon(Icons.update)),
           _resetDateTodayButton(),

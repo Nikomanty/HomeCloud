@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:home_cloud/src/core/constants/shared_strings.dart';
 import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
-import 'package:mocktail/mocktail.dart';
 
 void main() {
   Widget createWidgetUnderTest() {

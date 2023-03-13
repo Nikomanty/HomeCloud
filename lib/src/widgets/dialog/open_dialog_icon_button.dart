@@ -16,7 +16,13 @@ class OpenDialogIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(icon, size: iconSize ?? 25, color: AppColors.onPrimary,),
+      icon: Icon(
+        icon,
+        size: iconSize ?? 25,
+        color: AppColors.onPrimary,
+      ),
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       onPressed: () {
         showDialog<Widget>(
           context: context,
