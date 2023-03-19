@@ -5,7 +5,7 @@ class CalendarEventModel {
   String? eventOwner;
   String eventTitle;
   String? eventDescription;
-  Color? eventColor;
+  Color eventColor;
   DateTime? eventTime;
   DateTime eventDate;
   String documentId;
@@ -15,7 +15,7 @@ class CalendarEventModel {
     required this.eventTitle,
     required this.eventDate,
     required this.documentId,
-    this.eventColor,
+    required this.eventColor,
     this.eventDescription,
     this.eventTime,
   });
@@ -28,10 +28,9 @@ class CalendarEventModel {
       eventTime: document['eventTime'] != null
           ? DateTime.fromMillisecondsSinceEpoch(document['eventTime'] as int)
           : null,
-      eventDate: DateTime.fromMillisecondsSinceEpoch(document['eventDate'] as int),
-      eventColor: document['eventColor'] != null
-          ? Color((document['eventColor'] as int))
-          : null,
+      eventDate:
+          DateTime.fromMillisecondsSinceEpoch(document['eventDate'] as int),
+      eventColor: Color((document['eventColor'] as int)),
       documentId: document.id,
     );
   }

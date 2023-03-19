@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:home_cloud/src/core/constants/app_colors.dart';
 
@@ -27,5 +29,13 @@ class Utils {
       textDirection: TextDirection.ltr,
     )..layout(minWidth: 0, maxWidth: double.infinity);
     return painter.size;
+  }
+
+  static bool isViewLandscape(BuildContext context) {
+    return MediaQuery.of(context).orientation == Orientation.landscape;
+  }
+
+  static double getViewHeight(BuildContext context) {
+    return MediaQuery.of(context).size.height - window.viewPadding.top;
   }
 }

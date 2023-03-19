@@ -11,32 +11,38 @@ class UpdateWeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3.0),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Material(
-            color: AppColors.primary,
+            color: Colors.transparent,
             child: IconButton(
               onPressed: () => context.read<WeatherCubit>().updateData(),
-              icon: const Icon(Icons.update),
+              icon: const Icon(
+                Icons.update,
+              ),
               constraints: const BoxConstraints(),
-              splashRadius: 20,
+              iconSize: 18,
+              splashRadius: 18,
             ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 WeatherStrings.lastUpdate,
                 style: Theme.of(context)
                     .textTheme
-                    .bodyMedium
+                    .bodySmall
                     ?.copyWith(color: AppColors.onPrimaryVariant),
               ),
               Text(DateFormatters.formattedDateHHmmddMMyyyy(DateTime.now()),
-                  style: Theme.of(context).textTheme.bodyMedium),
+                  style: Theme.of(context).textTheme.bodySmall),
             ],
           ),
         ],

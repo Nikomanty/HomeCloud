@@ -23,7 +23,7 @@ class CalendarEvent extends StatelessWidget {
         border: Border.all(color: Colors.black54),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 3.0, vertical: 2.0),
+        padding: const EdgeInsets.symmetric(horizontal: 3.0, vertical: 1.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

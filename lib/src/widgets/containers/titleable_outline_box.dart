@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:home_cloud/src/core/constants/app_colors.dart';
 import 'package:home_cloud/src/core/constants/styles.dart';
 
-class TitledOutlineBox extends StatelessWidget {
-  final String title;
+class TitleableOutlineBox extends StatelessWidget {
+  final String? title;
   final Widget content;
 
-  const TitledOutlineBox({
+  const TitleableOutlineBox({
     super.key,
-    required this.title,
+    this.title,
     required this.content,
   });
 
@@ -27,14 +27,15 @@ class TitledOutlineBox extends StatelessWidget {
             child: content,
           ),
         ),
-        Positioned(
-          left: 20,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: Text(title),
+        if (title != null)
+          Positioned(
+            left: 20,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              color: Theme.of(context).scaffoldBackgroundColor,
+              child: Text(title ?? ""),
+            ),
           ),
-        ),
       ],
     );
   }

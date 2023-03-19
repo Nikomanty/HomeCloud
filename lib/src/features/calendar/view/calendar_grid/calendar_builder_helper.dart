@@ -43,15 +43,17 @@ class CalendarBuilderHelper {
         padding: const EdgeInsets.all(2.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: _eventWidgetList(eventList),
+          children: _eventWidgetList(context, eventList),
         ),
       );
     }
     return null;
   }
 
-  static List<Widget> _eventWidgetList(List<dynamic> list) {
+  static List<Widget> _eventWidgetList(
+      BuildContext context, List<dynamic> list) {
     List<Widget> widgets = [];
+    int maxEvents = Utils.isViewLandscape(context) ? 3 : 2;
     for (var item in list) {
       int index = list.indexOf(item);
       widgets.add(CalendarEvent(
@@ -60,13 +62,14 @@ class CalendarBuilderHelper {
         eventColor: list[index].eventColor as Color?,
       ));
       //Break loop if more than 2 items to not overflow calendar date
-      if (index >= 1) break;
+      if (widgets.length >= maxEvents) break;
     }
-    if (list.length > 2) {
-      widgets.add(CalendarEvent(
-        eventTitle: CalendarStrings.getMoreEventString(list.length - 2),
+    if (list.length > maxEvents) {
+      widgets.last = CalendarEvent(
+        eventTitle: CalendarStrings.getMoreEventString(
+            list.length - widgets.length + 1),
         eventColor: Colors.white,
-      ));
+      );
     }
     return widgets;
   }

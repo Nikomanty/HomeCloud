@@ -2,11 +2,6 @@
 class CalendarStrings {
   static const String calendarViewName = "Kalenteri ja tapahtumat";
 
-  static const String allCalendarEvents = "Kaikki tapahtumat";
-  static const String todayCalendarEvents = "Tapahtumat tänään";
-  static const String selectedDayCalendarEvents = "Valitun päivän tapahtumat";
-  static const String createNewEventButtonTitle = "Uusi tapahtuma";
-
   static const String eventCreateMustHaveTitle = "Otsikko puuttuu.";
   static const String eventCreateMustHaveDate = "Päivämäärä puuttuu.";
   static const String ownerHintText = "Kenen tapahtuma?";
@@ -18,9 +13,11 @@ class CalendarStrings {
 
   static String eventEdited(String event) => "Tapahtumaa -$event- muokattu";
 
-  static const String resetTodayButton = "Tämä päivä";
-  static const String selectDateButton = "Valitse päivä";
+  static const String resetTodayButtonTitle = "Tämä päivä";
+  static const String selectDateButtonTitle = "Valitse päivä";
+  static const String createNewEventButtonTitle = "Uusi tapahtuma";
 
+  static const String selectedDayCalendarEvents = "Valitun päivän tapahtumat";
   static const String noEventsString = "Ei tapahtumia.";
 
   static String getMoreEventString(int extraEvent) {

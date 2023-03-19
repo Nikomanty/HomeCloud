@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/features/main_menu/main_menu_item.dart';
 import 'package:home_cloud/src/features/main_menu/utils/main_menu_utils.dart';
 import 'package:home_cloud/src/features/weather/view/weather_view.dart';
@@ -8,38 +9,53 @@ class HomeCloudMainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: _menuItems(),
-                ),
-              ),
-              const Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(60.0),
-                  child: WeatherView(),
-                ),
-              ),
-            ],
+    Widget mainMenuContent;
+    if (Utils.isViewLandscape(context)) {
+      mainMenuContent = Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Expanded(
+            child: _menuItems(context, 1.5),
           ),
-        ),
-      ),
-    );
+          const Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(60.0),
+              child: WeatherView(),
+            ),
+          ),
+        ],
+      );
+    } else {
+      mainMenuContent = Column(
+        children: [
+          SizedBox(
+              height: Utils.getViewHeight(context) * 0.3,
+              width: double.infinity,
+              child: const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: WeatherView(),
+              )),
+          SizedBox(
+            height: Utils.getViewHeight(context) * 0.7,
+            width: double.infinity,
+            child: _menuItems(context, 1),
+          ),
+        ],
+      );
+    }
+    return Scaffold(body: SafeArea(child: Center(child: mainMenuContent)));
   }
 
-  Widget _menuItems() => Column(
+  Widget _menuItems(BuildContext context, double aspectRatio) => Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: MainMenuUtils.homeCloudViews.map((menuItem) {
-          return Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: MainMenuItem(
-              index: MainMenuUtils.homeCloudViews.indexOf(menuItem),
+          return Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: MainMenuItem(
+                index: MainMenuUtils.homeCloudViews.indexOf(menuItem),
+                aspectRatio: aspectRatio,
+              ),
             ),
           );
         }).toList(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_cloud/src/core/utils/date_formatters.dart';
+import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 import 'package:home_cloud/src/features/calendar/view/calendar_grid/calendar_builder_helper.dart';
@@ -11,7 +12,6 @@ import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart'
 import 'package:home_cloud/src/widgets/buttons/app_bar_action_button.dart';
 import 'package:home_cloud/src/widgets/error/centered_error_text.dart';
 import 'package:home_cloud/src/widgets/loading/centered_loader.dart';
-import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarView extends StatefulWidget {
@@ -38,9 +38,7 @@ class _CalendarViewState extends State<CalendarView> {
               splashRadius: 25,
               onPressed: () => context.read<CalendarCubit>().updateData(),
               icon: const Icon(Icons.update)),
-          _resetDateTodayButton(),
-          _selectDateButton(),
-          _createNewEventButton(),
+          ..._appBarActionRow(),
         ],
       ),
       body: BlocBuilder<CalendarCubit, CalendarState>(
@@ -54,16 +52,18 @@ class _CalendarViewState extends State<CalendarView> {
             );
           } else {
             allEvents = state.calendarData ?? [];
-            return _homeCalendarView();
+            if (Utils.isViewLandscape(context)) {
+              return Row(children: _homeCalendarViewContent());
+            } else {
+              return Column(children: _homeCalendarViewContent());
+            }
           }
         },
       ),
     );
   }
 
-  Widget _homeCalendarView() {
-    return Row(
-      children: [
+  List<Widget> _homeCalendarViewContent() => [
         Expanded(
           flex: 2,
           child: Padding(
@@ -72,11 +72,14 @@ class _CalendarViewState extends State<CalendarView> {
           ),
         ),
         Expanded(
-          child: _todaySelectedEventsLists(),
+          child: CalendarEventList(
+            eventsList: CalendarUtils.getAllEventsByDate(
+              allEvents,
+              _selectedDate,
+            ),
+          ),
         ),
-      ],
-    );
-  }
+      ];
 
   TableCalendar _tableCalendar() => TableCalendar(
         locale: Localizations.localeOf(context).languageCode,
@@ -100,50 +103,44 @@ class _CalendarViewState extends State<CalendarView> {
         ),
         shouldFillViewport: true,
         calendarBuilders: CalendarBuilderHelper.getHomeCalendarBuilder(),
-        eventLoader: (date) => _getAllEventsByDate(allEvents, date),
+        eventLoader: (date) =>
+            CalendarUtils.getAllEventsByDate(allEvents, date),
       );
 
-  Widget _todaySelectedEventsLists() => Column(
-        children: [
-          Expanded(
-            child: CalendarEventList(
-              title: CalendarStrings.todayCalendarEvents,
-              eventsList: _getAllEventsByDate(allEvents, DateTime.now()),
-            ),
-          ),
-          Expanded(
-            child: CalendarEventList(
-              title: CalendarStrings.selectedDayCalendarEvents,
-              eventsList: _getAllEventsByDate(allEvents, _selectedDate),
-            ),
-          ),
-        ],
-      );
+  List<Widget> _appBarActionRow() {
+    if (Utils.isViewLandscape(context)) {
+      return [
+        AppBarActionButton(
+          title: CalendarStrings.resetTodayButtonTitle,
+          action: () => _updateDates(DateTime.now(), DateTime.now()),
+        ),
+        AppBarActionButton(
+          title: CalendarStrings.selectDateButtonTitle,
+          action: () => _openDateSelectionPicker(),
+        ),
+        AppBarActionButton(
+          title: CalendarStrings.createNewEventButtonTitle,
+          action: () => _openEventCreationDialog(_selectedDate),
+        ),
+      ];
+    } else {
+      return [
+        _actionPopUpMenu(),
+      ];
+    }
+  }
 
-  AppBarActionButton _selectDateButton() => AppBarActionButton(
-        title: CalendarStrings.selectDateButton,
-        action: () async {
-          DateTime? newDate = await showDatePicker(
-            context: context,
-            initialDate: DateTime.now(),
-            firstDate: DateFormatters.getFirstDateOfCalendar(),
-            lastDate: DateFormatters.getLastDateOfCalendar(),
-          );
-          if (newDate != null) {
-            _updateDates(newDate, newDate);
-          }
-        },
-      );
-
-  AppBarActionButton _resetDateTodayButton() => AppBarActionButton(
-        title: CalendarStrings.resetTodayButton,
-        action: () => _updateDates(DateTime.now(), DateTime.now()),
-      );
-
-  AppBarActionButton _createNewEventButton() => AppBarActionButton(
-        title: CalendarStrings.createNewEventButtonTitle,
-        action: () => _openEventCreationDialog(_selectedDate),
-      );
+  Future<void> _openDateSelectionPicker() async {
+    DateTime? newDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateFormatters.getFirstDateOfCalendar(),
+      lastDate: DateFormatters.getLastDateOfCalendar(),
+    );
+    if (newDate != null) {
+      _updateDates(newDate, newDate);
+    }
+  }
 
   Future<void> _openEventCreationDialog(DateTime selectedDate) {
     return showDialog(
@@ -163,15 +160,45 @@ class _CalendarViewState extends State<CalendarView> {
     });
   }
 
-  static List<CalendarEventModel> _getAllEventsByDate(
-      List<CalendarEventModel> allEvents, DateTime date) {
-    List<CalendarEventModel> eventsForGivenDate = [];
-    for (var element in allEvents) {
-      DateFormat dateFormat = DateFormat('yyyy-MM-dd');
-      if (dateFormat.format(element.eventDate) == dateFormat.format(date)) {
-        eventsForGivenDate.add(element);
-      }
-    }
-    return eventsForGivenDate;
+  Widget _actionPopUpMenu() {
+    return PopupMenuButton(
+      offset: const Offset(0, 50),
+      icon: const Icon(Icons.menu),
+      onSelected: (value) async {
+        switch (value) {
+          case "reset_date":
+            return _updateDates(DateTime.now(), DateTime.now());
+          case "select_date":
+            return _openDateSelectionPicker();
+          case "create_new_event":
+            return _openEventCreationDialog(_selectedDate);
+          default:
+            throw UnimplementedError();
+        }
+      },
+      itemBuilder: (context) => [
+        PopupMenuItem<String>(
+          value: "reset_date",
+          child: Text(
+            CalendarStrings.resetTodayButtonTitle,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ),
+        PopupMenuItem<String>(
+          value: "select_date",
+          child: Text(
+            CalendarStrings.selectDateButtonTitle,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ),
+        PopupMenuItem<String>(
+          value: "create_new_event",
+          child: Text(
+            CalendarStrings.createNewEventButtonTitle,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ),
+      ],
+    );
   }
 }

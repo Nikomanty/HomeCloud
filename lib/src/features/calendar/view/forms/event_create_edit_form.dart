@@ -34,7 +34,7 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
   TextEditingController eventDescriptionTextController =
       TextEditingController();
 
-  Color? eventColor;
+  Color eventColor = CalendarUtils.availableItemColors()[0];
   DateTime? eventTime;
   late DateTime eventDate;
 
@@ -112,7 +112,7 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         BlockPicker(
-          pickerColor: eventColor ?? CalendarUtils.availableItemColors()[0],
+          pickerColor: eventColor,
           itemBuilder: (color, isCurrentColor, changeColor) {
             return RoundedEventColorPickerItem(
               color: color,
@@ -208,7 +208,7 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
       {
         "eventOwner": eventOwnerTextController.text,
         "eventTitle": eventTitleTextController.text,
-        "eventColor": eventColor?.value,
+        "eventColor": eventColor.value,
         "eventDescription": eventDescriptionTextController.text,
         "eventTime": eventTime?.millisecondsSinceEpoch,
         "eventDate": eventDate.millisecondsSinceEpoch,
