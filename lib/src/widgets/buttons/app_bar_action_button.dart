@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:home_cloud/src/core/constants/app_colors.dart';
 
 class AppBarActionButton extends StatelessWidget {
-  final VoidCallback action;
   final String title;
+  final VoidCallback action;
 
   const AppBarActionButton({
     super.key,
-    required this.action,
     required this.title,
+    required this.action,
   });
 
   @override

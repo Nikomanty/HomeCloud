@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/features/weather/cubit/weather_cubit.dart';
 import 'package:home_cloud/src/features/weather/models/weather_model.dart';
 import 'package:home_cloud/src/features/weather/view/current_weather/current_weather.dart';
+import 'package:home_cloud/src/features/weather/view/current_weather/current_weather_with_info.dart';
 import 'package:home_cloud/src/features/weather/view/current_weather/update_weather_widget.dart';
 import 'package:home_cloud/src/features/weather/view/forecast_weather/forecast_carousel.dart';
 import 'package:home_cloud/src/features/weather/view/utils/weather_utils.dart';
@@ -52,18 +54,30 @@ class _WeatherViewState extends State<WeatherView> {
                 );
               } else {
                 WeatherModel? currentWeather = state.currentWeather;
-                List<WeatherModel>? forecastWeather = state.forecastWeather;
-                return _weatherContent(currentWeather!, forecastWeather!);
+                if (Utils.isViewLandscape(context)) {
+                  List<WeatherModel>? forecastWeather = state.forecastWeather;
+                  return _weatherContentWithForecast(
+                    currentWeather!,
+                    forecastWeather!,
+                  );
+                } else {
+                  return SizedBox(
+                    height: double.infinity,
+                    width: double.infinity,
+                    child: CurrentWeather(model: currentWeather!),
+                  );
+                }
               }
             },
           ),
         ),
-        UpdateWeatherWidget(),
+        const Align(
+            alignment: Alignment.topRight, child: UpdateWeatherWidget()),
       ],
     );
   }
 
-  Widget _weatherContent(
+  Widget _weatherContentWithForecast(
     WeatherModel currentWeather,
     List<WeatherModel> forecastWeather,
   ) {
@@ -71,7 +85,7 @@ class _WeatherViewState extends State<WeatherView> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          CurrentWeather(model: currentWeather),
+          CurrentWeatherWithInfo(model: currentWeather),
           ForecastCarousel(forecastData: forecastWeather),
         ],
       ),

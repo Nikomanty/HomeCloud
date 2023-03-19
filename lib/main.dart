@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_cloud/src/core/configs/firebase_options.dart';
 import 'package:home_cloud/src/core/observers/home_cloud_bloc_observer.dart';
@@ -12,8 +13,15 @@ import 'package:home_cloud/src/features/weather/cubit/weather_cubit.dart';
 import 'package:home_cloud/src/features/weather/data/weather_repository_impl.dart';
 import 'package:home_cloud/src/home_cloud.dart';
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final double screenShortestSide =
+      WidgetsBinding.instance.window.physicalSize.shortestSide /
+          WidgetsBinding.instance.window.devicePixelRatio;
+  if (screenShortestSide < 600) {
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

@@ -18,12 +18,12 @@ Majority of texts are in Finnish, because there is only Finnish users currently.
 
 In use on our wall and main menu:
 
-<img src="https://user-images.githubusercontent.com/16851195/222973262-3b57cc6f-ead2-4df3-bc72-8c86acc3cf8a.jpg" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/222973238-eb9363a9-9d75-4c77-89bc-98dcedd67795.jpg" width="whatever" height="300">
+<img src="https://user-images.githubusercontent.com/16851195/222973262-3b57cc6f-ead2-4df3-bc72-8c86acc3cf8a.jpg" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/222973238-eb9363a9-9d75-4c77-89bc-98dcedd67795.jpg" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/226176485-96a1100f-a242-4eeb-8f8d-99d43b44b1ad.jpg" width="whatever" height="300">
 
 Calendar View And Calendar event creation:
 
-<img src="https://user-images.githubusercontent.com/16851195/222973199-66533ac9-dbf5-4dc1-9e91-44b1ed9dacf9.jpg" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/222978665-8e33829f-139f-468a-b449-78d9ea8866e4.png" width="whatever" height="300">
+<img src="https://user-images.githubusercontent.com/16851195/222973199-66533ac9-dbf5-4dc1-9e91-44b1ed9dacf9.jpg" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/222978665-8e33829f-139f-468a-b449-78d9ea8866e4.png" width="whatever" height="300">   <img src="https://user-images.githubusercontent.com/16851195/226176521-cac8e07c-637c-422f-9057-e5db7e3ea85c.jpg" width="whatever" height="300">
 
 Todo View:
 
-<img src="https://user-images.githubusercontent.com/16851195/222973219-e173a1a6-fbe8-4b38-8a54-1f6ddda19c18.jpg" width="whatever" height="300">
+<img src="https://user-images.githubusercontent.com/16851195/222973219-e173a1a6-fbe8-4b38-8a54-1f6ddda19c18.jpg" width="whatever" height="300">    <img src="https://user-images.githubusercontent.com/16851195/226176537-ae30c35c-70b1-4320-9271-566dd4b3ca2b.jpg" width="whatever" height="300">

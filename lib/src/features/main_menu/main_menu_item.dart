@@ -5,13 +5,18 @@ import 'package:home_cloud/src/features/main_menu/utils/main_menu_utils.dart';
 
 class MainMenuItem extends StatelessWidget {
   final int index;
+  final double aspectRatio;
 
-  const MainMenuItem({super.key, required this.index});
+  const MainMenuItem({
+    super.key,
+    required this.index,
+    required this.aspectRatio,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 2,
+      aspectRatio: aspectRatio,
       child: InkWell(
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,

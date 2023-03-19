@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
+import 'package:home_cloud/src/features/todo/view/components/expandable_todo_box.dart';
 import 'package:home_cloud/src/features/todo/view/components/todo_box_grid.dart';
 import 'package:home_cloud/src/features/todo/view/forms/todo_create_edit_form.dart';
 import 'package:home_cloud/src/features/todo/view/utils/todo_strings.dart';
+import 'package:home_cloud/src/features/todo/view/utils/todo_utils.dart';
 import 'package:home_cloud/src/widgets/buttons/app_bar_action_button.dart';
 import 'package:home_cloud/src/widgets/error/centered_error_text.dart';
 import 'package:home_cloud/src/widgets/loading/centered_loader.dart';
@@ -35,7 +38,21 @@ class TodoView extends StatelessWidget {
               errorMessage: state.exception.toString(),
             );
           } else {
-            return TodoBoxGrid(allTodoItems: state.todoData ?? []);
+            if (Utils.isViewLandscape(context)) {
+              return TodoBoxGrid(allTodoItems: state.todoData ?? []);
+            } else {
+              return ListView(
+                children: TodoUtils.allTodoBoxes.map<Widget>(
+                  (todoBox) {
+                    return ExpandableTodoBox(
+                      title: todoBox,
+                      todos: TodoUtils.getTodoItemsByWeekday(
+                          state.todoData ?? [], todoBox),
+                    );
+                  },
+                ).toList(),
+              );
+            }
           }
         },
       ),
