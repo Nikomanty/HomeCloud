@@ -16,6 +16,7 @@ class TodoStrings {
   static const String createNewTodoButtonTitle = "Uusi tehtävä";
   static const String todoTextHintText = "Tehtävän teksti";
 
-  static const String todoMustHaveText  =
-      "Tehtävällä täytyy olla teksti";
+  static const String todoMustHaveText = "Tehtävällä täytyy olla teksti";
+
+  static const String noTodos = "Ei tapahtumia";
 }
