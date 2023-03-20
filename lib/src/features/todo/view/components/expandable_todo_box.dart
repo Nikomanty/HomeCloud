@@ -19,8 +19,23 @@ class ExpandableTodoBox extends StatefulWidget {
   State<ExpandableTodoBox> createState() => _ExpandableTodoBoxState();
 }
 
-class _ExpandableTodoBoxState extends State<ExpandableTodoBox> {
-  bool showTodoBoxContent = false;
+class _ExpandableTodoBoxState extends State<ExpandableTodoBox>
+    with TickerProviderStateMixin {
+  bool _isExpanded = false;
+  late AnimationController _animationController;
+  late Animation<double> _todoBoxAnimation;
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+    _todoBoxAnimation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.linear,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +46,7 @@ class _ExpandableTodoBoxState extends State<ExpandableTodoBox> {
           InkWell(
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
-            onTap: () => setState(() {
-              showTodoBoxContent = !showTodoBoxContent;
-              debugPrint(showTodoBoxContent.toString());
-            }),
+            onTap: () => setState(() => _toggleTodos()),
             child: Container(
               width: double.infinity,
               height: 50,
@@ -47,15 +59,19 @@ class _ExpandableTodoBoxState extends State<ExpandableTodoBox> {
                 children: [
                   Text(widget.title,
                       style: Theme.of(context).textTheme.bodyLarge),
-                  Icon(showTodoBoxContent
-                      ? Icons.arrow_drop_up_outlined
-                      : Icons.arrow_drop_down_outlined)
+                  AnimatedRotation(
+                    turns: _isExpanded ? -0.5 : 0,
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.linear,
+                    child: const Icon(Icons.arrow_drop_down_outlined),
+                  )
                 ],
               ),
             ),
           ),
-          if (showTodoBoxContent)
-            TitleableOutlineBox(
+          SizeTransition(
+            sizeFactor: _todoBoxAnimation,
+            child: TitleableOutlineBox(
               content: SizedBox(
                 width: double.infinity,
                 child: Column(
@@ -64,9 +80,19 @@ class _ExpandableTodoBoxState extends State<ExpandableTodoBox> {
                       .toList(),
                 ),
               ),
-            )
+            ),
+          )
         ],
       ),
     );
+  }
+
+  void _toggleTodos() {
+    if (_todoBoxAnimation.status != AnimationStatus.completed) {
+      _animationController.forward();
+    } else {
+      _animationController.animateBack(0);
+    }
+    _isExpanded = !_isExpanded;
   }
 }

@@ -23,23 +23,15 @@ class CalendarEventList extends StatelessWidget {
   }
 
   Widget _eventsList(BuildContext context) {
-    if (eventsList.isNotEmpty) {
-      return ListView(
-        children: eventsList.map((eventItemModel) {
-          return Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: CalendarEventListItem(
-              eventItemModel: eventItemModel,
-            ),
-          );
-        }).toList(),
-      );
-    }
-    return Center(
-      child: Text(
-        CalendarStrings.noEventsString,
-        style: Theme.of(context).textTheme.bodyLarge,
-      ),
+    return ListView(
+      children: eventsList.map((eventItemModel) {
+        return Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: CalendarEventListItem(
+            eventItemModel: eventItemModel,
+          ),
+        );
+      }).toList(),
     );
   }
 }
