@@ -4,19 +4,33 @@ import 'package:home_cloud/src/features/todo/view/todo_view.dart';
 
 /// All static variables/getters used in Home Cloud application
 class MainMenuUtils {
-  static List<Widget> homeCloudViews = [
-    const CalendarView(),
-    const TodoView(),
+  static const String calendarView = "CalendarView";
+  static const String todoView = "TodoView";
+
+  static List<String> homeCloudViews = [
+    calendarView,
+    todoView,
   ];
 
-  static IconData getItemIcon(String viewName) {
+  static Widget getViewByName(String viewName) {
     switch (viewName) {
-      case "CalendarView":
+      case calendarView:
+        return const CalendarView();
+      case todoView:
+        return const TodoView();
+      default:
+        throw UnimplementedError("No implementation for this view");
+    }
+  }
+
+  static IconData getItemIconByName(String viewName) {
+    switch (viewName) {
+      case calendarView:
         return Icons.calendar_today;
-      case "TodoView":
+      case todoView:
         return Icons.list_alt;
       default:
-        return Icons.not_interested_sharp;
+        throw UnimplementedError("No implementation for this view");
     }
   }
 }

@@ -13,7 +13,7 @@ import 'package:home_cloud/src/features/weather/cubit/weather_cubit.dart';
 import 'package:home_cloud/src/features/weather/data/weather_repository_impl.dart';
 import 'package:home_cloud/src/home_cloud.dart';
 
-Future main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final double screenShortestSide =
       WidgetsBinding.instance.window.physicalSize.shortestSide /

@@ -48,12 +48,12 @@ class HomeCloudMainMenu extends StatelessWidget {
 
   Widget _menuItems(BuildContext context, double aspectRatio) => Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: MainMenuUtils.homeCloudViews.map((menuItem) {
+        children: MainMenuUtils.homeCloudViews.map((viewName) {
           return Expanded(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: MainMenuItem(
-                index: MainMenuUtils.homeCloudViews.indexOf(menuItem),
+                viewName: viewName,
                 aspectRatio: aspectRatio,
               ),
             ),
