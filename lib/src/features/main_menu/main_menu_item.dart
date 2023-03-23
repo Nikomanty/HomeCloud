@@ -4,12 +4,12 @@ import 'package:home_cloud/src/core/constants/styles.dart';
 import 'package:home_cloud/src/features/main_menu/utils/main_menu_utils.dart';
 
 class MainMenuItem extends StatelessWidget {
-  final int index;
+  final String viewName;
   final double aspectRatio;
 
   const MainMenuItem({
     super.key,
-    required this.index,
+    required this.viewName,
     required this.aspectRatio,
   });
 
@@ -31,10 +31,8 @@ class MainMenuItem extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: FittedBox(
               child: Icon(
+                MainMenuUtils.getItemIconByName(viewName),
                 color: AppColors.secondary,
-                MainMenuUtils.getItemIcon(
-                  MainMenuUtils.homeCloudViews[index].toString(),
-                ),
               ),
             ),
           ),
@@ -47,7 +45,7 @@ class MainMenuItem extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute<Widget>(
-        builder: (context) => MainMenuUtils.homeCloudViews[index],
+        builder: (context) => MainMenuUtils.getViewByName(viewName),
       ),
     );
   }
