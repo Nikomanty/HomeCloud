@@ -15,12 +15,16 @@ import 'package:home_cloud/src/home_cloud.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final double screenShortestSide =
-      WidgetsBinding.instance.window.physicalSize.shortestSide /
-          WidgetsBinding.instance.window.devicePixelRatio;
-  if (screenShortestSide < 600) {
-    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  }
+  WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+    final double screenShortestSide =
+        MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+            .size
+            .shortestSide;
+    if (screenShortestSide < 600) {
+      await SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.portraitUp]);
+    }
+  });
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
