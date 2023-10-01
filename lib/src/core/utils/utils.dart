@@ -12,9 +12,19 @@ class Utils {
       SnackBar(
         content: Text(
           notificationString,
-          style: Theme.of(context).textTheme.bodyMedium,
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium
+              ?.copyWith(color: AppColors.onSecondary),
         ),
-        backgroundColor: AppColors.primary,
+        backgroundColor: AppColors.secondary,
+        behavior: SnackBarBehavior.floating,
+        dismissDirection: DismissDirection.up,
+        margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height - 100,
+          left: MediaQuery.of(context).size.width / 4,
+          right: MediaQuery.of(context).size.width / 4,
+        ),
       ),
     );
   }
