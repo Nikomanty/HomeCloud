@@ -4,12 +4,13 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarUtils {
-  static List<Color> availableItemColors() {
+  static List<String> eventOwners() {
     return [
-      Colors.white,
-      Colors.green,
-      Colors.red.shade300,
-      Colors.orange.shade300,
+      "Niko",
+      "Minna",
+      "Melina",
+      "Rasmus",
+      "Yhteinen",
     ];
   }
 

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:home_cloud/src/core/constants/app_colors.dart';
 import 'package:home_cloud/src/core/constants/shared_strings.dart';
+import 'package:home_cloud/src/core/constants/styles.dart';
 import 'package:home_cloud/src/core/utils/date_formatters.dart';
 import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
@@ -29,12 +30,12 @@ class EventCreateEditForm extends StatefulWidget {
 class _EventCreateEditFormState extends State<EventCreateEditForm> {
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController eventOwnerTextController = TextEditingController();
+  String eventOwner = "";
   TextEditingController eventTitleTextController = TextEditingController();
   TextEditingController eventDescriptionTextController =
       TextEditingController();
 
-  Color eventColor = CalendarUtils.availableItemColors()[0];
+  Color eventColor = Colors.white;
   DateTime? eventTime;
   late DateTime eventDate;
 
@@ -43,7 +44,7 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
     super.initState();
     eventDate = widget.selectedDate ?? DateTime.now();
     if (widget.model != null) {
-      eventOwnerTextController.text = widget.model!.eventOwner ?? "";
+      eventOwner = widget.model!.eventOwner ?? "";
       eventTitleTextController.text = widget.model!.eventTitle;
       eventDescriptionTextController.text =
           widget.model!.eventDescription ?? "";
@@ -60,13 +61,10 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _eventColorPicker(),
+          _buildColorIndicator(),
           FormFieldContainer(
             fieldIcon: Icons.person_outline,
-            child: FormTextInputField(
-              hintText: CalendarStrings.ownerHintText,
-              stringToUpdateTextController: eventOwnerTextController,
-            ),
+            child: _buildEventOwnerSelection(),
           ),
           FormFieldContainer(
             fieldIcon: Icons.title_outlined,
@@ -107,32 +105,77 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
     );
   }
 
-  Widget _eventColorPicker() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        BlockPicker(
-          pickerColor: eventColor,
-          itemBuilder: (color, isCurrentColor, changeColor) {
-            return RoundedEventColorPickerItem(
-              color: color,
-              isCurrentColor: isCurrentColor,
-              changeColor: changeColor,
-            );
-          },
-          layoutBuilder: (context, colors, child) {
-            return Row(
-              children: CalendarUtils.availableItemColors().map((color) {
-                return child(color);
-              }).toList(),
-            );
-          },
-          onColorChanged: (color) {
-            eventColor = color;
-          },
+  Widget _buildColorIndicator() {
+    return Padding(
+      padding: const EdgeInsets.all(5),
+      child: Container(
+        width: double.infinity,
+        height: 20,
+        decoration: BoxDecoration(
+          borderRadius: Styles.smallRoundedCorner,
+          shape: BoxShape.rectangle,
+          color: eventColor,
         ),
-      ],
+      ),
     );
+  }
+
+  Widget _buildEventOwnerSelection() {
+    return PopupMenuButton(
+      splashRadius: 0,
+      onSelected: (value) => _setOwner("$value"),
+      position: PopupMenuPosition.under,
+      itemBuilder: (context) => CalendarUtils.eventOwners()
+          .map(
+            (eventOwner) => PopupMenuItem<String>(
+              value: eventOwner,
+              child: Text(
+                eventOwner,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ),
+          )
+          .toList(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        child: Text(
+          eventOwner.isNotEmpty ? eventOwner : "Select owner",
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: eventOwner.isNotEmpty
+                    ? AppColors.onPrimary
+                    : AppColors.onPrimaryVariant,
+              ),
+        ),
+      ),
+    );
+  }
+
+  void _setOwner(String value) {
+    setState(() {
+      switch (value) {
+        case "Niko":
+          eventColor = Colors.green;
+          break;
+        case "Minna":
+          eventOwner = "Minna";
+          eventColor = Colors.red.shade300;
+          break;
+        case "Melina":
+          eventOwner = "Melina";
+          eventColor = Colors.orange.shade300;
+          break;
+        case "Rasmus":
+          eventOwner = "Rasmus";
+          eventColor = Colors.blue.shade300;
+          break;
+        case "Yhteinen":
+          eventOwner = "Yhteinen";
+          eventColor = Colors.white;
+          break;
+        default:
+          throw UnimplementedError();
+      }
+    });
   }
 
   FormFieldContainer _eventTimePicker() {
@@ -203,10 +246,10 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
   }
 
   void _publishEventToDatabase() {
-    context.read<CalendarCubit>().createData(
+    BlocProvider.of<CalendarCubit>(context).createData(
       widget.model?.documentId,
       {
-        "eventOwner": eventOwnerTextController.text,
+        "eventOwner": eventOwner,
         "eventTitle": eventTitleTextController.text,
         "eventColor": eventColor.value,
         "eventDescription": eventDescriptionTextController.text,
