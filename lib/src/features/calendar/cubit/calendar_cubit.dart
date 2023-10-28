@@ -1,18 +1,18 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:home_cloud/src/features/calendar/data/calendar_repository_impl.dart';
+import 'package:home_cloud/src/features/calendar/data/calendar_service.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
 
 part 'calendar_state.dart';
 
 class CalendarCubit extends Cubit<CalendarState> {
-  final CalendarRepository _calendarRepository;
+  final CalendarService _calendarService;
 
-  CalendarCubit(this._calendarRepository) : super(const CalendarState());
+  CalendarCubit(this._calendarService) : super(const CalendarState());
 
   Future<void> deleteData(String documentID) async {
     try {
-      await _calendarRepository.deleteData(documentID);
+      await _calendarService.deleteData(documentID);
       await updateData();
     } on Exception {
       return;
@@ -24,7 +24,7 @@ class CalendarCubit extends Cubit<CalendarState> {
     Map<String, dynamic> newDocumentObject,
   ) async {
     try {
-      await _calendarRepository.createData(documentID, newDocumentObject);
+      await _calendarService.createData(documentID, newDocumentObject);
       await updateData();
     } on Exception {
       return;
@@ -38,7 +38,7 @@ class CalendarCubit extends Cubit<CalendarState> {
 
   Future<void> getData() async {
     try {
-      List<CalendarEventModel> data = await _calendarRepository.fetchData();
+      List<CalendarEventModel> data = await _calendarService.fetchData();
       emit(state.copyWith(status: CalendarStatus.loaded, calendarData: data));
     } on Exception catch (exception) {
       emit(state.copyWith(status: CalendarStatus.error, exception: exception));

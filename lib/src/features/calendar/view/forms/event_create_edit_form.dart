@@ -1,15 +1,13 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:home_cloud/src/core/constants/app_colors.dart';
-import 'package:home_cloud/src/core/constants/shared_strings.dart';
+import 'package:home_cloud/src/core/constants/home_cloud_strings.dart';
 import 'package:home_cloud/src/core/constants/styles.dart';
 import 'package:home_cloud/src/core/utils/date_formatters.dart';
 import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
 import 'package:home_cloud/src/features/calendar/models/calendar_event_model.dart';
-import 'package:home_cloud/src/features/calendar/view/forms/components/rounded_event_color.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/src/features/calendar/view/utils/calendar_utils.dart';
 import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
@@ -86,8 +84,8 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
           const Padding(padding: EdgeInsets.all(5)),
           DialogActionButtonRow(
             confirmButtonTitle: widget.model != null
-                ? SharedStrings.confirmItemEdition
-                : SharedStrings.confirmCreate,
+                ? HomeCloudStrings.confirmItemEdition
+                : HomeCloudStrings.confirmCreate,
             confirmAction: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState?.save();
@@ -139,7 +137,7 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
         child: Text(
-          eventOwner.isNotEmpty ? eventOwner : "Select owner",
+          eventOwner.isNotEmpty ? eventOwner : CalendarStrings.ownerHintText,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: eventOwner.isNotEmpty
                     ? AppColors.onPrimary

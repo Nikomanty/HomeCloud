@@ -1,7 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
-import 'package:home_cloud/src/features/todo/data/todo_repository_impl.dart';
 import 'package:home_cloud/src/features/todo/data/todo_service.dart';
 import 'package:home_cloud/src/features/todo/models/todo_model.dart';
 import 'package:mocktail/mocktail.dart';
@@ -10,7 +9,6 @@ class MockTodoService extends Mock implements TodoService {}
 
 void main() {
   late MockTodoService mockTodoService;
-  late TodoRepository todoRepository;
   late TodoCubit todoCubitUT;
 
   late List<TodoModel> testTodos;
@@ -19,8 +17,7 @@ void main() {
 
   setUp(() {
     mockTodoService = MockTodoService();
-    todoRepository = TodoRepositoryImpl(mockTodoService);
-    todoCubitUT = TodoCubit(todoRepository);
+    todoCubitUT = TodoCubit(mockTodoService);
     testTodos = [
       TodoModel(
           title: "test1", weekDay: "Muut", checked: false, documentId: "123"),

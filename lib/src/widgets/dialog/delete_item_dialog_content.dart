@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/core/constants/shared_strings.dart';
+import 'package:home_cloud/src/core/constants/home_cloud_strings.dart';
 import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/widgets/dialog/dialog_action_button_row.dart';
 
@@ -20,19 +20,19 @@ class DeleteItemDialogContent extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: Text(
-            "${SharedStrings.itemDeletionQuestion} \n$itemToDeleteName",
+            "${HomeCloudStrings.itemDeletionQuestion} \n$itemToDeleteName",
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
         DialogActionButtonRow(
-          confirmButtonTitle: SharedStrings.confirmItemDeletion,
+          confirmButtonTitle: HomeCloudStrings.confirmItemDeletion,
           confirmAction: () {
             deleteItem();
             Utils.showNotificationSnack(
               context: context,
               notificationString:
-                  "$itemToDeleteName ${SharedStrings.deletedString}.",
+                  "$itemToDeleteName ${HomeCloudStrings.deletedString}.",
             );
             Navigator.of(context).pop();
           },
