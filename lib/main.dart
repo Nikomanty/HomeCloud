@@ -5,12 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_cloud/src/core/configs/firebase_options.dart';
 import 'package:home_cloud/src/core/observers/home_cloud_bloc_observer.dart';
 import 'package:home_cloud/src/features/calendar/cubit/calendar_cubit.dart';
-import 'package:home_cloud/src/features/calendar/data/calendar_repository_impl.dart';
+import 'package:home_cloud/src/features/calendar/data/calendar_service.dart';
 import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
-import 'package:home_cloud/src/features/todo/data/todo_repository_impl.dart';
 import 'package:home_cloud/src/features/todo/data/todo_service.dart';
 import 'package:home_cloud/src/features/weather/cubit/weather_cubit.dart';
-import 'package:home_cloud/src/features/weather/data/weather_repository_impl.dart';
+import 'package:home_cloud/src/features/weather/data/weather_service.dart';
 import 'package:home_cloud/src/home_cloud.dart';
 
 void main() async {
@@ -34,16 +33,13 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              CalendarCubit(CalendarRepositoryImpl())..getData(),
+          create: (context) => CalendarCubit(CalendarService())..getData(),
         ),
         BlocProvider(
-          create: (context) =>
-              TodoCubit(TodoRepositoryImpl(TodoService()))..getData(),
+          create: (context) => TodoCubit(TodoService())..getData(),
         ),
         BlocProvider(
-          create: (context) =>
-              WeatherCubit(WeatherRepositoryImpl())..getWeatherData(),
+          create: (context) => WeatherCubit(WeatherService())..getWeatherData(),
         ),
       ],
       child: const HomeCloud(),

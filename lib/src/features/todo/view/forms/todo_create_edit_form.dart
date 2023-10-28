@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:home_cloud/src/core/constants/shared_strings.dart';
+import 'package:home_cloud/src/core/constants/home_cloud_strings.dart';
 import 'package:home_cloud/src/core/utils/utils.dart';
 import 'package:home_cloud/src/features/todo/cubit/todo_cubit.dart';
 import 'package:home_cloud/src/features/todo/models/todo_model.dart';
@@ -73,8 +73,8 @@ class _TodoCreateEditFormState extends State<TodoCreateEditForm> {
               )),
           DialogActionButtonRow(
             confirmButtonTitle: widget.model != null
-                ? SharedStrings.confirmItemEdition
-                : SharedStrings.confirmCreate,
+                ? HomeCloudStrings.confirmItemEdition
+                : HomeCloudStrings.confirmCreate,
             confirmAction: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState?.save();

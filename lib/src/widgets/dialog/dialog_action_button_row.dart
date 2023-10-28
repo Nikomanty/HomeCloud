@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_cloud/src/core/constants/shared_strings.dart';
+import 'package:home_cloud/src/core/constants/home_cloud_strings.dart';
 
 class DialogActionButtonRow extends StatelessWidget {
   final VoidCallback confirmAction;
@@ -20,7 +20,7 @@ class DialogActionButtonRow extends StatelessWidget {
           key: const Key("cancel_button"),
           onPressed: () => Navigator.of(context).pop(),
           child: Text(
-            SharedStrings.cancelString,
+            HomeCloudStrings.cancelString,
             style: Theme.of(context)
                 .textTheme
                 .bodyMedium
