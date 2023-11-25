@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:home_cloud/core/constants/app_colors.dart';
 import 'package:home_cloud/core/extensions/strings_extension.dart';
 import 'package:home_cloud/core/utils/utils.dart';
+import 'package:home_cloud/features/calendar/models/holiday.dart';
 import 'package:home_cloud/features/calendar/view/calendar_grid/calendar_event.dart';
+import 'package:home_cloud/features/calendar/view/calendar_grid/flag_day_info_button.dart';
 import 'package:home_cloud/features/calendar/view/utils/calendar_strings.dart';
 import 'package:home_cloud/features/calendar/view/utils/calendar_utils.dart';
 import 'package:intl/intl.dart';
@@ -114,31 +116,54 @@ class CalendarBuilderHelper {
 
   static Widget _dateDayText(
       BuildContext context, DateTime dateTime, Color dayTextColor) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: Column(
-          children: [
-            Text(
-              "${dateTime.day}",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: dayTextColor),
+    return Stack(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                Text(
+                  "${dateTime.day}",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: dayTextColor),
+                ),
+                const SizedBox(height: 2),
+                if (_hasNameDay(dateTime))
+                  Text(
+                    CalendarUtils.allNameDays(dateTime.year)
+                        .entries
+                        .firstWhere((element) => element.key == dateTime)
+                        .value,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.secondary,
+                        fontWeight: FontWeight.bold),
+                  ),
+              ],
             ),
-            const SizedBox(height: 2),
-            if (_hasNameDay(dateTime))
-              Text(
-                CalendarUtils.allNameDays(dateTime.year)
-                    .entries
-                    .firstWhere((element) => element.key == dateTime)
-                    .value,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.secondary, fontWeight: FontWeight.bold),
-              ),
-          ],
+          ),
+        ),
+        if (CalendarUtils.allFlagAndHolidays(dateTime.year)
+            .any((element) => element.dateTime == dateTime))
+          _flagDays(dateTime),
+      ],
+    );
+  }
+
+  static Widget _flagDays(DateTime dateTime) {
+    Holiday holiday = CalendarUtils.allFlagAndHolidays(dateTime.year)
+        .firstWhere((element) => element.dateTime == dateTime);
+    return Align(
+      alignment: Alignment.topRight,
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: FlagDayInfoButton(
+          title: holiday.title,
+          isFlagDay: holiday.isFlagDay,
         ),
       ),
     );
