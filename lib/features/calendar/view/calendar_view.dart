@@ -105,6 +105,7 @@ class _CalendarViewState extends State<CalendarView> {
         calendarBuilders: CalendarBuilderHelper.getHomeCalendarBuilder(),
         eventLoader: (date) =>
             CalendarUtils.getAllEventsByDate(allEvents, date),
+        weekNumbersVisible: true,
       );
 
   List<Widget> _appBarActionRow() {

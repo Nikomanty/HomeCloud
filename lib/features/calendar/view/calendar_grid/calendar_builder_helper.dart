@@ -4,6 +4,7 @@ import 'package:home_cloud/core/extensions/strings_extension.dart';
 import 'package:home_cloud/core/utils/utils.dart';
 import 'package:home_cloud/features/calendar/view/calendar_grid/calendar_event.dart';
 import 'package:home_cloud/features/calendar/view/utils/calendar_strings.dart';
+import 'package:home_cloud/features/calendar/view/utils/calendar_utils.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -11,7 +12,7 @@ class CalendarBuilderHelper {
   static CalendarBuilders getHomeCalendarBuilder() {
     return CalendarBuilders(
       defaultBuilder: (context, day, focusedDay) =>
-          _dateDayText(context, "${day.day}", AppColors.onPrimary),
+          _dateDayText(context, day, AppColors.onPrimary),
       selectedBuilder: (context, day, selectedDay) =>
           _currentAndSelectedDayBuilder(
               context, selectedDay, AppColors.secondary),
@@ -23,7 +24,17 @@ class CalendarBuilderHelper {
       markerBuilder: (context, date, eventList) =>
           _markerBuilder(context, eventList),
       headerTitleBuilder: (context, time) => _headerTitle(context, time),
+      weekNumberBuilder: (context, weekNumber) =>
+          _weekNumberBuilder(context, weekNumber),
     );
+  }
+
+  static Widget _weekNumberBuilder(BuildContext context, int weekNumber) {
+    return Center(
+        child: Padding(
+      padding: const EdgeInsets.only(right: 4.0),
+      child: Text("$weekNumber", style: Theme.of(context).textTheme.bodySmall),
+    ));
   }
 
   static Widget _headerTitle(BuildContext context, DateTime time) {
@@ -32,7 +43,7 @@ class CalendarBuilderHelper {
       child: Text(
         "${DateFormat('MMMM', 'fi').format(time)} / ${time.year}"
             .capitalizeString(),
-        style: Theme.of(context).textTheme.headlineSmall,
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
     );
   }
@@ -90,31 +101,52 @@ class CalendarBuilderHelper {
           ),
         ),
       ),
-      _dateDayText(context, "${day.day}", AppColors.onSecondary),
+      _dateDayText(context, day, AppColors.onSecondary),
     ]);
   }
 
   static Widget _offMonthDays(BuildContext context, DateTime day) {
     return ColoredBox(
       color: AppColors.primary,
-      child: _dateDayText(context, "${day.day}", AppColors.onPrimary),
+      child: _dateDayText(context, day, AppColors.onPrimary),
     );
   }
 
   static Widget _dateDayText(
-      BuildContext context, String dayText, Color dayTextColor) {
+      BuildContext context, DateTime dateTime, Color dayTextColor) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Align(
         alignment: Alignment.topCenter,
-        child: Text(
-          dayText,
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(color: dayTextColor),
+        child: Column(
+          children: [
+            Text(
+              "${dateTime.day}",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: dayTextColor),
+            ),
+            const SizedBox(height: 2),
+            if (_hasNameDay(dateTime))
+              Text(
+                CalendarUtils.allNameDays(dateTime.year)
+                    .entries
+                    .firstWhere((element) => element.key == dateTime)
+                    .value,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.secondary, fontWeight: FontWeight.bold),
+              ),
+          ],
         ),
       ),
     );
+  }
+
+  static bool _hasNameDay(DateTime dateTime) {
+    return CalendarUtils.allNameDays(dateTime.year)
+        .entries
+        .any((element) => element.key == dateTime);
   }
 }

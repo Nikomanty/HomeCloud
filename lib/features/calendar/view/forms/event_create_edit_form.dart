@@ -152,6 +152,7 @@ class _EventCreateEditFormState extends State<EventCreateEditForm> {
     setState(() {
       switch (value) {
         case "Niko":
+          eventOwner = "Niko";
           eventColor = Colors.green;
           break;
         case "Minna":
