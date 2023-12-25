@@ -116,6 +116,7 @@ app.*.symbols
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
 ios/firebase_app_id_file.json
+**/calendar_celebration_day_utils.dart
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
